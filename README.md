@@ -1,9 +1,6 @@
 # FTDI245R Signal Acquisition Architecture
 
 Project file namespace: `fsa`. The architecture starts at `fsaManual.tex`.
-This project copy changes the template project name and namespace only;
-remaining template placeholders and examples are not approved project facts.
-Unresolved project decisions remain assigned to the project requester.
 
 ## Sources
 
