@@ -6,6 +6,19 @@ Define the concepts, classes, interfaces, and responsibilities of the design.
 
 \noindent\textbf{Expected result:} A structural model with explicit responsibility and ownership.
 
+\section{Revision 0.1 Scope Notice}
+\label{Section:DeferredLogicalView}
+\begin{fsaNote}[Deferred project content --- template reference only]
+This chapter is retained in the complete document as template guidance.
+Its sample artifacts, IDs, priorities, statuses, versions, outcomes, and
+approval examples do not describe the FTDI245R project. In particular, any
+sample Done, Pass, or release entry is not implementation, verification,
+validation, or approval evidence for this project. Detailed project content
+is deferred under \hyperref[Section:ProjectScope]{the revision scope}.
+See \hyperref[Table:ProjectGapReview]{the reviewed gap list} for actual
+decisions and unresolved items.
+\end{fsaNote}
+
 \section{How to Use This Chapter}
 Model the domain concepts, responsibilities, relationships, data ownership, and invariants without committing to code-level structure. Use a class, entity, or conceptual diagram where useful. For every class and interface in a class diagram, list its primary responsibility in a titled and labeled register, as required by \hyperref[Requirement:DOCCLASS001]{DOC-CLASS-001}. Reference that register from the logical view and keep it synchronized with the diagram. Under \hyperref[Requirement:DOCLINK001]{DOC-LINK-001}, give each class or interface row a stable label and link class names in diagrams and prose to that row.
 \section{Example}
@@ -14,7 +27,7 @@ Model the domain concepts, responsibilities, relationships, data ownership, and 
 
 Table~\ref{Table:ExampleClassResponsibilities} illustrates the required register.
 \begin{tabularx}{\linewidth}{L{4.2cm}Y}
-\caption{Example Class Responsibilities Register\label{Table:ExampleClassResponsibilities}}\\
+\caption{Template reference only: Example Class Responsibilities Register\label{Table:ExampleClassResponsibilities}}\\
 \toprule Class & Primary responsibility\\\midrule
 \phantomsection\label{Class:Request}\textit{Request} & Hold one request's identity, submitter, status, and submission time; enforce valid status transitions.\\
 \phantomsection\label{Class:RequestItem}\textit{Request Item} & Hold one item belonging to a request and its item-specific data.\\\bottomrule

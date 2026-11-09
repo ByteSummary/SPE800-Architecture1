@@ -43,18 +43,21 @@
 % Replace the values below when starting a project.
 \newcommand{\FileNamespace}{fsa}
 \newcommand{\ProjectName}{FTDI245R Signal Acquisition Architecture}
-\newcommand{\DocumentVersion}{2.33}
-\newcommand{\DocumentStatus}{Draft Template}
-\newcommand{\DocumentOwner}{[Owner or Team]}
-\newcommand{\Organization}{[Organization]}
-\newcommand{\DocumentDate}{[Month Day, Year]}
+\newcommand{\DocumentVersion}{0.1}
+\newcommand{\DocumentStatus}{Draft --- Initial Architecture and Context Baseline}
+\newcommand{\DocumentOwner}{Joel Murphy}
+% One authoritative name for the owner of every unresolved decision.
+\newcommand{\TBDDecisionOwner}{Joel Murphy}
+\DeclareRobustCommand{\OwnedTBD}{TBD}
+\newcommand{\Organization}{\OwnedTBD{}}
+\newcommand{\DocumentDate}{November 8, 2026}
 \newcommand{\VERSION}{Version \DocumentVersion}
 
 \hypersetup{
   pdftitle={FTDI245R Signal Acquisition Architecture - System and Software Architecture Design},
-  pdfauthor={[Owner or Team]},
+  pdfauthor={Joel Murphy},
   pdfcreator={Darian Muresan, Ph.D., with OpenAI Codex and Anthropic Claude Code},
-  pdfsubject={Reusable software architecture design template},
+  pdfsubject={Initial architecture and context baseline; detailed artifacts deferred},
   pdfkeywords={software architecture, requirements, traceability, verification, validation}
 }
 
@@ -145,8 +148,8 @@
 \lhead{\small Chapter \thechapter}
 \chead{\small\nouppercase{\leftmark}}
 \rhead{\small\thepage}
-\lfoot{\small\ProjectName}
-\cfoot{\small\copyright\ \Organization}
+\lfoot{\small\begin{tabular}[t]{@{}l@{}}\ProjectName\\\copyright\ \Organization\end{tabular}}
+\cfoot{}
 \rfoot{\small\VERSION}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}

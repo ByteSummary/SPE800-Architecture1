@@ -8,6 +8,93 @@ Preserve the provenance of material AI assistance and its human review.
 
 \section{How to Use This Appendix}
 Use this log when AI assistance materially affects requirements, architecture, code, tests, or release evidence. Record enough context for a reviewer to understand the input, output, assumptions, and human corrections.
+\section{Named Owner for Every Unresolved Decision}
+\label{Section:TBDOwnershipPromptLog}
+Record date: November 8, 2026. The owner directed that every unresolved
+decision marker name Joel Murphy. All document occurrences now use the shared
+\texttt{OwnedTBD} command, which prints \OwnedTBD{}. The shared owner definition
+is in \texttt{fsaManual.tex}. The annotation includes table entries and metadata
+and preserves the unresolved status. Decision ownership does not appoint a
+technical role whose assignment is still undecided. See
+\hyperref[Section:TBDDecisionOwnership]{Ownership of Unresolved Decisions}.
+The footer was separated into two lines to accommodate the annotated
+organization placeholder. Compilation and visual review of this update remain
+pending; the previously compiled PDF is unchanged.
+
+\section{Development Plan Embedded Tailoring Clarification}
+\label{Section:DevelopmentPlanTailoringPromptLog}
+Record date: November 8, 2026. The owner requested explicit embedded-profile
+justification, hardware and firmware responsibilities, toolchain and
+host-platform assumptions, sustainment notes, and open risks. Before editing,
+the agent reported the planned changes. The owner supplied the five
+\hyperref[Section:EmbeddedApplicabilityTriggers]{applicability triggers}.
+No technical owner, firmware implementation, toolchain selection, timing
+limit, or resource budget was inferred. Known platforms and sustainment
+dispositions were retained; all six previously reviewed risks remain open.
+Technical responsibilities and unprovided assumptions remain \OwnedTBD{}. PDF
+compilation and visual inspection remain assigned to the owner.
+
+\section{Introduction Mission Need and Subsystem Clarification}
+\label{Section:IntroductionClarificationPromptLog}
+Record date: November 8, 2026. The owner directed an Introduction update
+using earlier answers without inferring missing facts. The owner confirmed
+that the sensor-interface subsystem means the FTDI245R acquisition pipeline
+code base and supplied the mission need verbatim. See
+\hyperref[Section:ProjectMissionNeed]{Mission Need} and
+\hyperref[Section:ProjectPurpose]{Purpose}. The existing revision scope,
+external dependency boundary, non-field-deployment disposition, and deferred
+work were made explicit in
+\hyperref[Section:ProjectExclusions]{Exclusions and Deferred Work}.
+Reliability and plug and play acceptance criteria remain \OwnedTBD{}. No detailed
+requirements, design, compatibility, or verification result was inferred.
+PDF compilation remains assigned to the owner.
+
+\section{Human Approval Authority Clarification}
+Record date: November 8, 2026. The owner clarified that human approval
+authority is always present. The stakeholder description now states that
+AI-assisted code production is subject to human review and approval and that
+Joel Murphy retains approval authority. See
+\hyperref[Section:ContextStakeholders]{Stakeholders} and
+\hyperref[Section:ProjectGovernance]{Project Governance}.
+
+\section{Revision 0.1 System Context Clarification}
+\label{Section:ContextDependencyPromptLog}
+Record date: November 8, 2026. The owner directed identification of
+stakeholders, external systems, the hardware--software boundary, and
+dependencies in System Context. The owner designated the ADC0804, 74xx
+counter, peer FTDI245R, USB stack, Linux/Windows/macOS host operating systems,
+and downstream processing consumer as controlled external dependencies at
+that boundary. See \hyperref[Table:ContextDependencies]{the dependency
+register}. Detailed contracts, revisions, and compatibility evidence remain
+\OwnedTBD{}. The counter's connections and the peer endpoint's physical identity
+were not inferred. Related scope and gap summaries were synchronized.
+Source checks are separate from PDF compilation, which remains assigned to
+the owner. No implementation, test, or final PDF approval is claimed.
+
+\section{Revision 0.1 Initialization Record}
+\label{Section:ProjectInitializationPromptLog}
+Record date: November 8, 2026. Tool: OpenAI Codex; model family: GPT-6.
+The owner requested initialization using \hyperref[Skill:AIS-02]{AIS-02} and
+\ChapterRef{AIImplementationWorkflow}, with evidence review and gap review
+before editing. The supplied guide is \texttt{fsaAIAgentGuide.tex}.
+
+The owner confirmed the fsa namespace and the Embedded Systems profile as
+Applicable, then reviewed G01--G16 individually. The purpose and scope were
+supplied verbatim; ownership, users, the connection chain, host operating
+systems, disconnection intent, Git/GitHub use, Not Applicable service concerns,
+six open risks, \OwnedTBD{} ownership, and metadata were confirmed. Initial source-\OwnedTBD{}
+information was superseded by the Sensor/ADC0804 clarification. The reviewed
+dispositions are authoritative in their linked core chapters and summarized
+in \hyperref[Table:ProjectGapReview]{the reviewed gap list}.
+
+The owner authorized document updates after completing the gap review and
+subsequently elected to compile the PDF personally. The owner specified direct
+updates in the supplied SPE800-Architecture1 folder. No external project facts
+were added; unresolved hardware, signal, interface, quality, constraint,
+safety, security, and evidence items remain explicit. One agent performed
+the update and source self-review; no independent review or PDF build is
+claimed. See \hyperref[Section:ProjectExecutionRecord]{the execution record}.
+
 \section{Example Record}
 Date: \textit{[timestamp]}; Tool and model: \textit{[name]}; Input: \textit{[requirements and constraints supplied]}; Task: \textit{[requested output]}; Human review and corrections: \textit{[summary]}; Unresolved assumptions: \textit{[list or none]}.
 

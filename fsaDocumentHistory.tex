@@ -14,7 +14,13 @@ Every history entry shall link to the chapter, section, table, figure, or
 controlled artifact where the documented change occurred.
 
 \noindent\textbf{Author initials:} \textbf{DDM}: David Darian Muresan;
-\textbf{CDX}: OpenAI Codex. A comma identifies joint authorship or implementation.
+\textbf{CDX}: OpenAI Codex; \textbf{JM}: Joel Murphy. A comma identifies joint authorship or implementation.
+
+\paragraph{Project and template histories.}
+Revision 0.1 begins the derived project's history. Entries numbered 1.4--2.33
+below are inherited template provenance; they are not earlier project releases
+or evidence of project acceptance. Joel Murphy authorized the reviewed updates;
+final rendered-document review remains pending owner compilation.
 
 \begin{tabularx}{\linewidth}{L{3.1cm}L{2.2cm}YL{2.0cm}}
 \caption{Document Update History\label{Table:DocumentHistory}}\\
@@ -32,7 +38,12 @@ controlled artifact where the documented change occurred.
 \endfoot
 \bottomrule
 \endlastfoot
-\textit{[date / version]} & \textit{[initials]} & \textit{[approved change and rationale]} & \textit{[link]}\\
+November 8, 2026 / 0.1 & JM, CDX & Added Joel Murphy as the named decision owner beside every unresolved-decision marker, including metadata and table entries; adjusted footer spacing for the longer organization marker. & \hyperref[Section:TBDDecisionOwnership]{Decision ownership}\\
+November 8, 2026 / 0.1 & JM, CDX & Named five owner-specified embedded applicability triggers; recorded hardware/firmware responsibility gaps and toolchain/host assumptions; labeled sustainment notes and retained all six open risks. & \hyperref[Section:EmbeddedApplicabilityTriggers]{Triggers}, \hyperref[Section:HardwareFirmwareResponsibilities]{responsibilities}, \hyperref[Section:ToolchainHostAssumptions]{assumptions}, \hyperref[Section:ProjectSustainmentNotes]{sustainment}\\
+November 8, 2026 / 0.1 & JM, CDX & Added the owner-supplied mission need, identified the sensor-interface subsystem as the acquisition pipeline code base, and made existing scope exclusions and deferred work explicit. & \hyperref[Section:ProjectMissionNeed]{Mission need}, \hyperref[Section:ProjectPurpose]{purpose}, \hyperref[Section:ProjectExclusions]{exclusions}\\
+November 8, 2026 / 0.1 & JM, CDX & Clarified that AI-assisted code production remains under human review and approval, with Joel Murphy retaining approval authority. & \hyperref[Section:ContextStakeholders]{Stakeholders}\\
+November 8, 2026 / 0.1 context clarification & JM, CDX & Owner-directed clarification of stakeholders, the pipeline code-base boundary, and six controlled external dependencies; detailed contracts remain \OwnedTBD{}. & \hyperref[Section:ContextStakeholders]{Stakeholders}, \hyperref[Section:ProjectSystemBoundary]{boundary}, \hyperref[Table:ContextDependencies]{dependencies}\\
+November 8, 2026 / 0.1 & JM, CDX & Owner-reviewed initialization: purpose, scope, stakeholders, initial context, profile selection, gaps, risks, dispositions, and metadata. Detailed artifacts deferred. Update authorized; PDF compilation pending owner execution. & \hyperref[Section:ProjectScope]{Scope}, \hyperref[Table:ProjectGapReview]{gap review}, \ChapterRef{SystemContext}\\
 October 26, 2026 / 2.33 & CDX & Added a responsibility and expected result to every chapter and appendix; required the same structure for future chapters. & \hyperref[Section:ChapterResponsibilityConvention]{Chapter responsibility convention}\\
 October 26, 2026 / 2.32 & CDX & Linked references to authoritative definitions and made class-responsibility rows the class targets. & \hyperref[Requirement:DOCLINK001]{DOC-LINK-001}\\
 October 26, 2026 / 2.31 & CDX & Required right-angle routing for every arrow and connector in every drawing. & \hyperref[Requirement:DOCTIKZ002]{DOC-TIKZ-002}\\
