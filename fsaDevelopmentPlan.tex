@@ -6,20 +6,30 @@ Define how the project is governed, planned, reviewed, and changed.
 
 \noindent\textbf{Expected result:} An actionable plan with visible ownership and decision gates.
 
-\section{How to Use This Chapter}
-Describe governance, roles, milestones, change control, and risks. Adapt the plan to the lifecycle the team will actually follow.
+\section{Project Governance}
+\label{Section:ProjectGovernance}
+Joel Murphy owns this document, approves revisions and the initial architecture
+and context baseline, and resolves all open \OwnedTBD{} items. The owner completed the
+gap-list review and authorized these document updates. That authorization does
+not resolve the retained \OwnedTBD{} items, accept residual risk, establish a detailed
+requirements baseline, or authorize release. Additional acceptance criteria
+are \OwnedTBD{}. All open risks also require owner assignment and assessment.
+
+\subsection{Ownership of Unresolved Decisions}
+\label{Section:TBDDecisionOwnership}
+Every unresolved decision is marked \OwnedTBD{}. This annotation identifies
+the person responsible for resolving the decision; it does not assign an
+undecided hardware, firmware, host-integration, toolchain, maintenance, or risk
+role to that person. Joel Murphy is the named decision owner for all open
+items, including items in prose, tables, metadata, and retained template
+guidance. Items remain unresolved until an explicit decision is recorded.
 
 \section{Domain Profile Selection}
 \label{Section:DevelopmentPlanProfiles}
-Record every domain tailoring profile considered during initialization. An
-authorized human shall set each profile to Applicable, Not Applicable, or TBD
-and record the rationale, decision owner, and date. A TBD profile remains in
-the AI and human review context until resolved. When a profile is Applicable,
-identify the lifecycle gates, roles, evidence, and reviews it adds to this
-development plan.
-
+The available profile was read before editing, and its concerns were added to
+the reviewed gap list. The project facts remain in their core chapters.
 \small
-\begin{tabularx}{\linewidth}{L{3.5cm}L{2.7cm}Y}
+\begin{tabularx}{\linewidth}{L{3.0cm}L{2.2cm}Y}
 \caption{Project Domain Profile Decisions\label{Table:ProjectDomainProfiles}}\\
 \toprule
 \textbf{Profile} & \textbf{Status} & \textbf{Rationale, Owner, and Date}\\
@@ -32,14 +42,204 @@ development plan.
 \endhead
 \bottomrule
 \endlastfoot
-\hyperref[Chapter:EmbeddedSystemsProfile]{Embedded Systems} &
-\textit{[Applicable / Not Applicable / TBD]} &
-\textit{[Decision basis, authorized owner, and decision date]}\\
-\textit{[Additional profile]} &
-\textit{[Applicable / Not Applicable / TBD]} &
-\textit{[Decision basis, authorized owner, and decision date]}\\
+\hyperref[Chapter:EmbeddedSystemsProfile]{Embedded Systems} & Applicable & Confirmed by Joel Murphy. Applicability triggers are documented in \hyperref[Section:EmbeddedApplicabilityTriggers]{Embedded Applicability Triggers}. Recorded in revision 0.1, November 8, 2026.\\
 \end{tabularx}
 \normalsize
 
-\section{Example}
-The product owner prioritizes outcomes; the architect owns significant design decisions; developers implement approved work; and the test lead retains evidence. Typical gates are needs reviewed, requirements baselined, architecture approved, evidence complete, and release approved. Example risk: an external service may be unavailable; define the failure response and test it before release.
+Only the Embedded Systems profile is implemented in the supplied template.
+The profile adds hardware and toolchain ownership, timing and resource review,
+controlled hardware evidence, and target-test review concerns. Detailed gates,
+test roles, and evidence criteria are deferred with their dependent artifacts.
+Future requirements work must map each applicable profile concern to a
+requirement or an approved Not Applicable disposition under
+\hyperref[Section:DomainProfileRequirements]{the domain-profile translation rule}.
+
+\section{Embedded Applicability Triggers}
+\label{Section:EmbeddedApplicabilityTriggers}
+The owner identified the following triggers as the justification for applying
+\hyperref[Chapter:EmbeddedSystemsProfile]{the Embedded Systems profile} to
+the sensor-interface subsystem, meaning the FTDI245R acquisition pipeline
+code base. The recorded decision remains Applicable.
+\begin{itemize}
+\item \textbf{Dedicated interface hardware:} the acquisition context depends
+on external hardware, including the
+\hyperref[Dependency:ADC0804]{ADC0804},
+\hyperref[Dependency:Counter]{74xx counter}, and
+\hyperref[Dependency:PeerFTDI245R]{peer FTDI245R}.
+\item \textbf{Sensors and real-time events:} the Sensor and acquisition events
+make event handling a relevant embedded concern. Event definitions and any
+real-time guarantees remain \OwnedTBD{}.
+\item \textbf{Host-OS driver or library interaction:} the pipeline depends on
+the \hyperref[Dependency:USBStack]{USB stack} and
+\hyperref[Dependency:HostOS]{host operating system}; the driver/API and library
+selection remain \OwnedTBD{}.
+\item \textbf{Sampling and conversion timing:} timing at the Sensor,
+ADC0804, and acquisition interface requires review. Sample rates, conversion
+timing, triggering, latency, and jitter limits remain \OwnedTBD{}.
+\item \textbf{Bounded host resources:} processing, buffering, memory,
+storage, and transfer capacity require resource review. Allocations, limits,
+margins, and supporting measurements remain \OwnedTBD{}.
+\end{itemize}
+These triggers establish the need for tailoring; they do not establish
+hardware compatibility, timing guarantees, resource sufficiency, or test results.
+
+\section{Hardware and Firmware Responsibilities}
+\label{Section:HardwareFirmwareResponsibilities}
+Joel Murphy retains human approval authority and resolves the \OwnedTBD{} decisions
+below. Decision ownership does not assign hardware or firmware engineering
+responsibilities to him. Technical owners and implementation allocation have
+not yet been provided.
+\small
+\begin{tabularx}{\linewidth}{L{3.0cm}L{2.2cm}Y}
+\caption{Hardware and Firmware Responsibility Status\label{Table:HardwareFirmwareResponsibilities}}\\
+\toprule
+\textbf{Area} & \textbf{Technical Owner} & \textbf{Responsibility / Allocation Status}\\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{\small\itshape Hardware and Firmware Responsibility Status (continued)}\\
+\toprule
+\textbf{Area} & \textbf{Technical Owner} & \textbf{Responsibility / Allocation Status}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Hardware & \OwnedTBD{} & Assignment of responsibility for hardware identification,
+revisions, wiring, electrical compatibility, sampling/conversion timing,
+and controlled hardware evidence is \OwnedTBD{}. Hardware remains external under
+\hyperref[Section:ProjectSystemBoundary]{the system boundary}.\\
+Firmware & \OwnedTBD{} & Whether firmware is required, where it executes, and who
+owns its implementation, configuration, and evidence are \OwnedTBD{}. No firmware
+component, platform, or engineering assignment is established.\\
+Host integration & \OwnedTBD{} & Assignment of responsibility for driver/library
+selection and Linux, Windows, and macOS integration and compatibility evidence
+is \OwnedTBD{}. The \hyperref[Table:ContextDependencies]{dependency register} defines
+the controlled external context.\\
+\end{tabularx}
+\normalsize
+
+\section{Toolchain and Host-Platform Assumptions}
+\label{Section:ToolchainHostAssumptions}
+Linux, Windows, and macOS are the owner-confirmed host platforms in the
+initial context baseline. Supported operating-system versions, architectures,
+permissions, USB-stack implementations, drivers/APIs, libraries, and
+compatibility evidence remain \OwnedTBD{}. No successful cross-platform execution
+is claimed.
+
+Programming languages, development tools, compiler/linker versions, SDKs,
+dependency versions, build environment, and reproducibility acceptance
+criteria remain \OwnedTBD{}. Toolchain ownership is \OwnedTBD{}. Git and GitHub configuration
+control is recorded in
+\hyperref[Section:ProjectConfigurationControl]{Configuration Control and Service Dispositions};
+it does not establish a selected implementation toolchain. No bare-metal,
+RTOS, embedded Linux, programmable-logic, or firmware execution platform is
+assumed. Detailed allocation remains governed by
+\hyperref[Section:ProjectSystemBoundary]{System Boundary and Allocation}.
+
+\section{Configuration Control and Service Dispositions}
+\label{Section:ProjectConfigurationControl}
+Configuration control uses Git, with GitHub for remote repository hosting.
+The repository location, controlled source revision, build environment, and
+reproducibility acceptance criteria are \OwnedTBD{}. Git and GitHub alone do not
+demonstrate that a code base is reproducible.
+
+\subsection{Sustainment Notes}
+\label{Section:ProjectSustainmentNotes}
+Joel Murphy marked updates, rollback, calibration records, manufacturing,
+field service, and component availability Not Applicable because this system
+will not be field deployed. These are recorded owner dispositions; a scope
+change may require their review. This disposition does not establish a
+technical claim about whether calibration is needed for a particular sensor.
+
+\section{Development Sequence}
+\label{Section:ProjectDevelopmentSequence}
+This revision contains context, an initial capability baseline, and reviewed
+gaps. Later work proceeds from context and stakeholder needs through detailed
+requirements, use cases, architecture views, tests and traceability, evidence,
+and release. Resolve consequential hardware, boundary, interface, and
+acceptance gaps before dependent detailed work. Week assignments and dates
+beyond the current revision are \OwnedTBD{}. No implementation or test pass is claimed.
+
+\section{Reviewed Gap List}
+\label{Section:ProjectGapReview}
+The owner reviewed G01--G16 one item at a time. Review is complete; the open
+items below remain unresolved. Joel Murphy is the decision owner for every
+\OwnedTBD{} item. Where no decision date was supplied, November 8, 2026 identifies the
+revision record date rather than an independently evidenced approval timestamp.
+\small
+\begin{tabularx}{\linewidth}{L{1.1cm}L{3.0cm}Y}
+\caption{Reviewed Project Gap List\label{Table:ProjectGapReview}}\\
+\toprule
+\textbf{ID} & \textbf{Area} & \textbf{Reviewed Disposition / Remaining Gap}\\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{\small\itshape Reviewed Project Gap List (continued)}\\
+\toprule
+\textbf{ID} & \textbf{Area} & \textbf{Reviewed Disposition / Remaining Gap}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\phantomsection\label{Gap:G01}G01 & Purpose & Project purpose recorded in \hyperref[Section:ProjectPurpose]{Purpose}; owner-supplied mission need added in \hyperref[Section:ProjectMissionNeed]{Mission Need}. Reliability and plug and play acceptance criteria remain \OwnedTBD{}.\\
+\phantomsection\label{Gap:G02}G02 & Scope and boundary & Revision scope recorded in \hyperref[Section:ProjectScope]{Scope}. The pipeline code-base boundary and controlled external dependencies are defined in \hyperref[Section:ProjectSystemBoundary]{System Boundary and Allocation}. Detailed allocations remain \OwnedTBD{}.\\
+\phantomsection\label{Gap:G03}G03 & Stakeholders & Owner, users, and approver recorded in \hyperref[Section:ProjectStakeholders]{Audience}. Additional assignments and organization are \OwnedTBD{}. Hardware, firmware, and host-integration responsibility gaps are recorded in \hyperref[Table:HardwareFirmwareResponsibilities]{Responsibility Status}.\\
+\phantomsection\label{Gap:G04}G04 & Hardware baseline & Specific FTDI245R module and board revision are \OwnedTBD{}. Platform class, other hardware revisions, and controlled hardware evidence remain \OwnedTBD{}.\\
+\phantomsection\label{Gap:G05}G05 & Signal definition & Source clarified during G06: Sensor through ADC0804. Signal type, channel count, sample rate, data width, and triggering are \OwnedTBD{}. See \hyperref[Section:ProjectSignals]{Signal Definition}.\\
+\phantomsection\label{Gap:G06}G06 & Interfaces & Connection chain, host operating systems, and \hyperref[Table:ContextDependencies]{controlled external dependencies} recorded in \hyperref[Section:ProjectInterfaces]{Interfaces}. Driver/API, data format, electrical and protocol contracts remain \OwnedTBD{}.\\
+\phantomsection\label{Gap:G07}G07 & Constraints and toolchain & Programming languages, development tools, budget, schedule, licensing rules, and applicable standards are \OwnedTBD{}. See \hyperref[Section:ToolchainHostAssumptions]{Toolchain and Host-Platform Assumptions}.\\
+\phantomsection\label{Gap:G08}G08 & Quality attributes & Throughput, latency, acquisition duration, data-loss tolerance, accuracy, reliability, and other measurable quality targets are \OwnedTBD{}.\\
+\phantomsection\label{Gap:G09}G09 & Resources, power, environment & Buffering, storage, bandwidth, processing, power, temperature, and operating-condition limits are \OwnedTBD{}.\\
+\phantomsection\label{Gap:G10}G10 & Lifecycle behavior & Disconnection intent recorded in \hyperref[Section:ProjectLifecycleIntent]{Lifecycle Intent}. Specific handling, recovery, and other lifecycle behavior are \OwnedTBD{}.\\
+\phantomsection\label{Gap:G11}G11 & Safety and security & Hazards, electrical protection, safe states, access control, sensitive-data handling, and assurance dispositions are \OwnedTBD{}.\\
+\phantomsection\label{Gap:G12}G12 & Updates and service & Git/GitHub and owner Not Applicable dispositions are recorded in \hyperref[Section:ProjectConfigurationControl]{Configuration Control and Service Dispositions}.\\
+\phantomsection\label{Gap:G13}G13 & Risks & Six open risks are recorded in \hyperref[Table:ProjectOpenRisks]{Open Risks}. Assessment, mitigation, and risk ownership remain \OwnedTBD{}.\\
+\phantomsection\label{Gap:G14}G14 & Evidence & Supporting project evidence is \OwnedTBD{}. See \hyperref[Section:ProjectEvidenceBaseline]{Evidence Baseline}. Verification evidence is deferred.\\
+\phantomsection\label{Gap:G15}G15 & Approvals & Joel Murphy approves revisions and the initial baseline and resolves all open \OwnedTBD{} items. Additional acceptance criteria remain \OwnedTBD{}; see \hyperref[Section:ProjectGovernance]{Project Governance}.\\
+\phantomsection\label{Gap:G16}G16 & Document setup & Namespace fsa; owner Joel Murphy; organization \OwnedTBD{}; revision 0.1; Draft --- Initial Architecture and Context Baseline; November 8, 2026. PDF compilation is assigned to the owner.\\
+\end{tabularx}
+\normalsize
+
+\section{Open Risks}
+\label{Section:ProjectOpenRisks}
+The following candidate risks were accepted for listing as open risks during
+the gap review. Their listing does not establish occurrence, severity,
+likelihood, mitigation effectiveness, or residual-risk acceptance. Assessment,
+mitigation, and risk ownership are \OwnedTBD{} for each risk.
+\small
+\begin{tabularx}{\linewidth}{L{1.4cm}L{4.1cm}Y}
+\caption{Open Project Risks\label{Table:ProjectOpenRisks}}\\
+\toprule
+\textbf{ID} & \textbf{Open Risk} & \textbf{Concern to Assess}\\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{\small\itshape Open Project Risks (continued)}\\
+\toprule
+\textbf{ID} & \textbf{Open Risk} & \textbf{Concern to Assess}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\phantomsection\label{Risk:RSK001}RSK-001 & Throughput shortfall & Acquisition demand may exceed sustained pipeline capacity.\\
+\phantomsection\label{Risk:RSK002}RSK-002 & Sample loss & Samples may be lost or overwritten without an agreed loss policy.\\
+\phantomsection\label{Risk:RSK003}RSK-003 & Timing ambiguity & Unspecified sampling, timing, or triggering may make acquired data ambiguous.\\
+\phantomsection\label{Risk:RSK004}RSK-004 & Electrical incompatibility & Unconfirmed connections and electrical limits may prevent correct or safe interaction.\\
+\phantomsection\label{Risk:RSK005}RSK-005 & Host interruption & Disconnection or interrupted host activity may disrupt acquisition.\\
+\phantomsection\label{Risk:RSK006}RSK-006 & Unsupported hardware assumptions & Uncontrolled hardware assumptions may invalidate design and test conclusions.\\
+\end{tabularx}
+\normalsize
+
+\section{Execution and Review Record}
+\label{Section:ProjectExecutionRecord}
+This initialization applies \hyperref[Skill:AIS-02]{AIS-02} through
+\ChapterRef{AIImplementationWorkflow}, with planning under
+\hyperref[Skill:AIS-01]{AIS-01}. One agent acts as aiaCoordinator and
+aiaDeveloper, followed by self-review. No subagents or independent review are
+claimed. Sequential execution avoids coordination overhead for dependent
+changes to shared chapters and registers.
+
+Planning ranges for the approved update were: metadata and context,
+20--40 minutes / 3,000--6,000 tokens; reviewed gaps, profile, risks, and
+provenance, 20--40 minutes / 3,000--6,000 tokens; source consistency review,
+10--20 minutes / 1,000--3,000 tokens. These are rough planning ranges, not
+measured usage or cost guarantees. The owner elected to compile the PDF.
+Compilation, build-log review, PDF link checks, and visual inspection remain
+pending owner execution; source checks alone do not satisfy build acceptance.

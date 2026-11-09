@@ -14,40 +14,73 @@ Establish the purpose, scope, audience, and conventions of the engineering recor
 \noindent\textbf{Expected result:} A shared understanding of how to read and use the architecture.
 
 \section{How to Use This Chapter}
-State the document purpose, scope, audience, conventions, and relationship to
-other project artifacts. Replace bracketed text with project-specific content.
-Keep binding obligations in the Requirements chapter.
+Read the mission need, project purpose, revision scope, exclusions, and
+audience below before using the
+remaining chapters. The reviewed decisions and unresolved items are linked
+from \hyperref[Table:ProjectGapReview]{the project gap review register}.
+Retained instructional material describes the template workflow; it does not
+expand this revision's scope.
+
+\section{Mission Need}
+\label{Section:ProjectMissionNeed}
+\index{mission need}
+A reliable data acquisition pipeline that allows for plug and play hardware to supply information to an FTDI245R.
+This is the owner-supplied mission need. Measurable acceptance criteria for
+reliability and plug and play behavior remain \OwnedTBD{}; no specific detection,
+configuration, driver, or timing behavior is established by this statement.
 
 \section{Purpose}
-This document is the authoritative engineering specification for
-\ProjectName. It records why the system is needed, what it shall do, how it is
-structured, how it will be tested, and what evidence is required before
-release. It is readable by people and structured for use by engineering and
-\gls{ai}-assisted development tools.
-
-\begin{fsaNote}[Central lesson]
-A vague request produces unpredictable software. A precise, traceable
-specification allows engineers to generate, review, test, and, when necessary,
-regenerate a conforming implementation.
-\end{fsaNote}
+\label{Section:ProjectPurpose}
+The purpose of the FTDI245R Signal Acquisition Architecture project is to allow an AI agent, using this document, to produce a reproducible code base for an FTDI245R data acquisition pipeline.
+The sensor-interface subsystem means the FTDI245R acquisition pipeline code
+base. It is the same system of interest defined in
+\hyperref[Section:ProjectSystemBoundary]{System Boundary and Allocation},
+not a separate component. The AI agent's work is subject to human review
+and approval; Joel Murphy retains approval authority under
+\hyperref[Section:ProjectGovernance]{Project Governance}.
 
 \section{Scope}
-Define the system boundary, included capabilities, exclusions, operating
-environment, major constraints, and the release covered by this document.
+\label{Section:ProjectScope}
+The FTDI245R Signal Acquisition Architecture, as of the current revision, defines an initial architecture and context baseline. This is not a complete architecture document. Requirements, architecture views, and verification evidence are deferred to later weeks. The initial capability baseline is in
+\hyperref[Section:InitialCapabilityBaseline]{System Context}. The pipeline code-base boundary and controlled external dependencies are
+defined in \hyperref[Section:ProjectSystemBoundary]{System Boundary and Allocation};
+detailed interface allocations remain \OwnedTBD{}. Retained template requirements,
+use cases, architecture examples, and test records are illustrative reference
+material, not an approved project baseline or evidence of execution.
 
-\textit{Generic example: \ProjectName\ enables [primary user] to [achieve
-outcome]. This release includes [included capabilities] and excludes
-[out-of-scope capabilities]. It operates in [target environment] and depends
-on [external systems or services].}
+\section{Exclusions and Deferred Work}
+\label{Section:ProjectExclusions}
+\index{scope!exclusions}
+The sensor-interface subsystem boundary excludes the internal implementations
+of the controlled external dependencies identified in
+\hyperref[Table:ContextDependencies]{Controlled External Dependencies}:
+the ADC0804, the 74xx counter, the peer FTDI245R, the USB stack, the host
+operating system across Linux, Windows, and macOS, and the downstream
+processing consumer. These remain controlled dependencies whose boundary
+interfaces must be addressed; their external status does not exclude their
+interface concerns from the system context. The Sensor is the upstream
+external signal source, as recorded in
+\hyperref[Section:ProjectSystemBoundary]{System Boundary and Allocation}.
+
+Requirements, architecture views, and verification evidence are deferred
+from the current revision to later weeks under
+\hyperref[Section:ProjectScope]{Scope}; they are not permanent exclusions
+from the project. This system will not be field deployed. The owner's
+Not Applicable dispositions for updates, rollback, calibration records,
+manufacturing, field service, and component availability are recorded in
+\hyperref[Section:ProjectConfigurationControl]{Configuration Control and
+Service Dispositions}.
 
 \section{Audience}
-Identify the people who create, approve, implement, test, operate, maintain,
-audit, or use the system. State which sections are most relevant to each role.
-
-\textit{Generic example: The primary audiences are customer representatives,
-systems engineers, architects, developers, testers, operators, maintainers,
-security reviewers, and project approvers. One person may perform several
-roles on a small project.}
+\label{Section:ProjectStakeholders}
+\begin{itemize}
+\item Document owner: Joel Murphy.
+\item Pipeline users: Embedded Engineers.
+\item Revision approver and decision owner for every open \OwnedTBD{} item: Joel Murphy.
+\end{itemize}
+Additional engineering, test, maintenance, and review assignments are \OwnedTBD{}.
+Organization is \OwnedTBD{}. Approval responsibilities are recorded in
+\hyperref[Section:ProjectGovernance]{Project Governance}.
 
 \section{Normative Language and Priority}
 Use \textbf{shall} for every binding requirement. Do not use \textbf{should} as
@@ -156,15 +189,16 @@ editing controlled project content.
 \bottomrule
 \endlastfoot
 \hyperref[Chapter:EmbeddedSystemsProfile]{Embedded Systems} &
-\textit{[Applicable / Not Applicable / TBD]} &
-\textit{[System characteristics, scope, and decision authority]}\\
-\textit{[Additional profile]} &
-\textit{[Applicable / Not Applicable / TBD]} &
-\textit{[Reason and relationship to other profiles]}\\
+See the recorded decision &
+\hyperref[Table:ProjectDomainProfiles]{Project Domain Profile Decisions} is
+the authoritative applicability record.\\
+Additional profiles & None supplied &
+Other profile types mentioned in the template are future possibilities;
+no additional implemented profile was supplied.\\
 \end{tabularx}
 \normalsize
 
-When the Embedded Systems profile is Applicable or TBD, read
+When the Embedded Systems profile is Applicable or \OwnedTBD{}, read
 \ChapterRef{EmbeddedSystemsProfile} during initialization and for every task
 affected by hardware, firmware, real-time behavior, constrained resources,
 physical interfaces, safety, security, manufacturing, or field service.

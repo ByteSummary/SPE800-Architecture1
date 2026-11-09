@@ -109,7 +109,7 @@ file created during the task.
 \item Inspect \hyperref[Table:DomainProfileApplicability]{the domain-profile
 applicability table} and \hyperref[Table:ProjectDomainProfiles]{the project
 profile decisions}. Ask an authorized human to resolve any unreviewed profile
-selection. Load every Applicable or TBD profile affected by the task.
+selection. Load every Applicable or \OwnedTBD{} profile affected by the task.
 \item Select the closest entry in
 \hyperref[Table:AISkills]{the AI Skills Register}.
 \item Read the primary files and context explicitly linked for each selected
@@ -309,7 +309,7 @@ controlled hardware and project evidence.\par\textbf{Context:} \hyperref[Section
 \texttt{fsaDocumentGuide.tex}, \texttt{fsaManual.tex}, evidence identifying the
 AI tools used by the project, and each tool's required discovery filename.\par\textbf{Context:} \hyperref[Section:AIRepositoryBootstrap]{Repository AI Bootstrap}.\par\textbf{Steps:} \hyperref[Section:AIBootstrapTaskSteps]{Create Repository AI Bootstrap Files}.\par\textbf{Acceptance:} \hyperref[Section:AIBootstrapAcceptance]{Create Repository AI Bootstrap Files}.\\
 \phantomsection\label{Skill:AIS-05}\hyperref[Section:AIStorySteps]{\texttt{AIS-05}} & Develop user stories & \texttt{fsaSystemContext.tex}, \texttt{fsaUserStories.tex}, \texttt{fsaRequirements.tex}, and stakeholder evidence.\par\textbf{Context:} \hyperref[Section:AIUserStoryContext]{User-Story}.\par\textbf{Steps:} \hyperref[Section:AIStoryTaskSteps]{Develop User Stories}.\par\textbf{Acceptance:} \hyperref[Section:AIStoryAcceptance]{Develop User Stories}.\\
-\phantomsection\label{Skill:AIS-06}\hyperref[Section:AIRequirementSteps]{\texttt{AIS-06}} & Add or change requirements & \texttt{fsaUserStories.tex}, \texttt{fsaRequirements.tex}, every Applicable or TBD domain profile, \texttt{fsaUseCases.tex}, \texttt{fsaTests.tex}, \texttt{fsaTraceability.tex}, \texttt{fsaVerification.tex}, and \texttt{fsaGlossary.tex}.\par\textbf{Context:} \hyperref[Section:AIRequirementsContext]{Requirements}.\par\textbf{Steps:} \hyperref[Section:AIRequirementTaskSteps]{Add or Change a Requirement}.\par\textbf{Acceptance:} \hyperref[Section:AIRequirementAcceptance]{Add or Change a Requirement}.\\
+\phantomsection\label{Skill:AIS-06}\hyperref[Section:AIRequirementSteps]{\texttt{AIS-06}} & Add or change requirements & \texttt{fsaUserStories.tex}, \texttt{fsaRequirements.tex}, every Applicable or \OwnedTBD{} domain profile, \texttt{fsaUseCases.tex}, \texttt{fsaTests.tex}, \texttt{fsaTraceability.tex}, \texttt{fsaVerification.tex}, and \texttt{fsaGlossary.tex}.\par\textbf{Context:} \hyperref[Section:AIRequirementsContext]{Requirements}.\par\textbf{Steps:} \hyperref[Section:AIRequirementTaskSteps]{Add or Change a Requirement}.\par\textbf{Acceptance:} \hyperref[Section:AIRequirementAcceptance]{Add or Change a Requirement}.\\
 \phantomsection\label{Skill:AIS-07}\hyperref[Section:AIUseCaseSteps]{\texttt{AIS-07}} & Add or change use cases & \texttt{fsaUserStories.tex}, \texttt{fsaRequirements.tex}, \texttt{fsaUseCases.tex}, \texttt{fsaTests.tex}, and \texttt{fsaTraceability.tex}.\par\textbf{Context:} \hyperref[Section:AIUseCaseContext]{Use-Case}.\par\textbf{Steps:} \hyperref[Section:AIUseCaseTaskSteps]{Add or Change a Use Case}.\par\textbf{Acceptance:} \hyperref[Section:AIUseCaseAcceptance]{Add or Change a Use Case}.\\
 \phantomsection\label{Skill:AIS-08}\hyperref[Section:AIArchitectureSteps]{\texttt{AIS-08}} & Develop or change architecture & \texttt{fsaSystemContext.tex}, \texttt{fsaRequirements.tex}, \texttt{fsaArchitectureOverview.tex}, the affected interface, logical, process, development, physical, or implementation chapters, and their \texttt{TikZ/} diagram sources.\par\textbf{Context:} \hyperref[Section:AIArchitectureContext]{Architecture}.\par\textbf{Steps:} \hyperref[Section:AIArchitectureTaskSteps]{Develop or Change Architecture}.\par\textbf{Acceptance:} \hyperref[Section:AIArchitectureAcceptance]{Develop or Change Architecture}.\\
 \phantomsection\label{Skill:AIS-09}\hyperref[Section:AITestSteps]{\texttt{AIS-09}} & Add or change tests & \texttt{fsaRequirements.tex}, \texttt{fsaUseCases.tex}, \texttt{fsaTests.tex}, \texttt{fsaTraceability.tex}, \texttt{fsaVerification.tex}, and \texttt{fsaTestEvidence.tex}.\par\textbf{Context:} \hyperref[Section:AITestingContext]{Testing and Evidence}.\par\textbf{Steps:} \hyperref[Section:AITestTaskSteps]{Add Tests or Evidence}.\par\textbf{Acceptance:} \hyperref[Section:AITestAcceptance]{Add Tests or Evidence}.\\
@@ -341,9 +341,9 @@ before unusually costly work.
 
 \subsection{Domain-Profile Context}
 \label{Section:AIDomainContext}
-Determine the Applicable, Not Applicable, or TBD status of every available
+Determine the Applicable, Not Applicable, or \OwnedTBD{} status of every available
 domain profile during initialization. An authorized human shall approve the
-selection and rationale. For later tasks, load every Applicable or TBD profile
+selection and rationale. For later tasks, load every Applicable or \OwnedTBD{} profile
 whose concerns intersect the requested change. A profile adds review concerns
 and artifact expectations; project-specific facts remain in their authoritative
 core chapters. When the Embedded Systems profile applies, follow
@@ -373,7 +373,7 @@ family or subtype, write binding behavior with
 \gls{would} priority, assign one lifecycle status, and map it to at least one
 use case and one test case. A requirement may be marked Done only when its
 mapped tests pass, verification is complete, traceability is current, and a
-controlled implementation version is known. Evaluate every Applicable or TBD
+controlled implementation version is known. Evaluate every Applicable or \OwnedTBD{}
 domain profile that intersects the proposed change and follow
 Section~\ref{Section:DomainProfileRequirements} before completing the
 requirements work.
@@ -458,8 +458,8 @@ locations. Link to its stable ID.
 replacement when applicable.
 \item Use project evidence for factual claims. Label an unsupported suggestion
 as a proposal and report the evidence needed to decide it.
-\item Record each domain profile as Applicable, Not Applicable, or TBD with an
-authorized decision and rationale. Load every Applicable or relevant TBD
+\item Record each domain profile as Applicable, Not Applicable, or \OwnedTBD{} with an
+authorized decision and rationale. Load every Applicable or relevant \OwnedTBD{}
 profile; do not duplicate project facts in the profile appendix.
 \item Before creating or renaming any project-owned file, ask for or confirm
 the project \texttt{\textless nameSpace\textgreater}; do not invent it. Prefix
@@ -519,7 +519,7 @@ file.
 Identify available domain profiles and ask an authorized human to confirm each
 profile's applicability. Record the decisions in
 \hyperref[Table:ProjectDomainProfiles]{the project profile table}. Include each
-Applicable or TBD profile in the initialization context; remove an
+Applicable or \OwnedTBD{} profile in the initialization context; remove an
 inapplicable profile appendix only after its decision is recorded.
 Create a gap list covering purpose, scope, stakeholders, system boundary,
 interfaces, constraints, quality attributes, risks, evidence, and approvals.
@@ -714,7 +714,7 @@ to prompt examples throughout the manual, including Appendix~D.
 \subsection{Initialize the Architecture Book}
 \label{Section:AIInitializePrompt}
 \begingroup\ttfamily\raggedright
-\noindent Read fsaAIAgentGuide.tex and use the \hyperref[Skill:AIS-02]{\texttt{AIS-02}} task steps for FTDI245R Signal Acquisition Architecture. Execute using Appendix D. Review the supplied project evidence and create a gap list before editing. Identify missing scope, stakeholders, interfaces, constraints, quality attributes, risks, evidence, and approvals. Identify the available domain profiles and ask me to confirm whether each is Applicable, Not Applicable, or TBD. Read each Applicable or relevant TBD profile and add its concerns to the gap list. After the gap list is reviewed, replace only supported placeholders and develop the document in dependency order. Compile the complete PDF and report unresolved human decisions.\par
+\noindent Read fsaAIAgentGuide.tex and use the \hyperref[Skill:AIS-02]{\texttt{AIS-02}} task steps for FTDI245R Signal Acquisition Architecture. Execute using Appendix D. Review the supplied project evidence and create a gap list before editing. Identify missing scope, stakeholders, interfaces, constraints, quality attributes, risks, evidence, and approvals. Identify the available domain profiles and ask me to confirm whether each is Applicable, Not Applicable, or \OwnedTBD{}. Read each Applicable or relevant \OwnedTBD{} profile and add its concerns to the gap list. After the gap list is reviewed, replace only supported placeholders and develop the document in dependency order. Compile the complete PDF and report unresolved human decisions.\par
 \endgroup
 
 
@@ -732,7 +732,7 @@ to prompt examples throughout the manual, including Appendix~D.
 
 \subsection{Develop Requirements}
 \begingroup\ttfamily\raggedright
-\noindent Read fsaAIAgentGuide.tex and follow the Requirements context and task steps for \hyperref[Skill:AIS-06]{\texttt{AIS-06}}. Execute using Appendix D. Load every Applicable or TBD domain profile that intersects the work. From the approved objectives and user stories, propose singular, feasible, and verifiable requirements. Classify each one, use shall for the binding obligation, assign one priority and one status, and map it to at least one use case and test case. Do not complete requirements work until each applicable profile concern maps to a new or existing requirement, or to an approved Not Applicable decision with rationale. Do not mark work Done or assign an implementation version without evidence. Update reciprocal mappings, history, and the index; then build and inspect the affected pages.\par
+\noindent Read fsaAIAgentGuide.tex and follow the Requirements context and task steps for \hyperref[Skill:AIS-06]{\texttt{AIS-06}}. Execute using Appendix D. Load every Applicable or \OwnedTBD{} domain profile that intersects the work. From the approved objectives and user stories, propose singular, feasible, and verifiable requirements. Classify each one, use shall for the binding obligation, assign one priority and one status, and map it to at least one use case and test case. Do not complete requirements work until each applicable profile concern maps to a new or existing requirement, or to an approved Not Applicable decision with rationale. Do not mark work Done or assign an implementation version without evidence. Update reciprocal mappings, history, and the index; then build and inspect the affected pages.\par
 \endgroup
 
 
@@ -792,7 +792,7 @@ prompts, assumptions, corrections, and unresolved issues in
 \endlastfoot
 Scope & The requested outcome is complete; unrelated chapters and user changes remain untouched.\\
 Domain profiles & Every available profile has an authorized applicability
-decision and rationale; every Applicable or relevant TBD profile was included
+decision and rationale; every Applicable or relevant \OwnedTBD{} profile was included
 in the task context, and project facts remain in core chapters.\\
 Evidence & New factual statements are supported by supplied or controlled evidence; proposals, assumptions, and unknowns are identified.\\
 Terminology & Changed content uses the established AI Skill names and \texttt{aia} role identifiers under \hyperref[Rule:AITerminologyConsistency]{Consistent terminology} and \hyperref[Requirement:DOCAI004]{DOC-AI-004}.\\
