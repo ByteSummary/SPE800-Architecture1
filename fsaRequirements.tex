@@ -10,10 +10,11 @@ Specify the obligations the system must satisfy in a verifiable form.
 
 \noindent\textbf{Expected result:} A controlled set of obligations that can be implemented and assessed.
 
-\section{Revision 0.1 Scope Notice}
+\section{Revision 0.2 Scope Notice}
 \label{Section:DeferredRequirements}
 \begin{fsaNote}[Deferred project content --- template reference only]
-This chapter is retained in the complete document as template guidance.
+This chapter retains template guidance and examples alongside explicitly
+identified project requirement proposals and planning notes.
 Its sample artifacts, IDs, priorities, statuses, versions, outcomes, and
 approval examples do not describe the FTDI245R project. In particular, any
 sample Done, Pass, or release entry is not implementation, verification,
@@ -22,6 +23,167 @@ is deferred under \hyperref[Section:ProjectScope]{the revision scope}.
 See \hyperref[Table:ProjectGapReview]{the reviewed gap list} for actual
 decisions and unresolved items.
 \end{fsaNote}
+
+\section{Draft Story Requirement Planning}
+\label{Section:DraftStoryRequirements}
+The original two proposals from \hyperref[Table:UserStories]{Section 4.5}
+retain their stable IDs: \RequirementRef{REQ-D-002} and
+\RequirementRef{REQ-F-004}. Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) subsequently approved the acquisition,
+timeout, disconnection, automatic-start/reconnection, and terminology decisions
+recorded below, and authorized their translation into additional candidates.
+The candidates are not an approved requirements baseline. Removed template
+IDs remain reserved. \hyperref[Table:ProjectProfileConcernCoverage]{Profile
+coverage} remains incomplete; unresolved decisions are owned by Joel Murphy and Abtin Khatoonabadi.
+
+\begingroup
+\setlength{\emergencystretch}{2em}
+\section{Project Requirements Summary}
+\label{Section:ProjectRequirementsSummary}
+\index{requirement!project proposals}
+Project candidates are defined only in
+\hyperref[Section:ProjectRequirements]{Section 5.14, Category-Specific Requirement Registers}.
+Existing IDs are preserved; new candidates use the established Functional,
+Quality, Interface, and Data families. Each candidate has proposed Must
+priority, Open status, and \NoVersion\ for In Version. Joel Murphy and Abtin Khatoonabadi own
+priority/baseline review and all unresolved decisions. Tests are planned;
+verification is Pending / not executed. No implementation or product evidence
+is claimed. Functional and quality subtypes are identified by the register
+and obligation: read/control/recovery behavior, failure tolerance, raw-byte
+interface, and data integrity.
+
+A byte sequence is unchanged and in order when its length and every byte
+position equal those of the comparison sequence. Delivery means acceptance
+through the downstream consumer's interface, not completion of processing.
+\Gls{fsareliable}, \gls{fsaplugandplay}, and \gls{fsacorruption} have
+owner-approved definitions in the glossary. The completed-read predicate is
+based on D2XX Section 3.10 \cite{FTDI_D2XX_v1_3}; every request is positive
+under \RequirementRef{REQ-F-005}.
+
+\paragraph{Agreed acquisition conditions and acceptance boundary.}
+\phantomsection\label{Section:ProjectAcquisitionConditions}
+\index{acquisition!agreed conditions}
+Both software-generated known sequences and known sequences supplied through
+physical FT245R hardware are required acceptance paths. Input is one unsigned
+8-bit byte per ADC0804 conversion, with no headers or framing; the consumer
+accepts the same raw bytes. Sampling is constant, with no source-rate bursts.
+USB delivery may be batched; byte preservation spans batch boundaries.
+Acquisition runs continuously until the user stops it. The sustained sample
+rate is TBD pending ADC0804 timing and hardware confirmation; acceptance-test
+duration, hardware/module revisions, supported Linux/Windows/macOS versions,
+actual FTD2XX driver/library version, timeout duration, and quantitative
+reliability targets are TBD (decision co-owners for each: Joel Murphy and Abtin Khatoonabadi).
+The D2XX Programmer's Guide v1.3 is the documentation baseline, not the
+selected driver/library version. FTD2XX remains the proposed library.
+
+On a supported host, installed driver/library and completed configuration
+are prerequisites for automatic detection and acquisition on first connection.
+Partial timeouts deliver only actual returned bytes in order and acquisition
+continues; empty timeouts deliver no bytes and acquisition continues.
+Disconnection does not crash the pipeline. All bytes successfully read into
+host memory before disconnection remain subject to delivery and order
+preservation. Bytes still in the device or generated while disconnected are
+outside the preservation guarantee. The interruption is reported without
+claiming complete acquisition; acquisition resumes automatically on
+reconnection with the interruption clearly marked.
+
+Consumer API/acceptance signaling, backpressure/failure handling, buffering
+limits, device identity on reconnection, treatment of stale device-buffer
+contents, reconnection timing, reporting mechanism, and user-stop/drain
+details remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). These unresolved contracts
+prevent a claim of established end-to-end feasibility or completed acceptance.
+Known-sequence comparison covers the full source/consumer sequence in
+uninterrupted tests and the successfully read host-memory sequence across
+disconnect tests. Physical tests must retain source and read-boundary evidence;
+software tests cannot substitute for target evidence.
+Reciprocal links are maintained in
+\hyperref[Table:ProjectRequirementTraceability]{Project Requirement Proposal Traceability}.
+
+
+\paragraph{Installation and configuration prerequisites.}
+\phantomsection\label{Section:ProjectStartupPrerequisites}
+\index{acquisition!startup prerequisites}
+For \RequirementRef{REQ-F-010}, prerequisites met means that the required
+driver/library has been installed and configuration has been completed on a
+supported host, as approved in
+\hyperref[Section:ProjectAcquisitionConditions]{the acquisition conditions}.
+FTD2XX remains the proposed library. Supported hardware/module revisions,
+Linux/Windows/macOS versions, and actual driver/library version remain TBD
+(decision co-owners: Joel Murphy and Abtin Khatoonabadi). D2XX Programmer's Guide v1.3 is the documentation
+baseline, not an installed library version.
+
+The installation procedure, required configuration items and values, and
+observable checks that establish successful installation and completed
+configuration are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). No specific settings,
+installation checks, or completed deployment are implied by this precondition.
+
+\paragraph{Retired template requirement mappings.}
+\label{Section:RetiredTemplateRequirements}
+The service-request template requirements have been removed from the active
+registers. Links from retained example tests, traceability, and verification
+records point to this notice instead of allocating those unrelated examples
+to the project requirements. The removed template IDs are not reused.
+
+\section{Embedded Profile Concern Coverage --- Open Completion Gate}
+\label{Section:ProjectProfileConcernCoverage}
+\index{domain tailoring profile!requirements coverage}
+The \hyperref[Table:ProjectDomainProfiles]{Embedded Systems profile is Applicable}.
+It is the only supplied profile; no additional Applicable or TBD profile was
+identified. This register evaluates all 18 categories in
+\hyperref[Table:EmbeddedRequirementCategories]{the profile checklist}, with
+cross-cutting concerns below. Mapped means only the identified part is
+addressed. Open entries are gaps, not Not Applicable dispositions, and do
+not satisfy \hyperref[Section:DomainProfileRequirements]{the translation rule}.
+All open decisions are owned by Joel Murphy and Abtin Khatoonabadi. The requirements work is
+\textbf{not complete}; the approved acquisition decisions do not waive the
+remaining profile concerns.
+\small
+\begin{tabularx}{\linewidth}{L{3.4cm}L{4.2cm}Y}
+\caption{Embedded Profile Concern Coverage\label{Table:ProjectProfileConcernCoverage}}\\
+\toprule
+\textbf{Profile concern} & \textbf{Requirement / disposition} & \textbf{Rationale and remaining decision}\\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{\small\itshape Embedded Profile Concern Coverage (continued)}\\
+\toprule
+\textbf{Profile concern} & \textbf{Requirement / disposition} & \textbf{Rationale and remaining decision}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Functional behavior & \RequirementRef{REQ-F-004}--\RequirementRef{REQ-F-013}; \RequirementRef{REQ-D-002} & Read recognition, positive requests, timeout continuation, continuous acquisition, detection/start, reconnection and interruption reporting are mapped. Other operational functions remain open.\\
+Timing and real time & Partial: \RequirementRef{REQ-F-008} & Constant sampling; operation until user stop. Sample rate pending ADC0804 timing/hardware confirmation, test duration, timeouts, deadlines, latency and jitter remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Processing resources & Open & CPU, scheduling, execution-time, and host-processing budgets are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Memory and storage & Open & Buffer capacity, overflow policy, memory/storage limits, and margins are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). Sequence preservation is not a resource budget.\\
+Power and thermal & Open & Supply/power domains, current, transitions, and thermal limits are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Hardware interfaces & Partial: \RequirementRef{REQ-I-002}; \RequirementRef{REQ-D-002} & Unsigned 8-bit unframed raw bytes and delivery boundary defined. Electrical limits, pins, handshake ownership, units/scaling, controlled revisions and integration evidence remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Boot and initialization & Partial: \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010} & Installed/configured prerequisites, automatic detection and first-connection start defined. Self-test, configuration validation, startup limits and failure response remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Reset and recovery & Partial: \RequirementRef{REQ-F-011}; \RequirementRef{REQ-D-002} & Automatic reconnection resume and preservation of host-read bytes defined. Retry/reset details, device identity, stale device bytes and recovery timing remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Safety & Open & Hazards, electrical protection, safe states, and approved safety dispositions are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Security & Open & Threat/trust analysis, permissions, access control, physical/debug access, and data sensitivity are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Reliability and availability & Partial: \RequirementRef{REQ-D-002}; \RequirementRef{REQ-Q-002} & Reliable/corruption definitions and disconnect preservation boundary approved. Device-resident and disconnected-source bytes excluded. Quantitative reliability/availability and resource feasibility remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Environmental & Open & Temperature, humidity, electromagnetic and other operating/storage conditions are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Diagnostics and observability & Partial: \RequirementRef{REQ-F-004}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013} & Read predicate and clearly marked interruption without complete-acquisition claim defined. Reporting mechanism, logs, counters and health interfaces remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Calibration and configuration & \hyperref[Section:ProjectSustainmentNotes]{Calibration records: approved Not Applicable} & Owner rationale: system not field deployed. Operational calibration needs, configurable values, integrity, and compatibility remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Firmware update & \hyperref[Section:ProjectSustainmentNotes]{Updates/rollback: approved Not Applicable} & Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) disposition: system not field deployed. No new firmware implementation or update guarantee is inferred.\\
+Manufacturing and provisioning & \hyperref[Section:ProjectSustainmentNotes]{Approved Not Applicable} & Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) disposition: system not field deployed; manufacturing and field service excluded.\\
+Regulatory and certification & Open & Applicable standards, evidence/independence obligations, and certification gates are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Component lifecycle & \hyperref[Section:ProjectSustainmentNotes]{Component availability: approved Not Applicable} & Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) disposition: system not field deployed. Exact supported parts/revisions and errata compatibility remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+\end{tabularx}
+\normalsize
+\paragraph{Cross-cutting profile concerns.}
+Hardware--software allocation, execution platform, interfaces, architecture
+views, resource budgets, controlled toolchain, reproducible builds, host
+compatibility versions, fixture calibration, target evidence, release
+configuration, and evidence sufficiency remain
+TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). The existing
+\hyperref[Section:ProjectConfigurationControl]{Git/GitHub decision} is a
+configuration-control fact, not proof of a reproducible implementation.
+Field-service/update/manufacturing exclusions do not waive target-test,
+safety, security, or operating-environment decisions. Every additional
+applicable obligation needs a requirement mapping or a documented authorized
+Not Applicable decision before the completion gate can close.
+
+\endgroup
 
 \section{How to Use This Chapter}
 State singular, necessary, unambiguous, feasible, and verifiable obligations.
@@ -282,17 +444,17 @@ traceability, and verification registers.
 \begin{landscape}
 \small
 \section{Category-Specific Requirement Registers}
-The seven registers below are the template's default working set. They are
-selected for practical review and ownership, not as seven mutually exclusive
-top-level families. For example, the Security Requirements Register is a
-specialized quality-requirement register. Add, rename, combine, or remove
-registers to match the approved project taxonomy. Every retained register shall
-use the same traceability columns.
+\label{Section:ProjectRequirements}
+The seven category registers retain their existing column format and
+reference labels. Functional, Quality, Interface, and Data registers contain
+the project candidates. Previous template rows have been removed.
+The other registers remain pending profile review, not Not Applicable;
+decision co-owners: Joel Murphy and Abtin Khatoonabadi. Each requirement is defined in one register only.
 
 \subsection{Business Requirements}
 \index{requirement!business}
 \begin{tabularx}{\linewidth}{L{2.1cm}YL{2.0cm}L{2.1cm}L{1.5cm}L{2.6cm}L{2.6cm}}
-\caption{Template reference only: Business Requirements Register\label{Table:BusinessRequirements}}\\
+\caption{Business Requirements Register\label{Table:BusinessRequirements}}\\
 \toprule
 \textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Status} & \textbf{In Version} & \textbf{Use Case(s)} & \textbf{Test Case(s)}\\
 \midrule
@@ -307,13 +469,13 @@ use the same traceability columns.
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-B-001} & The system shall enable an authorized analyst to prepare approved request-history data for analysis within five minutes for the reference data set. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-003} & \TestCaseRef{TC-009}\\
+\multicolumn{7}{l}{\textit{No project requirement proposed yet; profile review pending. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.}}\\
 \end{tabularx}
 
 \clearpage
 \subsection{Functional Requirements}
 \begin{tabularx}{\linewidth}{L{2.1cm}YL{2.0cm}L{2.1cm}L{1.5cm}L{2.6cm}L{2.6cm}}
-\caption{Template reference only: Functional Requirements Register\label{Table:FunctionalRequirements}}\\
+\caption{Functional Requirements Register\label{Table:FunctionalRequirements}}\\
 \toprule
 \textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Status} & \textbf{In Version} & \textbf{Use Case(s)} & \textbf{Test Case(s)}\\
 \midrule
@@ -328,14 +490,21 @@ use the same traceability columns.
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-F-001} & The system shall accept a valid service request and assign it a unique identifier. & \gls{must} & \ReqStatusDone & 1.0 & \UseCaseRef{UC-001} & \TestCaseRef{TC-001}\\
-\RequirementID{REQ-F-002} & The system shall display the current status and most recent update for a submitted request. & \gls{should} & \ReqStatusDone & 1.1 & \UseCaseRef{UC-002} & \TestCaseRef{TC-002}\\
-\RequirementID{REQ-F-003} & The system shall export request history in the approved interchange format. & \gls{would} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-003} & \TestCaseRef{TC-004}\\
+\RequirementID{REQ-F-004} & The pipeline shall recognize a read as completed if and only if its returned status is \texttt{FT\_OK} and its actual returned byte count equals its requested byte count. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-011}\\
+\RequirementID{REQ-F-005} & The pipeline shall request at least one byte in every acquisition read. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-012}\\
+\RequirementID{REQ-F-006} & The pipeline shall continue acquisition after a partial read timeout returning \texttt{FT\_OK}. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-013}\\
+\RequirementID{REQ-F-007} & The pipeline shall continue acquisition after an empty read timeout returning \texttt{FT\_OK}. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-013}\\
+\RequirementID{REQ-F-008} & During uninterrupted operation under the agreed acquisition conditions, the pipeline shall continue acquisition until the user stops it. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001} & \TestCaseRef{TC-014}\\
+\RequirementID{REQ-F-009} & On a supported host with the required driver/library installed and configuration completed, the pipeline shall automatically detect connected FT245R hardware without a code change. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001} & \TestCaseRef{TC-014}\\
+\RequirementID{REQ-F-010} & The pipeline shall automatically start acquisition on first connection of the supported FT245R hardware after the \hyperref[Section:ProjectStartupPrerequisites]{installation and configuration prerequisites} are met. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001} & \TestCaseRef{TC-014}\\
+\RequirementID{REQ-F-011} & Following disconnection, the pipeline shall automatically resume acquisition when the supported FT245R hardware reconnects. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-015}\\
+\RequirementID{REQ-F-012} & The pipeline shall clearly report an acquisition interruption caused by FT245R disconnection. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-015}\\
+\RequirementID{REQ-F-013} & The pipeline shall not represent acquisition spanning a disconnection as complete and uninterrupted. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-015}\\
 \end{tabularx}
 
 \subsection{Quality Requirements}
 \begin{tabularx}{\linewidth}{L{2.1cm}YL{2.0cm}L{2.1cm}L{1.5cm}L{2.6cm}L{2.6cm}}
-\caption{Template reference only: Quality Requirements Register\label{Table:QualityRequirements}}\\
+\caption{Quality Requirements Register\label{Table:QualityRequirements}}\\
 \toprule
 \textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Status} & \textbf{In Version} & \textbf{Use Case(s)} & \textbf{Test Case(s)}\\
 \midrule
@@ -350,14 +519,14 @@ use the same traceability columns.
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-Q-001} & The system shall display a request status within two seconds under the reference workload. & \gls{could} & \ReqStatusDone & 1.2 & \UseCaseRef{UC-002} & \TestCaseRef{TC-003}\\
+\RequirementID{REQ-Q-002} & The pipeline shall remain running when the FT245R disconnects. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-015}\\
 \end{tabularx}
 
 \clearpage
 \subsection{Interface Requirements}
 \index{requirement!interface}
 \begin{tabularx}{\linewidth}{L{2.1cm}YL{2.0cm}L{2.1cm}L{1.5cm}L{2.6cm}L{2.6cm}}
-\caption{Template reference only: Interface Requirements Register\label{Table:InterfaceRequirements}}\\
+\caption{Interface Requirements Register\label{Table:InterfaceRequirements}}\\
 \toprule
 \textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Status} & \textbf{In Version} & \textbf{Use Case(s)} & \textbf{Test Case(s)}\\
 \midrule
@@ -372,13 +541,13 @@ use the same traceability columns.
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-I-001} & The system shall exchange request-history exports using the approved, versioned interface schema. & \gls{should} & \ReqStatusInProgress & \NoVersion & \UseCaseRef{UC-003} & \TestCaseRef{TC-005}\\
+\RequirementID{REQ-I-002} & The pipeline shall accept an unframed stream containing one unsigned 8-bit byte per ADC0804 conversion, with no headers. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001} & \TestCaseRef{TC-016}\\
 \end{tabularx}
 
 \subsection{Security Requirements}
 \index{requirement!security}
 \begin{tabularx}{\linewidth}{L{2.1cm}YL{2.0cm}L{2.1cm}L{1.5cm}L{2.6cm}L{2.6cm}}
-\caption{Template reference only: Security Requirements Register\label{Table:SecurityRequirements}}\\
+\caption{Security Requirements Register\label{Table:SecurityRequirements}}\\
 \toprule
 \textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Status} & \textbf{In Version} & \textbf{Use Case(s)} & \textbf{Test Case(s)}\\
 \midrule
@@ -393,14 +562,14 @@ use the same traceability columns.
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-S-001} & The system shall permit request-history exports only to authenticated actors assigned the approved export role. & \gls{must} & \ReqStatusDone & 1.0 & \UseCaseRef{UC-003} & \TestCaseRef{TC-006}\\
+\multicolumn{7}{l}{\textit{No project requirement proposed yet; profile review pending. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.}}\\
 \end{tabularx}
 
 \clearpage
 \subsection{Data Requirements}
 \index{requirement!data}
 \begin{tabularx}{\linewidth}{L{2.1cm}YL{2.0cm}L{2.1cm}L{1.5cm}L{2.6cm}L{2.6cm}}
-\caption{Template reference only: Data Requirements Register\label{Table:DataRequirements}}\\
+\caption{Data Requirements Register\label{Table:DataRequirements}}\\
 \toprule
 \textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Status} & \textbf{In Version} & \textbf{Use Case(s)} & \textbf{Test Case(s)}\\
 \midrule
@@ -415,13 +584,13 @@ use the same traceability columns.
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-D-001} & The system shall retain each request status transition with its timestamp, actor identifier, previous status, and new status. & \gls{must} & \ReqStatusDone & 1.1 & \UseCaseRef{UC-002}, \UseCaseRef{UC-003} & \TestCaseRef{TC-007}\\
+\RequirementID{REQ-D-002} & Under the \hyperref[Section:ProjectAcquisitionConditions]{agreed acquisition conditions}, the pipeline shall deliver every byte successfully read into host memory to the downstream processing consumer unchanged and in its original read order, including bytes pending delivery at disconnection. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001}; \UseCaseRef{UC-002} & \TestCaseRef{TC-010}; \TestCaseRef{TC-013}; \TestCaseRef{TC-015}; \TestCaseRef{TC-016}\\
 \end{tabularx}
 
 \subsection{Constraint Requirements}
 \index{requirement!constraint}
 \begin{tabularx}{\linewidth}{L{2.1cm}YL{2.0cm}L{2.1cm}L{1.5cm}L{2.6cm}L{2.6cm}}
-\caption{Template reference only: Constraint Requirements Register\label{Table:ConstraintRequirements}}\\
+\caption{Constraint Requirements Register\label{Table:ConstraintRequirements}}\\
 \toprule
 \textbf{ID} & \textbf{Requirement} & \textbf{Priority} & \textbf{Status} & \textbf{In Version} & \textbf{Use Case(s)} & \textbf{Test Case(s)}\\
 \midrule
@@ -436,6 +605,13 @@ use the same traceability columns.
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-C-001} & The system shall support the deployment platform and browser versions identified in the approved deployment baseline. & \gls{must} & \ReqStatusDone & 1.0 & \UseCaseRef{UC-001}, \UseCaseRef{UC-002}, \UseCaseRef{UC-003} & \TestCaseRef{TC-008}\\
+\multicolumn{7}{l}{\textit{No project requirement proposed yet; profile review pending. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.}}\\
 \end{tabularx}
 \end{landscape}
+
+\index{acquisition!continuous operation}
+\index{read timeout!partial and empty}
+\index{disconnection!preservation boundary}
+\index{reconnection!automatic resume}
+\index{plug and play}
+\index{corruption!byte preservation}

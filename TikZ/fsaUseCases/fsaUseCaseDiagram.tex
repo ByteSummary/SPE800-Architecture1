@@ -1,45 +1,24 @@
+% Project UML use-case diagram. Each use-case ID links to its table row.
 \begin{tikzpicture}[
-  actor/.style={
-    draw=fsaGray,
-    fill=fsaGray!8,
-    rounded corners=2pt,
-    minimum width=2.6cm,
-    minimum height=0.8cm,
-    align=center,
-    font=\small
-  },
-  use case/.style={
-    ellipse,
-    draw=fsaBlue,
-    fill=fsaLightBlue,
-    minimum width=3.8cm,
-    minimum height=1.55cm,
-    inner sep=1pt,
-    align=center,
-    font=\small
-  },
-  association/.style={
-    draw=fsaGray,
-    line width=0.7pt
-  },
-  system boundary/.style={
-    draw=fsaBlue,
-    rounded corners=4pt,
-    inner sep=0.45cm
-  }
+  external actor/.style={draw=fsaGray,rounded corners=2pt,fill=fsaGray!8,
+    align=center,text width=2.5cm,minimum height=1.15cm,font=\small},
+  project use case/.style={ellipse,draw=fsaBlue,fill=fsaLightBlue,
+    align=center,text width=3.8cm,minimum height=1.25cm,font=\small},
+  association/.style={draw=fsaGray,line width=0.7pt}
 ]
-  \node[use case] (submit) at (0,0) {\UseCaseRef{UC-001}\\Submit a Service\\Request};
-  \node[use case] (status) at (4.25,0) {\UseCaseRef{UC-002}\\View Request\\Status};
-  \node[use case] (export) at (8.5,0) {\UseCaseRef{UC-003}\\Export Request\\History};
-
-  \node[system boundary, fit=(submit)(status)(export),
-    label={[font=\small\bfseries, text=fsaBlue]above:\ProjectName\ System}]
-    (system) {};
-
-  \node[actor, above=1.35cm of submit] (customer) {Customer};
-  \node[actor, above=1.35cm of export] (analyst) {Operations Analyst};
-
-  \draw[association] (customer) -- (submit);
-  \draw[association] (customer.east) -- ++(3mm,0) |- ([yshift=2mm]status.north) -- (status.north);
-  \draw[association] (analyst) -- (export);
+  % Reserve a separate header band above the use-case ovals.
+  \draw[fsaBlue,rounded corners=3pt] (-2.95,-2.0) rectangle (2.95,3.2);
+  \node[align=center,font=\small\bfseries,text width=4.8cm] at (0,2.45)
+    {Sensor-interface subsystem\\FTDI245R acquisition\\pipeline code base};
+  \node[project use case] (acquire) at (0,0.65)
+    {\UseCaseRef{UC-001}\\Acquire sensor data};
+  \node[project use case] (outcomes) at (0,-1.0)
+    {\UseCaseRef{UC-002}\\Handle acquisition\\read outcomes};
+  \node[external actor] (engineer) at (-4.5,-0.15)
+    {\textless\textless actor\textgreater\textgreater\\Embedded Engineer};
+  \node[external actor] (consumer) at (4.6,0.65)
+    {\textless\textless actor\textgreater\textgreater\\Downstream processing\\consumer};
+  \draw[association] (engineer.east) -- (-3.05,-0.15) |- (acquire.west);
+  \draw[association] (engineer.east) -- (-3.05,-0.15) |- (outcomes.west);
+  \draw[association] (acquire.east) -- (consumer.west);
 \end{tikzpicture}

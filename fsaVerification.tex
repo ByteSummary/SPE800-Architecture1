@@ -8,10 +8,10 @@ Show that each requirement conforms to its specification.
 
 \noindent\textbf{Expected result:} A requirement-by-requirement account of demonstrated compliance.
 
-\section{Revision 0.1 Scope Notice}
+\section{Revision 0.2 Scope Notice}
 \label{Section:DeferredVerification}
 \begin{fsaNote}[Deferred project content --- template reference only]
-This chapter is retained in the complete document as template guidance.
+This chapter retains template guidance and separately identified project verification plans.
 Its sample artifacts, IDs, priorities, statuses, versions, outcomes, and
 approval examples do not describe the FTDI245R project. In particular, any
 sample Done, Pass, or release entry is not implementation, verification,
@@ -20,6 +20,35 @@ is deferred under \hyperref[Section:ProjectScope]{the revision scope}.
 See \hyperref[Table:ProjectGapReview]{the reviewed gap list} for actual
 decisions and unresolved items.
 \end{fsaNote}
+
+\section{Project Requirement Verification --- Pending}
+\label{Section:ProjectRequirementVerification}
+\index{verification!project requirements pending}
+These records identify required evidence only. No controlled implementation
+or executed test evidence was supplied, so every result remains Pending.
+\small
+\begin{tabularx}{\linewidth}{L{1.8cm}L{2.7cm}YL{2.5cm}}
+\caption{Project Requirement Verification Plan\label{Table:ProjectRequirementVerification}}\\
+\toprule
+\textbf{ID} & \textbf{Requirement / test} & \textbf{Required evidence} & \textbf{Result / owner}\\
+\midrule
+\endfirsthead
+\multicolumn{4}{l}{\small\itshape Project Requirement Verification Plan (continued)}\\
+\toprule
+\textbf{ID} & \textbf{Requirement / test} & \textbf{Required evidence} & \textbf{Result / owner}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\VerificationID{VER-010} & \RequirementRef{REQ-D-002}; \TestCaseRef{TC-010} & Retain the mapped procedure and exact controlled source/build/environment, inputs, expected and actual outputs, observations and comparisons, date and authorized reviewer. Separate software and physical results where required; no evidence is yet available. & Pending / not executed. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.\\
+\VerificationID{VER-011} & \RequirementRef{REQ-F-004}; \TestCaseRef{TC-011} & Retain the mapped procedure and exact controlled source/build/environment, inputs, expected and actual outputs, observations and comparisons, date and authorized reviewer. Separate software and physical results where required; no evidence is yet available. & Pending / not executed. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.\\
+\VerificationID{VER-012} & \RequirementRef{REQ-F-005}; \TestCaseRef{TC-012} & Retain the mapped procedure and exact controlled source/build/environment, inputs, expected and actual outputs, observations and comparisons, date and authorized reviewer. Separate software and physical results where required; no evidence is yet available. & Pending / not executed. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.\\
+\VerificationID{VER-013} & \RequirementRef{REQ-F-006}; \RequirementRef{REQ-F-007}; \RequirementRef{REQ-D-002}; \TestCaseRef{TC-013} & Retain the mapped procedure and exact controlled source/build/environment, inputs, expected and actual outputs, observations and comparisons, date and authorized reviewer. Separate software and physical results where required; no evidence is yet available. & Pending / not executed. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.\\
+\VerificationID{VER-014} & \RequirementRef{REQ-F-008}; \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010}; \TestCaseRef{TC-014} & Retain the mapped procedure and exact controlled source/build/environment, inputs, expected and actual outputs, observations and comparisons, date and authorized reviewer. Separate software and physical results where required; no evidence is yet available. & Pending / not executed. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.\\
+\VerificationID{VER-015} & \RequirementRef{REQ-F-011}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013}; \RequirementRef{REQ-Q-002}; \RequirementRef{REQ-D-002}; \TestCaseRef{TC-015} & Retain the mapped procedure and exact controlled source/build/environment, inputs, expected and actual outputs, observations and comparisons, date and authorized reviewer. Separate software and physical results where required; no evidence is yet available. & Pending / not executed. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.\\
+\VerificationID{VER-016} & \RequirementRef{REQ-I-002}; \RequirementRef{REQ-D-002}; \TestCaseRef{TC-016} & Retain the mapped procedure and exact controlled source/build/environment, inputs, expected and actual outputs, observations and comparisons, date and authorized reviewer. Separate software and physical results where required; no evidence is yet available. & Pending / not executed. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.\\
+\end{tabularx}
+\normalsize
 
 \section{How to Use This Chapter}
 Show that each requirement conforms to its specification using test, inspection, analysis, or demonstration. Record the method, evidence reference, responsible reviewer, result, and any waiver.
@@ -43,14 +72,14 @@ Verification answers ``Did we build the system right?''
 \endfoot
 \bottomrule
 \endlastfoot
-\VerificationID{VER-001} & \RequirementRef{REQ-F-001} & Test & Passing \TestCaseRef{TC-001} execution record showing creation of one request with a unique identifier. & \StatusPass\\
-\VerificationID{VER-002} & \RequirementRef{REQ-F-002} & Test & Passing \TestCaseRef{TC-002} execution record showing the current status and most recent update. & \StatusPass\\
-\VerificationID{VER-003} & \RequirementRef{REQ-Q-001} & Analysis and test & Timing analysis and passing \TestCaseRef{TC-003} measurements under the reference workload. & \StatusPass\\
-\VerificationID{VER-004} & \RequirementRef{REQ-F-003} & Inspection and test & Export inspection and passing \TestCaseRef{TC-004} execution record. & \StatusPending\\
-\VerificationID{VER-005} & \RequirementRef{REQ-I-001} & Inspection and test & Schema-validation report and passing \TestCaseRef{TC-005} execution record. & \StatusPending\\
-\VerificationID{VER-006} & \RequirementRef{REQ-S-001} & Analysis and test & Access-control analysis, denial records, and passing \TestCaseRef{TC-006} execution record. & \StatusPass\\
-\VerificationID{VER-007} & \RequirementRef{REQ-D-001} & Inspection and test & Stored-history inspection and passing \TestCaseRef{TC-007} execution record. & \StatusPass\\
-\VerificationID{VER-008} & \RequirementRef{REQ-C-001} & Test & Approved deployment baseline and passing \TestCaseRef{TC-008} compatibility results. & \StatusPass\\
-\VerificationID{VER-009} & \RequirementRef{REQ-B-001} & Test & Timed analyst demonstration and passing \TestCaseRef{TC-009} execution record. & \StatusPending\\
+\VerificationID{VER-001} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Test & Passing \TestCaseRef{TC-001} execution record showing creation of one request with a unique identifier. & \StatusPass\\
+\VerificationID{VER-002} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Test & Passing \TestCaseRef{TC-002} execution record showing the current status and most recent update. & \StatusPass\\
+\VerificationID{VER-003} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Analysis and test & Timing analysis and passing \TestCaseRef{TC-003} measurements under the reference workload. & \StatusPass\\
+\VerificationID{VER-004} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Inspection and test & Export inspection and passing \TestCaseRef{TC-004} execution record. & \StatusPending\\
+\VerificationID{VER-005} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Inspection and test & Schema-validation report and passing \TestCaseRef{TC-005} execution record. & \StatusPending\\
+\VerificationID{VER-006} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Analysis and test & Access-control analysis, denial records, and passing \TestCaseRef{TC-006} execution record. & \StatusPass\\
+\VerificationID{VER-007} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Inspection and test & Stored-history inspection and passing \TestCaseRef{TC-007} execution record. & \StatusPass\\
+\VerificationID{VER-008} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Test & Approved deployment baseline and passing \TestCaseRef{TC-008} compatibility results. & \StatusPass\\
+\VerificationID{VER-009} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Test & Timed analyst demonstration and passing \TestCaseRef{TC-009} execution record. & \StatusPending\\
 \end{tabularx}
 \normalsize

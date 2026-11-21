@@ -8,10 +8,11 @@ Maintain the canonical links from stakeholder need to release evidence.
 
 \noindent\textbf{Expected result:} Visible coverage and identifiable gaps across the lifecycle.
 
-\section{Revision 0.1 Scope Notice}
+\section{Revision 0.2 Scope Notice}
 \label{Section:DeferredTraceability}
 \begin{fsaNote}[Deferred project content --- template reference only]
-This chapter is retained in the complete document as template guidance.
+This chapter retains template guidance and examples alongside explicitly
+identified project planning notes.
 Its sample artifacts, IDs, priorities, statuses, versions, outcomes, and
 approval examples do not describe the FTDI245R project. In particular, any
 sample Done, Pass, or release entry is not implementation, verification,
@@ -20,6 +21,46 @@ is deferred under \hyperref[Section:ProjectScope]{the revision scope}.
 See \hyperref[Table:ProjectGapReview]{the reviewed gap list} for actual
 decisions and unresolved items.
 \end{fsaNote}
+
+\section{Planned Project Draft Traceability}
+\label{Section:DraftStoryTraceability}
+The project requirement candidates have reciprocal source mappings below.
+Priority approval and implementation remain open. Planned tests have not
+been executed; no verification or validation pass is claimed.
+\small
+\begin{tabularx}{\linewidth}{L{2.6cm}YYYY}
+\caption{Project Requirement Proposal Traceability\label{Table:ProjectRequirementTraceability}}\\
+\toprule
+\textbf{Requirement} & \shortstack{\textbf{Story /}\\\textbf{use case}} & \shortstack{\textbf{Planned}\\\textbf{test}} & \textbf{Verification} & \textbf{Validation}\\
+\midrule
+\endfirsthead
+\multicolumn{5}{l}{\small\itshape Project Requirement Proposal Traceability (continued)}\\
+\toprule
+\textbf{Requirement} & \shortstack{\textbf{Story /}\\\textbf{use case}} & \shortstack{\textbf{Planned}\\\textbf{test}} & \textbf{Verification} & \textbf{Validation}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\RequirementRef{REQ-F-004} & \UserStoryRef{US-002} / \UseCaseRef{UC-002} & \TestCaseRef{TC-011} & \VerificationRef{VER-011} (Pending) & \hyperref[Section:ValidationPlanUS002]{Planned; no result}\\
+\RequirementRef{REQ-F-005} & \UserStoryRef{US-002} / \UseCaseRef{UC-002} & \TestCaseRef{TC-012} & \VerificationRef{VER-012} (Pending) & \hyperref[Section:ValidationPlanUS002]{Planned; no result}\\
+\RequirementRef{REQ-F-006} & \UserStoryRef{US-002} / \UseCaseRef{UC-002} & \TestCaseRef{TC-013} & \VerificationRef{VER-013} (Pending) & \hyperref[Section:ValidationPlanUS002]{Planned; no result}\\
+\RequirementRef{REQ-F-007} & \UserStoryRef{US-002} / \UseCaseRef{UC-002} & \TestCaseRef{TC-013} & \VerificationRef{VER-013} (Pending) & \hyperref[Section:ValidationPlanUS002]{Planned; no result}\\
+\RequirementRef{REQ-F-008} & \UserStoryRef{US-001} / \UseCaseRef{UC-001} & \TestCaseRef{TC-014} & \VerificationRef{VER-014} (Pending) & \hyperref[Section:ValidationPlanUS001]{Planned; no result}\\
+\RequirementRef{REQ-F-009} & \UserStoryRef{US-001} / \UseCaseRef{UC-001} & \TestCaseRef{TC-014} & \VerificationRef{VER-014} (Pending) & \hyperref[Section:ValidationPlanUS001]{Planned; no result}\\
+\RequirementRef{REQ-F-010} & \UserStoryRef{US-001} / \UseCaseRef{UC-001} & \TestCaseRef{TC-014} & \VerificationRef{VER-014} (Pending) & \hyperref[Section:ValidationPlanUS001]{Planned; no result}\\
+\RequirementRef{REQ-F-011} & \UserStoryRef{US-002} / \UseCaseRef{UC-002} & \TestCaseRef{TC-015} & \VerificationRef{VER-015} (Pending) & \hyperref[Section:ValidationPlanUS002]{Planned; no result}\\
+\RequirementRef{REQ-F-012} & \UserStoryRef{US-002} / \UseCaseRef{UC-002} & \TestCaseRef{TC-015} & \VerificationRef{VER-015} (Pending) & \hyperref[Section:ValidationPlanUS002]{Planned; no result}\\
+\RequirementRef{REQ-F-013} & \UserStoryRef{US-002} / \UseCaseRef{UC-002} & \TestCaseRef{TC-015} & \VerificationRef{VER-015} (Pending) & \hyperref[Section:ValidationPlanUS002]{Planned; no result}\\
+\RequirementRef{REQ-Q-002} & \UserStoryRef{US-002} / \UseCaseRef{UC-002} & \TestCaseRef{TC-015} & \VerificationRef{VER-015} (Pending) & \hyperref[Section:ValidationPlanUS002]{Planned; no result}\\
+\RequirementRef{REQ-I-002} & \UserStoryRef{US-001} / \UseCaseRef{UC-001} & \TestCaseRef{TC-016} & \VerificationRef{VER-016} (Pending) & \hyperref[Section:ValidationPlanUS001]{Planned; no result}\\
+\RequirementRef{REQ-D-002} & \UserStoryRef{US-001}; \UserStoryRef{US-002} / \UseCaseRef{UC-001}; \UseCaseRef{UC-002} & \TestCaseRef{TC-010}; \TestCaseRef{TC-013}; \TestCaseRef{TC-015}; \TestCaseRef{TC-016} & \VerificationRef{VER-010}; \VerificationRef{VER-013}; \VerificationRef{VER-015}; \VerificationRef{VER-016} (Pending) & \hyperref[Section:ValidationPlanUS001]{Planned; no result}; \hyperref[Section:ValidationPlanUS002]{Planned; no result}\\
+\end{tabularx}
+\normalsize
+\hyperref[Table:ProjectProfileConcernCoverage]{Embedded-profile coverage remains incomplete}.
+Architecture allocation, implementation, target integration, additional test
+definitions, and release remain planned or pending. Joel Murphy and Abtin Khatoonabadi own all open
+decisions. Retained template mappings are reference only, not project evidence.
+
 
 \section{How to Use This Chapter}
 Maintain the canonical mapping from stakeholder need or approved constraint through requirement, design decision, implementation, test, verification, validation, and release evidence. Review both missing backward links and missing forward links.
@@ -46,17 +87,17 @@ use case is incomplete.
 \endfoot
 \bottomrule
 \endlastfoot
-\UserStoryRef{US-001} & \RequirementRef{REQ-F-001} & \UseCaseRef{UC-001} & \TestCaseRef{TC-001} & \VerificationRef{VER-001} & \ValidationRef{VAL-001}\\
-\UserStoryRef{US-002} & \RequirementRef{REQ-F-002} & \UseCaseRef{UC-002} & \TestCaseRef{TC-002} & \VerificationRef{VER-002} & \ValidationRef{VAL-002}\\
-\UserStoryRef{US-002} & \RequirementRef{REQ-Q-001} & \UseCaseRef{UC-002} & \TestCaseRef{TC-003} & \VerificationRef{VER-003} & \ValidationRef{VAL-002}\\
-\UserStoryRef{US-003} & \RequirementRef{REQ-F-003} & \UseCaseRef{UC-003} & \TestCaseRef{TC-004} & \VerificationRef{VER-004} & \ValidationRef{VAL-003}\\
-\UserStoryRef{US-003} & \RequirementRef{REQ-I-001} & \UseCaseRef{UC-003} & \TestCaseRef{TC-005} & \VerificationRef{VER-005} & \ValidationRef{VAL-003}\\
-\UserStoryRef{US-003} & \RequirementRef{REQ-S-001} & \UseCaseRef{UC-003} & \TestCaseRef{TC-006} & \VerificationRef{VER-006} & \ValidationRef{VAL-003}\\
-\UserStoryRef{US-002} & \RequirementRef{REQ-D-001} & \UseCaseRef{UC-002} & \TestCaseRef{TC-007} & \VerificationRef{VER-007} & \ValidationRef{VAL-002}\\
-\UserStoryRef{US-003} & \RequirementRef{REQ-D-001} & \UseCaseRef{UC-003} & \TestCaseRef{TC-007} & \VerificationRef{VER-007} & \ValidationRef{VAL-003}\\
-\UserStoryRef{US-001} & \RequirementRef{REQ-C-001} & \UseCaseRef{UC-001} & \TestCaseRef{TC-008} & \VerificationRef{VER-008} & \ValidationRef{VAL-001}\\
-\UserStoryRef{US-002} & \RequirementRef{REQ-C-001} & \UseCaseRef{UC-002} & \TestCaseRef{TC-008} & \VerificationRef{VER-008} & \ValidationRef{VAL-002}\\
-\UserStoryRef{US-003} & \RequirementRef{REQ-C-001} & \UseCaseRef{UC-003} & \TestCaseRef{TC-008} & \VerificationRef{VER-008} & \ValidationRef{VAL-003}\\
-\UserStoryRef{US-003} & \RequirementRef{REQ-B-001} & \UseCaseRef{UC-003} & \TestCaseRef{TC-009} & \VerificationRef{VER-009} & \ValidationRef{VAL-003}\\
+\UserStoryRef{TEMPLATE-US-001} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-001} & \VerificationRef{VER-001} & \ValidationRef{VAL-001}\\
+\UserStoryRef{TEMPLATE-US-002} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-002} & \VerificationRef{VER-002} & \ValidationRef{VAL-002}\\
+\UserStoryRef{TEMPLATE-US-002} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-003} & \VerificationRef{VER-003} & \ValidationRef{VAL-002}\\
+\UserStoryRef{US-003} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-004} & \VerificationRef{VER-004} & \ValidationRef{VAL-003}\\
+\UserStoryRef{US-003} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-005} & \VerificationRef{VER-005} & \ValidationRef{VAL-003}\\
+\UserStoryRef{US-003} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-006} & \VerificationRef{VER-006} & \ValidationRef{VAL-003}\\
+\UserStoryRef{TEMPLATE-US-002} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-007} & \VerificationRef{VER-007} & \ValidationRef{VAL-002}\\
+\UserStoryRef{US-003} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-007} & \VerificationRef{VER-007} & \ValidationRef{VAL-003}\\
+\UserStoryRef{TEMPLATE-US-001} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-008} & \VerificationRef{VER-008} & \ValidationRef{VAL-001}\\
+\UserStoryRef{TEMPLATE-US-002} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-008} & \VerificationRef{VER-008} & \ValidationRef{VAL-002}\\
+\UserStoryRef{US-003} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-008} & \VerificationRef{VER-008} & \ValidationRef{VAL-003}\\
+\UserStoryRef{US-003} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & \hyperref[Section:RetiredTemplateUseCases]{Template mapping retired} & \TestCaseRef{TC-009} & \VerificationRef{VER-009} & \ValidationRef{VAL-003}\\
 \end{tabularx}
 \end{landscape}

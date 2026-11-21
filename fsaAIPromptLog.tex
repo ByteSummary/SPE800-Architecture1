@@ -8,10 +8,124 @@ Preserve the provenance of material AI assistance and its human review.
 
 \section{How to Use This Appendix}
 Use this log when AI assistance materially affects requirements, architecture, code, tests, or release evidence. Record enough context for a reviewer to understand the input, output, assumptions, and human corrections.
+\section{Requirement Proposals Moved to Category Registers}
+Record date: November 21, 2026. Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) directed moving the two project
+requirements to Section 5.14, placing each in its most applicable register,
+and removing the previous requirements. \RequirementRef{REQ-F-004} is now
+defined in \hyperref[Table:FunctionalRequirements]{Functional Requirements};
+\RequirementRef{REQ-D-002} is defined in
+\hyperref[Table:DataRequirements]{Data Requirements}. Their statements,
+priorities, statuses, no-version values, and project mappings are unchanged.
+The separate proposal table and nine template rows were removed. Retained
+example links target \hyperref[Section:RetiredTemplateRequirements]{the
+retired-template notice}; empty category registers remain pending review
+with Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi). The existing section count keeps the category registers
+at Section 5.14. No compilation or Git operations were performed.
+
+\section{Two Requirement Proposals from the Story Register}
+Record date: November 21, 2026. The owner requested
+\hyperref[Skill:AIS-06]{AIS-06} through
+\ChapterRef{AIImplementationWorkflow}, then clarified that exactly two
+requirements should be copied from the current story-table acceptance and
+referenced from that table. The available guide is
+\texttt{fsaAIAgentGuide.tex}; no \texttt{dsnAIAgentGuide.tex} is supplied.
+The existing Embedded Systems profile was loaded as Applicable.
+
+The two statements are \RequirementRef{REQ-D-002} and
+\RequirementRef{REQ-F-004}. Existing template IDs are not reused. Each has
+one proposed Must priority, Open status, and \NoVersion\ for In Version.
+New test definitions \TestCaseRef{TC-010} and \TestCaseRef{TC-011} are planned;
+\VerificationRef{VER-010} and \VerificationRef{VER-011} remain Pending.
+No product tests, compatibility, implementation, human validation, or release
+approval is inferred. Section 4.5 retains its format; only its two pending
+requirement placeholders are replaced by links to the new proposals.
+
+One agent performed the dependent source update and self-review; no subagents
+or independent review are claimed. Planning ranges were 15--30 minutes /
+2,000--4,000 tokens for proposals and mappings, 15--30 minutes /
+2,000--4,000 tokens for profile coverage and test/verification definitions,
+and 10--20 minutes / 1,000--2,000 tokens for document build and visual checks.
+These are estimates, not measured usage. The profile-completion gate remains
+open under \hyperref[Section:RequirementsCompletionGate]{Development Plan}.
+All unresolved decisions remain with Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi). No Git operations are
+authorized or performed. Detailed build results are reported separately
+from product verification.
+
+\section{Use-Case Diagram Title Clearance}
+Record date: November 21, 2026. The owner requested correction of the UML
+diagram title overlap and elected to compile the PDF. The diagram now has
+a separate header band, explicit title line breaks, and a wider boundary
+around the ovals. Actor identities, use cases, and hyperlink targets are
+unchanged. See \hyperref[Figure:UseCaseDiagram]{the use-case diagram}.
+No compilation or Git operations were performed for this correction.
+
+\section{Project Use Cases Replace Template Examples}
+Record date: November 21, 2026. Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) directed removal of the three
+template use cases and replacement by the two project use cases using the
+same table format. \UseCaseRef{UC-001} maps to \UserStoryRef{US-001};
+\UseCaseRef{UC-002} maps to \UserStoryRef{US-002}. The linked TikZ UML diagram
+replaces the generic diagram at its original source path and figure target.
+Retained template requirement/traceability links now target
+\hyperref[Section:RetiredTemplateUseCases]{a retired-mapping notice}, rather
+than making unsupported project allocations. New flows remain draft for
+review under \hyperref[Skill:AIS-07]{AIS-07}; unresolved decisions remain
+assigned to Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi). The story-register formatting is unchanged.
+No compilation or Git operations were performed.
+
+\section{Project Story Identifier Update}
+Record date: November 21, 2026. Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) directed use of
+\UserStoryRef{US-001} and \UserStoryRef{US-002} as the project story IDs for
+future requirement links. The owner's current register layout and wording
+were preserved; only IDs and their validation-plan references changed in the
+table. All project references and validation-plan targets were synchronized.
+The superseded service-request template targets use distinct
+\UserStoryRef{TEMPLATE-US-001} and \UserStoryRef{TEMPLATE-US-002} archive IDs,
+so retained example allocations cannot be mistaken for project requirements.
+Unresolved decisions remain assigned to Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi). No compilation or Git
+operations were performed for this change.
+
+\section{User Story Register Reformat}
+Record date: November 21, 2026. Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) directed moving the two project
+stories to Section 4.5 using the existing four-column register format and
+replacing the three template example rows. The separate detailed story
+entries were removed; their IDs and reference targets now identify the
+register rows. The former template IDs are retained only as explicitly
+superseded cross-link targets for unchanged example chapters. Draft revision
+0.2, FTD2XX as proposed library, pending lifecycle mappings, and Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi)
+as decision owner are retained. See
+\hyperref[Table:UserStories]{the updated story register}. The owner explicitly
+instructed that this change not be compiled and that no Git operations be run.
+
+\section{User Story Draft Insertion Approval}
+\label{Section:StoryDraftInsertionLog}
+Record date: November 21, 2026. Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) approved both revision 0.2 drafts
+for insertion while retaining Draft for review status and FTD2XX as the
+proposed library. This update applies \hyperref[Skill:AIS-05]{AIS-05} using
+one agent as aiaCoordinator and aiaDeveloper with source self-review; no
+independent review or product validation is claimed.
+
+Provisional DRAFT-US-A is registered as \UserStoryRef{US-001}; provisional
+DRAFT-US-B as \UserStoryRef{US-002}. Existing template story IDs and all
+remaining chapters are retained. Requirement derivation and validation
+execution remain planned or pending, with reciprocal planning links in
+\hyperref[Section:DraftStoryRequirements]{Requirements},
+\hyperref[Section:DraftStoryTraceability]{Traceability}, and
+\hyperref[Section:DraftStoryValidation]{Validation}. Every unresolved item
+in the new stories is assigned explicitly to Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi); no unresolved
+priority, timing, version, or recovery decision was inferred.
+
+The available guide is \texttt{fsaAIAgentGuide.tex}; no separately named
+\texttt{fsaAgentGuide.tex} was present. Local access was restored, and the
+specified sections of both owner-supplied FTDI manuals were checked directly
+inside the ZIP before insertion. Versions 1.0 and 1.3 match the requested
+source revisions \cite{FTDI_TN167_v1_0,FTDI_D2XX_v1_3}. The existing Git
+repository was clean before this update. The updated authored package is
+retained in that repository; no remote publication is authorized or claimed.
+
 \section{Named Owner for Every Unresolved Decision}
 \label{Section:TBDOwnershipPromptLog}
 Record date: November 8, 2026. The owner directed that every unresolved
-decision marker name Joel Murphy. All document occurrences now use the shared
+decision marker name Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi). All document occurrences now use the shared
 \texttt{OwnedTBD} command, which prints \OwnedTBD{}. The shared owner definition
 is in \texttt{fsaManual.tex}. The annotation includes table entries and metadata
 and preserves the unresolved status. Decision ownership does not appoint a
@@ -53,7 +167,7 @@ PDF compilation remains assigned to the owner.
 Record date: November 8, 2026. The owner clarified that human approval
 authority is always present. The stakeholder description now states that
 AI-assisted code production is subject to human review and approval and that
-Joel Murphy retains approval authority. See
+Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) retains approval authority. See
 \hyperref[Section:ContextStakeholders]{Stakeholders} and
 \hyperref[Section:ProjectGovernance]{Project Governance}.
 

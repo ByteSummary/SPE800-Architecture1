@@ -8,10 +8,11 @@ Show that the completed system meets stakeholder needs in its intended context.
 
 \noindent\textbf{Expected result:} Evidence that stakeholders can achieve their intended outcomes.
 
-\section{Revision 0.1 Scope Notice}
+\section{Revision 0.2 Scope Notice}
 \label{Section:DeferredValidation}
 \begin{fsaNote}[Deferred project content --- template reference only]
-This chapter is retained in the complete document as template guidance.
+This chapter retains template guidance and examples alongside explicitly
+identified project planning notes.
 Its sample artifacts, IDs, priorities, statuses, versions, outcomes, and
 approval examples do not describe the FTDI245R project. In particular, any
 sample Done, Pass, or release entry is not implementation, verification,
@@ -20,6 +21,43 @@ is deferred under \hyperref[Section:ProjectScope]{the revision scope}.
 See \hyperref[Table:ProjectGapReview]{the reviewed gap list} for actual
 decisions and unresolved items.
 \end{fsaNote}
+
+\section{Planned Project Draft Validation}
+\label{Section:DraftStoryValidation}
+These planning entries support \hyperref[Section:ProjectDraftStories]{the
+project draft stories}. Formal validation IDs, procedures, success criteria
+refinement, execution, observations, and human dispositions remain pending.
+Decision co-owners for every pending item: Joel Murphy and Abtin Khatoonabadi. No validation result is claimed.
+
+\subsection{Known-Sequence Acquisition Scenario}
+\label{Section:ValidationPlanUS001}
+Related story: \UserStoryRef{US-001}; candidates:
+\RequirementRef{REQ-F-008}; \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010}; \RequirementRef{REQ-I-002}; \RequirementRef{REQ-D-002}; planned tests:
+\TestCaseRef{TC-010}; \TestCaseRef{TC-014}; \TestCaseRef{TC-016}.
+An Embedded Engineer reviews automatic detection/start and continuous
+constant-rate acquisition until user stop, with raw-byte acceptance at the
+consumer interface. Both software-generated and physical FT245R sequences
+are included. Review the approved reliable/plug-and-play definitions.
+Rate, test duration, controlled versions, concrete consumer API and
+quantitative targets remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). Execution and
+stakeholder validation disposition remain pending. See
+\hyperref[Section:DraftStoryTraceability]{project traceability}.
+
+\subsection{Read Outcomes and Disconnection Scenarios}
+\label{Section:ValidationPlanUS002}
+Related story: \UserStoryRef{US-002}; candidates:
+\RequirementRef{REQ-F-004}; \RequirementRef{REQ-F-005}; \RequirementRef{REQ-F-006}; \RequirementRef{REQ-F-007}; \RequirementRef{REQ-F-011}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013}; \RequirementRef{REQ-Q-002}; \RequirementRef{REQ-D-002}; planned tests:
+\TestCaseRef{TC-010}; \TestCaseRef{TC-011}; \TestCaseRef{TC-012};
+\TestCaseRef{TC-013}; \TestCaseRef{TC-015}.
+Scenarios cover positive read requests, completed/partial/empty/failed
+reads, timeout continuation, disconnection without crash or host-read-byte
+corruption, clear interruption reporting without a completeness claim,
+and automatic reconnection/resumption. Device-resident bytes and bytes
+generated while disconnected are outside the preservation guarantee.
+Reporting mechanism, timeout duration, detailed recovery contracts and
+quantitative targets remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). Execution and
+stakeholder disposition remain pending. See
+\hyperref[Section:DraftStoryTraceability]{project traceability}.
 
 \section{How to Use This Chapter}
 Evaluate whether the completed system solves stakeholder needs in its intended context. Define realistic scenarios, participant roles, success criteria, observations, and disposition of requested changes.
@@ -43,8 +81,8 @@ Validation answers ``Did we build the right system?''
 \endfoot
 \bottomrule
 \endlastfoot
-\ValidationID{VAL-001} & \UserStoryRef{US-001} & A customer submits a realistic service request without coaching. & The customer receives a unique identifier and confirms that the workflow supports the intended task. & \StatusPending\\
-\ValidationID{VAL-002} & \UserStoryRef{US-002} & A customer checks the progress of an existing request. & The customer correctly identifies the current status and latest update and judges the response timely. & \StatusPending\\
+\ValidationID{VAL-001} & \UserStoryRef{TEMPLATE-US-001} & A customer submits a realistic service request without coaching. & The customer receives a unique identifier and confirms that the workflow supports the intended task. & \StatusPending\\
+\ValidationID{VAL-002} & \UserStoryRef{TEMPLATE-US-002} & A customer checks the progress of an existing request. & The customer correctly identifies the current status and latest update and judges the response timely. & \StatusPending\\
 \ValidationID{VAL-003} & \UserStoryRef{US-003} & An authorized analyst exports a representative request history. & Within five minutes, the analyst opens the approved format, finds the expected records, and confirms source records were unchanged. & \StatusPending\\
 \end{tabularx}
 \normalsize
