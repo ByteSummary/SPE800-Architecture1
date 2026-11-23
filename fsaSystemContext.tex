@@ -26,12 +26,12 @@ remain \OwnedTBD{}.
 \section{Stakeholders}
 \label{Section:ContextStakeholders}
 The project stakeholders are identified in
-\hyperref[Section:ProjectStakeholders]{Audience}: Joel Murphy and Abtin Khatoonabadi own the
+\hyperref[Section:ProjectStakeholders]{Audience}: Joel Murphy and Jason Lefler own the
 document, approve revisions, and resolve all open \OwnedTBD{} items; Embedded
 Engineers use the pipeline. The AI agent uses the document to produce the
 reproducible code base described in \hyperref[Section:ProjectPurpose]{Purpose},
 under human review and approval. Human approval authority is always retained
-by Joel Murphy and Abtin Khatoonabadi, the document co-owners, as defined in
+by Joel Murphy and Jason Lefler, the document co-owners, as defined in
 \hyperref[Section:ProjectGovernance]{Project Governance}. Owners and
 maintainers of the external dependencies are \OwnedTBD{}. The downstream processing
 consumer is an external system, not an identified human stakeholder.
@@ -86,7 +86,7 @@ not mean that those baselines have already been supplied or verified.
 External acquisition hardware; one unsigned 8-bit byte per conversion,
 without headers/framing. Device/board revision, analog signal contract,
 electrical characteristics, conversion/transfer timing, and evidence are
-TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \phantomsection\label{Dependency:Counter}DEP-002 & 74xx counter &
 External hardware dependency. Exact part, revision, purpose, topology,
 connections, control behavior, and timing contract are \OwnedTBD{}.\\
@@ -102,7 +102,7 @@ permissions, platform integration, and compatibility evidence are \OwnedTBD{}.\\
 \phantomsection\label{Dependency:Consumer}DEP-006 & Downstream processing consumer &
 External consumer accepting the same raw bytes; delivery occurs at interface
 acceptance. Consumer identity/version, concrete delivery API/acceptance signal,
-ownership, flow control, and failure handling are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+ownership, flow control, and failure handling are TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \end{tabularx}
 \normalsize
 
@@ -110,7 +110,7 @@ Dependency ownership, supported revisions, controlled reference documents,
 and objective acceptance evidence remain \OwnedTBD{} for every register entry.
 Configuration control follows
 \hyperref[Section:ProjectConfigurationControl]{Configuration Control}.
-Joel Murphy and Abtin Khatoonabadi resolve these open decisions under
+Joel Murphy and Jason Lefler resolve these open decisions under
 \hyperref[Section:ProjectGovernance]{Project Governance}. Changes to a
 controlled dependency require review of affected boundary assumptions,
 interfaces, compatibility, and later requirements and tests.
@@ -122,9 +122,9 @@ interface. Each conversion supplies one unsigned 8-bit byte, with no headers
 or framing; the downstream consumer receives the same raw bytes. Sampling
 is constant, with no increases above the normal rate. The sustained sample
 rate is TBD pending ADC0804 timing and hardware confirmation (decision owner:
-Joel Murphy and Abtin Khatoonabadi). Signal type, channel count, triggering, ranges, units,
+Joel Murphy and Jason Lefler). Signal type, channel count, triggering, ranges, units,
 accuracy, clocking, synchronization, and operational calibration remain
-TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). Acquisition conditions and preservation
+TBD (decision co-owners: Joel Murphy and Jason Lefler). Acquisition conditions and preservation
 boundaries are defined in \hyperref[Section:ProjectAcquisitionConditions]{Requirements}.
 
 \section{Interfaces}
@@ -155,11 +155,11 @@ counter dependency}. & Exact part, topology, connections, role, and interface: \
 FTDI245R interface to host & \hyperref[Dependency:USBStack]{USB stack} and
 \hyperref[Dependency:HostOS]{host operating system} are external dependencies. &
 Proposed FTD2XX; raw unframed bytes. Actual driver/library version,
-transport details, timeout duration, and compatibility: TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+transport details, timeout duration, and compatibility: TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 Pipeline to downstream consumer & \hyperref[Dependency:Consumer]{External
 processing consumer}; same raw bytes, delivered at interface acceptance. &
 Concrete delivery API/acceptance signal, data ownership, flow control,
-and failure handling: TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+and failure handling: TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \end{tabularx}
 \normalsize
 
@@ -181,7 +181,7 @@ starts automatically on first connection. Acquisition continues until the
 user stops it. Partial timeouts deliver actual returned bytes in order and
 acquisition continues; empty timeouts deliver no bytes and acquisition
 continues. Every read requests at least one byte; timeout duration is TBD
-(decision co-owners: Joel Murphy and Abtin Khatoonabadi).
+(decision co-owners: Joel Murphy and Jason Lefler).
 
 Disconnection does not crash or corrupt the pipeline. All bytes successfully
 read into host memory before disconnection are delivered unchanged and in
@@ -194,7 +194,7 @@ The owner-approved meanings of \gls{fsareliable}, \gls{fsaplugandplay},
 
 Reporting interface, reconnection identity/stale device-buffer handling,
 consumer failure/backpressure, buffering/overflow, user-stop/drain behavior,
-and quantitative reliability targets remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).
+and quantitative reliability targets remain TBD (decision co-owners: Joel Murphy and Jason Lefler).
 These are approved behavioral decisions translated into candidate
 requirements, not an implemented or verified behavior claim.
 

@@ -28,12 +28,12 @@ decisions and unresolved items.
 \label{Section:DraftStoryRequirements}
 The original two proposals from \hyperref[Table:UserStories]{Section 4.5}
 retain their stable IDs: \RequirementRef{REQ-D-002} and
-\RequirementRef{REQ-F-004}. Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) subsequently approved the acquisition,
+\RequirementRef{REQ-F-004}. Joel Murphy (co-owner from Version 0.2: Jason Lefler) subsequently approved the acquisition,
 timeout, disconnection, automatic-start/reconnection, and terminology decisions
 recorded below, and authorized their translation into additional candidates.
 The candidates are not an approved requirements baseline. Removed template
 IDs remain reserved. \hyperref[Table:ProjectProfileConcernCoverage]{Profile
-coverage} remains incomplete; unresolved decisions are owned by Joel Murphy and Abtin Khatoonabadi.
+coverage} remains incomplete; unresolved decisions are owned by Joel Murphy and Jason Lefler.
 
 \begingroup
 \setlength{\emergencystretch}{2em}
@@ -44,9 +44,9 @@ Project candidates are defined only in
 \hyperref[Section:ProjectRequirements]{Section 5.14, Category-Specific Requirement Registers}.
 Existing IDs are preserved; new candidates use the established Functional,
 Quality, Interface, and Data families. Each candidate has proposed Must
-priority, Open status, and \NoVersion\ for In Version. Joel Murphy and Abtin Khatoonabadi own
+priority, Open status, and \NoVersion\ for In Version. Joel Murphy and Jason Lefler own
 priority/baseline review and all unresolved decisions. Tests are planned;
-verification is Pending / not executed. No implementation or product evidence
+verification is  Pending. No implementation or product evidence
 is claimed. Functional and quality subtypes are identified by the register
 and obligation: read/control/recovery behavior, failure tolerance, raw-byte
 interface, and data integrity.
@@ -71,7 +71,7 @@ Acquisition runs continuously until the user stops it. The sustained sample
 rate is TBD pending ADC0804 timing and hardware confirmation; acceptance-test
 duration, hardware/module revisions, supported Linux/Windows/macOS versions,
 actual FTD2XX driver/library version, timeout duration, and quantitative
-reliability targets are TBD (decision co-owners for each: Joel Murphy and Abtin Khatoonabadi).
+reliability targets are TBD (decision co-owners for each: Joel Murphy and Jason Lefler).
 The D2XX Programmer's Guide v1.3 is the documentation baseline, not the
 selected driver/library version. FTD2XX remains the proposed library.
 
@@ -89,7 +89,7 @@ reconnection with the interruption clearly marked.
 Consumer API/acceptance signaling, backpressure/failure handling, buffering
 limits, device identity on reconnection, treatment of stale device-buffer
 contents, reconnection timing, reporting mechanism, and user-stop/drain
-details remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). These unresolved contracts
+details remain TBD (decision co-owners: Joel Murphy and Jason Lefler). These unresolved contracts
 prevent a claim of established end-to-end feasibility or completed acceptance.
 Known-sequence comparison covers the full source/consumer sequence in
 uninterrupted tests and the successfully read host-memory sequence across
@@ -108,12 +108,12 @@ supported host, as approved in
 \hyperref[Section:ProjectAcquisitionConditions]{the acquisition conditions}.
 FTD2XX remains the proposed library. Supported hardware/module revisions,
 Linux/Windows/macOS versions, and actual driver/library version remain TBD
-(decision co-owners: Joel Murphy and Abtin Khatoonabadi). D2XX Programmer's Guide v1.3 is the documentation
+(decision co-owners: Joel Murphy and Jason Lefler). D2XX Programmer's Guide v1.3 is the documentation
 baseline, not an installed library version.
 
 The installation procedure, required configuration items and values, and
 observable checks that establish successful installation and completed
-configuration are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). No specific settings,
+configuration are TBD (decision co-owners: Joel Murphy and Jason Lefler). No specific settings,
 installation checks, or completed deployment are implied by this precondition.
 
 \paragraph{Retired template requirement mappings.}
@@ -133,7 +133,7 @@ identified. This register evaluates all 18 categories in
 cross-cutting concerns below. Mapped means only the identified part is
 addressed. Open entries are gaps, not Not Applicable dispositions, and do
 not satisfy \hyperref[Section:DomainProfileRequirements]{the translation rule}.
-All open decisions are owned by Joel Murphy and Abtin Khatoonabadi. The requirements work is
+All open decisions are owned by Joel Murphy and Jason Lefler. The requirements work is
 \textbf{not complete}; the approved acquisition decisions do not waive the
 remaining profile concerns.
 \small
@@ -151,23 +151,23 @@ remaining profile concerns.
 \bottomrule
 \endlastfoot
 Functional behavior & \RequirementRef{REQ-F-004}--\RequirementRef{REQ-F-013}; \RequirementRef{REQ-D-002} & Read recognition, positive requests, timeout continuation, continuous acquisition, detection/start, reconnection and interruption reporting are mapped. Other operational functions remain open.\\
-Timing and real time & Partial: \RequirementRef{REQ-F-008} & Constant sampling; operation until user stop. Sample rate pending ADC0804 timing/hardware confirmation, test duration, timeouts, deadlines, latency and jitter remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Processing resources & Open & CPU, scheduling, execution-time, and host-processing budgets are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Memory and storage & Open & Buffer capacity, overflow policy, memory/storage limits, and margins are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). Sequence preservation is not a resource budget.\\
-Power and thermal & Open & Supply/power domains, current, transitions, and thermal limits are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Hardware interfaces & Partial: \RequirementRef{REQ-I-002}; \RequirementRef{REQ-D-002} & Unsigned 8-bit unframed raw bytes and delivery boundary defined. Electrical limits, pins, handshake ownership, units/scaling, controlled revisions and integration evidence remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Boot and initialization & Partial: \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010} & Installed/configured prerequisites, automatic detection and first-connection start defined. Self-test, configuration validation, startup limits and failure response remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Reset and recovery & Partial: \RequirementRef{REQ-F-011}; \RequirementRef{REQ-D-002} & Automatic reconnection resume and preservation of host-read bytes defined. Retry/reset details, device identity, stale device bytes and recovery timing remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Safety & Open & Hazards, electrical protection, safe states, and approved safety dispositions are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Security & Open & Threat/trust analysis, permissions, access control, physical/debug access, and data sensitivity are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Reliability and availability & Partial: \RequirementRef{REQ-D-002}; \RequirementRef{REQ-Q-002} & Reliable/corruption definitions and disconnect preservation boundary approved. Device-resident and disconnected-source bytes excluded. Quantitative reliability/availability and resource feasibility remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Environmental & Open & Temperature, humidity, electromagnetic and other operating/storage conditions are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Diagnostics and observability & Partial: \RequirementRef{REQ-F-004}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013} & Read predicate and clearly marked interruption without complete-acquisition claim defined. Reporting mechanism, logs, counters and health interfaces remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Calibration and configuration & \hyperref[Section:ProjectSustainmentNotes]{Calibration records: approved Not Applicable} & Owner rationale: system not field deployed. Operational calibration needs, configurable values, integrity, and compatibility remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Firmware update & \hyperref[Section:ProjectSustainmentNotes]{Updates/rollback: approved Not Applicable} & Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) disposition: system not field deployed. No new firmware implementation or update guarantee is inferred.\\
-Manufacturing and provisioning & \hyperref[Section:ProjectSustainmentNotes]{Approved Not Applicable} & Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) disposition: system not field deployed; manufacturing and field service excluded.\\
-Regulatory and certification & Open & Applicable standards, evidence/independence obligations, and certification gates are TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
-Component lifecycle & \hyperref[Section:ProjectSustainmentNotes]{Component availability: approved Not Applicable} & Joel Murphy (co-owner from Version 0.2: Abtin Khatoonabadi) disposition: system not field deployed. Exact supported parts/revisions and errata compatibility remain TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi).\\
+Timing and real time & Partial: \RequirementRef{REQ-F-008} & Constant sampling; operation until user stop. Sample rate pending ADC0804 timing/hardware confirmation, test duration, timeouts, deadlines, latency and jitter remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Processing resources & Open & CPU, scheduling, execution-time, and host-processing budgets are TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Memory and storage & Open & Buffer capacity, overflow policy, memory/storage limits, and margins are TBD (decision co-owners: Joel Murphy and Jason Lefler). Sequence preservation is not a resource budget.\\
+Power and thermal & Open & Supply/power domains, current, transitions, and thermal limits are TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Hardware interfaces & Partial: \RequirementRef{REQ-I-002}; \RequirementRef{REQ-D-002} & Unsigned 8-bit unframed raw bytes and delivery boundary defined. Electrical limits, pins, handshake ownership, units/scaling, controlled revisions and integration evidence remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Boot and initialization & Partial: \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010} & Installed/configured prerequisites, automatic detection and first-connection start defined. Self-test, configuration validation, startup limits and failure response remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Reset and recovery & Partial: \RequirementRef{REQ-F-011}; \RequirementRef{REQ-D-002} & Automatic reconnection resume and preservation of host-read bytes defined. Retry/reset details, device identity, stale device bytes and recovery timing remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Safety & Open & Hazards, electrical protection, safe states, and approved safety dispositions are TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Security & Open & Threat/trust analysis, permissions, access control, physical/debug access, and data sensitivity are TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Reliability and availability & Partial: \RequirementRef{REQ-D-002}; \RequirementRef{REQ-Q-002} & Reliable/corruption definitions and disconnect preservation boundary approved. Device-resident and disconnected-source bytes excluded. Quantitative reliability/availability and resource feasibility remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Environmental & Open & Temperature, humidity, electromagnetic and other operating/storage conditions are TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Diagnostics and observability & Partial: \RequirementRef{REQ-F-004}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013} & Read predicate and clearly marked interruption without complete-acquisition claim defined. Reporting mechanism, logs, counters and health interfaces remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Calibration and configuration & \hyperref[Section:ProjectSustainmentNotes]{Calibration records: approved Not Applicable} & Owner rationale: system not field deployed. Operational calibration needs, configurable values, integrity, and compatibility remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Firmware update & \hyperref[Section:ProjectSustainmentNotes]{Updates/rollback: approved Not Applicable} & Joel Murphy (co-owner from Version 0.2: Jason Lefler) disposition: system not field deployed. No new firmware implementation or update guarantee is inferred.\\
+Manufacturing and provisioning & \hyperref[Section:ProjectSustainmentNotes]{Approved Not Applicable} & Joel Murphy (co-owner from Version 0.2: Jason Lefler) disposition: system not field deployed; manufacturing and field service excluded.\\
+Regulatory and certification & Open & Applicable standards, evidence/independence obligations, and certification gates are TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Component lifecycle & \hyperref[Section:ProjectSustainmentNotes]{Component availability: approved Not Applicable} & Joel Murphy (co-owner from Version 0.2: Jason Lefler) disposition: system not field deployed. Exact supported parts/revisions and errata compatibility remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \end{tabularx}
 \normalsize
 \paragraph{Cross-cutting profile concerns.}
@@ -175,7 +175,7 @@ Hardware--software allocation, execution platform, interfaces, architecture
 views, resource budgets, controlled toolchain, reproducible builds, host
 compatibility versions, fixture calibration, target evidence, release
 configuration, and evidence sufficiency remain
-TBD (decision co-owners: Joel Murphy and Abtin Khatoonabadi). The existing
+TBD (decision co-owners: Joel Murphy and Jason Lefler). The existing
 \hyperref[Section:ProjectConfigurationControl]{Git/GitHub decision} is a
 configuration-control fact, not proof of a reproducible implementation.
 Field-service/update/manufacturing exclusions do not waive target-test,
@@ -449,7 +449,7 @@ The seven category registers retain their existing column format and
 reference labels. Functional, Quality, Interface, and Data registers contain
 the project candidates. Previous template rows have been removed.
 The other registers remain pending profile review, not Not Applicable;
-decision co-owners: Joel Murphy and Abtin Khatoonabadi. Each requirement is defined in one register only.
+decision co-owners: Joel Murphy and Jason Lefler. Each requirement is defined in one register only.
 
 \subsection{Business Requirements}
 \index{requirement!business}
@@ -469,7 +469,7 @@ decision co-owners: Joel Murphy and Abtin Khatoonabadi. Each requirement is defi
 \endfoot
 \bottomrule
 \endlastfoot
-\multicolumn{7}{l}{\textit{No project requirement proposed yet; profile review pending. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.}}\\
+\multicolumn{7}{l}{\textit{No project requirement proposed yet; profile review pending. Decision co-owners: Joel Murphy and Jason Lefler.}}\\
 \end{tabularx}
 
 \clearpage
@@ -562,7 +562,7 @@ decision co-owners: Joel Murphy and Abtin Khatoonabadi. Each requirement is defi
 \endfoot
 \bottomrule
 \endlastfoot
-\multicolumn{7}{l}{\textit{No project requirement proposed yet; profile review pending. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.}}\\
+\multicolumn{7}{l}{\textit{No project requirement proposed yet; profile review pending. Decision co-owners: Joel Murphy and Jason Lefler.}}\\
 \end{tabularx}
 
 \clearpage
@@ -605,7 +605,7 @@ decision co-owners: Joel Murphy and Abtin Khatoonabadi. Each requirement is defi
 \endfoot
 \bottomrule
 \endlastfoot
-\multicolumn{7}{l}{\textit{No project requirement proposed yet; profile review pending. Decision co-owners: Joel Murphy and Abtin Khatoonabadi.}}\\
+\multicolumn{7}{l}{\textit{No project requirement proposed yet; profile review pending. Decision co-owners: Joel Murphy and Jason Lefler.}}\\
 \end{tabularx}
 \end{landscape}
 
