@@ -26,12 +26,12 @@ remain \OwnedTBD{}.
 \section{Stakeholders}
 \label{Section:ContextStakeholders}
 The project stakeholders are identified in
-\hyperref[Section:ProjectStakeholders]{Audience}: Joel Murphy owns the
-document, approves revisions, and resolves all open \OwnedTBD{} items; Embedded
+\hyperref[Section:ProjectStakeholders]{Audience}: Joel Murphy and Jason Lefler own the
+document, approve revisions, and resolve all open \OwnedTBD{} items; Embedded
 Engineers use the pipeline. The AI agent uses the document to produce the
 reproducible code base described in \hyperref[Section:ProjectPurpose]{Purpose},
 under human review and approval. Human approval authority is always retained
-by Joel Murphy, the document owner, as defined in
+by Joel Murphy and Jason Lefler, the document co-owners, as defined in
 \hyperref[Section:ProjectGovernance]{Project Governance}. Owners and
 maintainers of the external dependencies are \OwnedTBD{}. The downstream processing
 consumer is an external system, not an identified human stakeholder.
@@ -83,8 +83,10 @@ not mean that those baselines have already been supplied or verified.
 \bottomrule
 \endlastfoot
 \phantomsection\label{Dependency:ADC0804}DEP-001 & ADC0804 &
-External acquisition hardware. Device/board revision, signal and data contract,
-electrical characteristics, transfer timing, and evidence are \OwnedTBD{}.\\
+External acquisition hardware; one unsigned 8-bit byte per conversion,
+without headers/framing. Device/board revision, analog signal contract,
+electrical characteristics, conversion/transfer timing, and evidence are
+TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \phantomsection\label{Dependency:Counter}DEP-002 & 74xx counter &
 External hardware dependency. Exact part, revision, purpose, topology,
 connections, control behavior, and timing contract are \OwnedTBD{}.\\
@@ -98,8 +100,9 @@ version, driver/API binding, transfer contract, and error behavior are \OwnedTBD
 Linux, Windows, and macOS are the named host platforms. Supported versions,
 permissions, platform integration, and compatibility evidence are \OwnedTBD{}.\\
 \phantomsection\label{Dependency:Consumer}DEP-006 & Downstream processing consumer &
-External consumer of acquired data. Consumer identity/version, delivery API,
-data format, ownership, flow control, and failure handling are \OwnedTBD{}.\\
+External consumer accepting the same raw bytes; delivery occurs at interface
+acceptance. Consumer identity/version, concrete delivery API/acceptance signal,
+ownership, flow control, and failure handling are TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \end{tabularx}
 \normalsize
 
@@ -107,19 +110,22 @@ Dependency ownership, supported revisions, controlled reference documents,
 and objective acceptance evidence remain \OwnedTBD{} for every register entry.
 Configuration control follows
 \hyperref[Section:ProjectConfigurationControl]{Configuration Control}.
-Joel Murphy resolves these open decisions under
+Joel Murphy and Jason Lefler resolve these open decisions under
 \hyperref[Section:ProjectGovernance]{Project Governance}. Changes to a
 controlled dependency require review of affected boundary assumptions,
 interfaces, compatibility, and later requirements and tests.
 
 \section{Signal Definition}
 \label{Section:ProjectSignals}
-The owner initially marked the source \OwnedTBD{}, then clarified it as a Sensor and
-an ADC0804 connected to the FTDI245R interface. Signal type, channel count,
-sample rate, data width, and triggering remain \OwnedTBD{}. Ranges, units, accuracy,
-clocking, synchronization, and calibration needs are not established by the
-supplied evidence. Device naming does not establish project settings or
-electrical limits.
+The source is a Sensor through an ADC0804 connected to the FTDI245R
+interface. Each conversion supplies one unsigned 8-bit byte, with no headers
+or framing; the downstream consumer receives the same raw bytes. Sampling
+is constant, with no increases above the normal rate. The sustained sample
+rate is TBD pending ADC0804 timing and hardware confirmation (decision owner:
+Joel Murphy and Jason Lefler). Signal type, channel count, triggering, ranges, units,
+accuracy, clocking, synchronization, and operational calibration remain
+TBD (decision co-owners: Joel Murphy and Jason Lefler). Acquisition conditions and preservation
+boundaries are defined in \hyperref[Section:ProjectAcquisitionConditions]{Requirements}.
 
 \section{Interfaces}
 \label{Section:ProjectInterfaces}
@@ -148,10 +154,13 @@ wiring, transfer control, timing, endpoint identity, and compatibility: \OwnedTB
 counter dependency}. & Exact part, topology, connections, role, and interface: \OwnedTBD{}.\\
 FTDI245R interface to host & \hyperref[Dependency:USBStack]{USB stack} and
 \hyperref[Dependency:HostOS]{host operating system} are external dependencies. &
-Driver/API, data format, transport details, timeouts, and compatibility: \OwnedTBD{}.\\
+Proposed FTD2XX; raw unframed bytes. Actual driver/library version,
+transport details, timeout duration, and compatibility: TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 Pipeline to downstream consumer & \hyperref[Dependency:Consumer]{External
-processing consumer}. & Delivery API, data ownership, format, flow control,
-and failure handling: \OwnedTBD{}.\\
+processing consumer}; same raw bytes, delivered at interface acceptance. &
+Concrete delivery API/acceptance signal, data ownership, flow control,
+and failure handling: TBD (decision co-owners: Joel Murphy and Jason Lefler).
+See \ArtifactRef{Proposal}{REQ-OMS-01} for the open OMS proposal.\\
 \end{tabularx}
 \normalsize
 
@@ -167,13 +176,28 @@ project evidence.
 
 \section{Lifecycle Intent}
 \label{Section:ProjectLifecycleIntent}
-The owner defined the following intent: disconnection will not corrupt or
-crash the data acquisition pipeline. Specific disconnection handling and
-recovery behavior are \OwnedTBD{}. What corruption covers, treatment of in-flight
-data, and objective acceptance criteria remain \OwnedTBD{}. This intent is retained
-for later requirements development; no formal requirement or test pass is
-claimed in this revision. Startup, configuration, acquisition control,
-shutdown, overflow, diagnostics, and other lifecycle behavior remain \OwnedTBD{}.
+With the required driver/library installed and configuration completed on a
+supported host, detection is automatic without a code change and acquisition
+starts automatically on first connection. Acquisition continues until the
+user stops it. Partial timeouts deliver actual returned bytes in order and
+acquisition continues; empty timeouts deliver no bytes and acquisition
+continues. Every read requests at least one byte; timeout duration is TBD
+(decision co-owners: Joel Murphy and Jason Lefler).
+
+Disconnection does not crash or corrupt the pipeline. All bytes successfully
+read into host memory before disconnection are delivered unchanged and in
+order, including pending bytes. Device-resident bytes and bytes generated
+while disconnected are outside the preservation guarantee. The pipeline
+reports the interruption without claiming complete acquisition and
+automatically resumes on reconnection with the interruption clearly marked.
+The owner-approved meanings of \gls{fsareliable}, \gls{fsaplugandplay},
+\gls{fsacorruption}, and \gls{fsadelivery} apply.
+
+Reporting interface, reconnection identity/stale device-buffer handling,
+consumer failure/backpressure, buffering/overflow, user-stop/drain behavior,
+and quantitative reliability targets remain TBD (decision co-owners: Joel Murphy and Jason Lefler).
+These are approved behavioral decisions translated into candidate
+requirements, not an implemented or verified behavior claim.
 
 \section{Constraints and Quality Concerns}
 \label{Section:ProjectConstraints}

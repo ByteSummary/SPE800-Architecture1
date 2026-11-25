@@ -8,17 +8,18 @@ Capture who needs a result and why that result has value.
 
 \noindent\textbf{Expected result:} A reviewable statement of stakeholder value and acceptance intent.
 
-\section{Revision 0.1 Scope Notice}
+\section{Revision 0.2 Scope Notice}
 \label{Section:DeferredUserStories}
-\begin{fsaNote}[Deferred project content --- template reference only]
-This chapter is retained in the complete document as template guidance.
-Its sample artifacts, IDs, priorities, statuses, versions, outcomes, and
-approval examples do not describe the FTDI245R project. In particular, any
-sample Done, Pass, or release entry is not implementation, verification,
-validation, or approval evidence for this project. Detailed project content
-is deferred under \hyperref[Section:ProjectScope]{the revision scope}.
-See \hyperref[Table:ProjectGapReview]{the reviewed gap list} for actual
-decisions and unresolved items.
+\begin{fsaNote}[Project drafts and retained template reference]
+The two project stories below are Draft for review. Joel Murphy (co-owner from Version 0.2: Jason Lefler) approved
+their insertion on November 21, 2026; that approval does not baseline
+requirements, establish implementation, or approve validation results.
+Section 4.5 uses the template register format with the two project story
+rows replacing the original examples. Legacy template IDs remain only as
+reference targets for unchanged example chapters; they do not describe
+project behavior. Later requirements, architecture,
+tests, verification, validation, and release content remain planned or pending
+under \hyperref[Section:ProjectScope]{the revision scope}.
 \end{fsaNote}
 
 \section{How to Use This Chapter}
@@ -26,14 +27,45 @@ Capture stakeholder goals in accessible language. Stories express value and
 acceptance intent; precise obligations belong in Requirements. Give each story
 a stable ID, a priority, and links to one or more requirements that implement it.
 
+\section{Project User Stories --- Drafts for Review}
+\label{Section:ProjectDraftStories}
+The two project drafts are defined in
+\hyperref[Table:UserStories]{the User Story Register} below, using the same
+ID, Story and Acceptance Criteria, Priority, and Requirement(s) columns as
+the original template. Both retain revision 0.2 and Draft for review status.
+FTD2XX is the proposed library for FTDI's D2XX Classic API. No library
+version, platform compatibility, or implementation result is implied. The
+D2XX Programmer's Guide v1.3 is the approved documentation baseline; actual
+driver/library version remains TBD (decision co-owners: Joel Murphy and Jason Lefler).
+These stories follow \hyperref[Skill:AIS-05]{AIS-05} and its
+\hyperref[Section:AIUserStoryContext]{User-Story Context}.
+
+\paragraph{Related draft use cases.}
+\UserStoryRef{US-001} maps to \UseCaseRef{UC-001};
+\UserStoryRef{US-002} maps to \UseCaseRef{UC-002}.
+See \hyperref[Figure:UseCaseDiagram]{the linked UML diagram and use-case tables}.
+Requirement proposals and planned tests are linked in \hyperref[Section:ProjectRequirements]{Project Requirements}; review decisions remain with Joel Murphy and Jason Lefler.
+
 \section{User Story Register}
+\label{Section:ProjectUserStoryRegister}
+The template example rows have been replaced by
+\UserStoryRef{US-001} and \UserStoryRef{US-002}. All unresolved decisions in
+each row, including priority and later lifecycle allocation, are assigned to
+Joel Murphy and Jason Lefler. Candidate requirement allocations are linked below; validation
+execution and the remaining lifecycle work remain planned or pending.
+The validation plans are \ValidationRef{VAL-004} for \UserStoryRef{US-001}
+and \ValidationRef{VAL-005} for \UserStoryRef{US-002}.
+
+\begingroup
+\small
+\setlength{\emergencystretch}{2em}
 \begin{tabularx}{\linewidth}{L{1.9cm}YL{1.8cm}L{3.4cm}}
-\caption{Template reference only: User Story Register\label{Table:UserStories}}\\
+\caption{User Story Register --- Project Drafts\label{Table:UserStories}}\\
 \toprule
 \textbf{ID} & \textbf{Story and Acceptance Criteria} & \textbf{Priority} & \textbf{Requirement(s)}\\
 \midrule
 \endfirsthead
-\multicolumn{4}{l}{\small\itshape User Story Register (continued)}\\
+\multicolumn{4}{l}{\small\itshape User Story Register --- Project Drafts (continued)}\\
 \toprule
 \textbf{ID} & \textbf{Story and Acceptance Criteria} & \textbf{Priority} & \textbf{Requirement(s)}\\
 \midrule
@@ -43,12 +75,48 @@ a stable ID, a priority, and links to one or more requirements that implement it
 \endfoot
 \bottomrule
 \endlastfoot
-\UserStoryID{US-001} & As a customer, I want to submit a service request so that the responsible team can act on it. Acceptance: valid data produces a unique request identifier on every supported client. & \gls{must} & \RequirementRef{REQ-F-001}, \RequirementRef{REQ-C-001}\\
-\UserStoryID{US-002} & As a customer, I want to view my request status so that I understand its progress. Acceptance: the current status and most recent update appear within the specified response time, and the transition history is retained. & \gls{should} & \RequirementRef{REQ-F-002}, \RequirementRef{REQ-Q-001}, \RequirementRef{REQ-D-001}, \RequirementRef{REQ-C-001}\\
-\UserStoryID{US-003} & As an operations analyst, I want to export request history so that I can perform approved analysis. Acceptance: an authorized actor prepares complete history within five minutes in the approved versioned format without changing source records. & \gls{would} & \RequirementRef{REQ-B-001}, \RequirementRef{REQ-F-003}, \RequirementRef{REQ-I-001}, \RequirementRef{REQ-S-001}, \RequirementRef{REQ-D-001}, \RequirementRef{REQ-C-001}\\
+\UserStoryID{US-001}\phantomsection\label{Section:AcquireSensorDataStory}
+&\par As an Embedded Engineer, I need to receive the data
+supplied through the FTDI245R interface and make it available to the
+downstream processing consumer, so that I can process the acquired
+information on the host.
+Acceptance: A known source byte sequence reaches the consumer
+unchanged and in order under agreed conditions.
+& Must
+& \RequirementRef{REQ-F-008}; \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010}; \RequirementRef{REQ-I-002}; \RequirementRef{REQ-D-002};
+\cite{FTDI_TN167_v1_0}, \cite{FTDI_D2XX_v1_3}. \\
+\UserStoryID{US-002}\phantomsection\label{Section:AcquisitionInterruptionsStory}
+&\par As an Embedded Engineer, I need the pipeline to distinguish
+completed reads, partial or empty timeout results, and read failures, so that
+interruptions do not crash or corrupt the pipeline or cause invalid data to
+reach downstream processing.
+Acceptance: Completed reads are recognized using status and
+returned count.
+& Should
+& \RequirementRef{REQ-F-004}; \RequirementRef{REQ-F-005}; \RequirementRef{REQ-F-006}; \RequirementRef{REQ-F-007}; \RequirementRef{REQ-F-011}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013}; \RequirementRef{REQ-Q-002}; \RequirementRef{REQ-D-002} \cite{FTDI_D2XX_v1_3}.
 \end{tabularx}
+\endgroup
+
+\paragraph{Legacy template cross-link targets.}
+The following IDs identify superseded template examples, not active project
+stories: \UserStoryID{TEMPLATE-US-001} (submit a service request),
+\UserStoryID{TEMPLATE-US-002} (view request status), and
+\UserStoryID{US-003} (export request history). These reference targets are
+retained solely for links from the unchanged template example chapters;
+their example requirements and validation records are not allocated to
+\UserStoryRef{US-001} or \UserStoryRef{US-002}.
+
+\paragraph{Draft traceability status.}
+\hyperref[Section:DraftStoryTraceability]{The planned project traceability register}
+provides reciprocal links to both project stories. Requirements, use cases,
+architecture, tests, verification, validation execution, and release remain
+planned or pending, with unresolved decisions assigned to Joel Murphy and Jason Lefler.
 
 \section{Review Rules}
 Confirm that every story identifies a beneficiary, outcome, acceptance
 criterion, priority, and at least one linked requirement. Maintain reciprocal
 story links in the traceability register.
+
+The project drafts retain explicit pending requirement allocations until
+requirements are developed and reviewed. Their presence does not establish
+complete baseline traceability; the open decisions are assigned to Joel Murphy and Jason Lefler.

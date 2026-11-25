@@ -8,8 +8,8 @@ Define how the project is governed, planned, reviewed, and changed.
 
 \section{Project Governance}
 \label{Section:ProjectGovernance}
-Joel Murphy owns this document, approves revisions and the initial architecture
-and context baseline, and resolves all open \OwnedTBD{} items. The owner completed the
+Joel Murphy and Jason Lefler own this document, approve revisions and the initial architecture
+and context baseline, and resolve all open \OwnedTBD{} items. The owner completed the
 gap-list review and authorized these document updates. That authorization does
 not resolve the retained \OwnedTBD{} items, accept residual risk, establish a detailed
 requirements baseline, or authorize release. Additional acceptance criteria
@@ -17,12 +17,26 @@ are \OwnedTBD{}. All open risks also require owner assignment and assessment.
 
 \subsection{Ownership of Unresolved Decisions}
 \label{Section:TBDDecisionOwnership}
-Every unresolved decision is marked \OwnedTBD{}. This annotation identifies
-the person responsible for resolving the decision; it does not assign an
+Every unresolved decision is marked TBD or \OwnedTBD{}. Joel Murphy and Jason Lefler are
+the named decision co-owners for every such marker, including those without an
+inline owner name. This ownership identifies
+the people responsible for resolving the decision; it does not assign an
 undecided hardware, firmware, host-integration, toolchain, maintenance, or risk
-role to that person. Joel Murphy is the named decision owner for all open
+role to either person. Joel Murphy and Jason Lefler are the named decision co-owners for all open
 items, including items in prose, tables, metadata, and retained template
 guidance. Items remain unresolved until an explicit decision is recorded.
+
+\subsection{Requirements Completion Gate}
+\label{Section:RequirementsCompletionGate}
+The original two story-derived proposals are retained and supplemented by
+candidates translating the owner-approved acquisition and interruption
+decisions. The owner authorized these source edits without compilation or
+Git operations; implementation, baseline approval and verification remain pending. \hyperref[Table:ProjectProfileConcernCoverage]{The embedded
+concern coverage register} identifies mapped, partially mapped, and open
+concerns and the previously authorized Not Applicable dispositions.
+AIS-06 is not complete while any applicable concern lacks a requirement
+mapping or an approved Not Applicable rationale. Joel Murphy and Jason Lefler own every open
+decision. Producing a document PDF does not close this gate.
 
 \section{Domain Profile Selection}
 \label{Section:DevelopmentPlanProfiles}
@@ -42,7 +56,7 @@ the reviewed gap list. The project facts remain in their core chapters.
 \endhead
 \bottomrule
 \endlastfoot
-\hyperref[Chapter:EmbeddedSystemsProfile]{Embedded Systems} & Applicable & Confirmed by Joel Murphy. Applicability triggers are documented in \hyperref[Section:EmbeddedApplicabilityTriggers]{Embedded Applicability Triggers}. Recorded in revision 0.1, November 8, 2026.\\
+\hyperref[Chapter:EmbeddedSystemsProfile]{Embedded Systems} & Applicable & Confirmed by Joel Murphy (co-owner from Version 0.2: Jason Lefler). Applicability triggers are documented in \hyperref[Section:EmbeddedApplicabilityTriggers]{Embedded Applicability Triggers}. Recorded in revision 0.1, November 8, 2026.\\
 \end{tabularx}
 \normalsize
 
@@ -72,7 +86,8 @@ real-time guarantees remain \OwnedTBD{}.
 \item \textbf{Host-OS driver or library interaction:} the pipeline depends on
 the \hyperref[Dependency:USBStack]{USB stack} and
 \hyperref[Dependency:HostOS]{host operating system}; the driver/API and library
-selection remain \OwnedTBD{}.
+version and confirmed binding remain TBD (decision co-owners: Joel Murphy and Jason Lefler);
+FTD2XX is proposed and the D2XX Guide v1.3 is the documentation baseline.
 \item \textbf{Sampling and conversion timing:} timing at the Sensor,
 ADC0804, and acquisition interface requires review. Sample rates, conversion
 timing, triggering, latency, and jitter limits remain \OwnedTBD{}.
@@ -85,7 +100,7 @@ hardware compatibility, timing guarantees, resource sufficiency, or test results
 
 \section{Hardware and Firmware Responsibilities}
 \label{Section:HardwareFirmwareResponsibilities}
-Joel Murphy retains human approval authority and resolves the \OwnedTBD{} decisions
+Joel Murphy and Jason Lefler retain human approval authority and resolve the \OwnedTBD{} decisions
 below. Decision ownership does not assign hardware or firmware engineering
 responsibilities to him. Technical owners and implementation allocation have
 not yet been provided.
@@ -121,8 +136,10 @@ the controlled external context.\\
 \label{Section:ToolchainHostAssumptions}
 Linux, Windows, and macOS are the owner-confirmed host platforms in the
 initial context baseline. Supported operating-system versions, architectures,
-permissions, USB-stack implementations, drivers/APIs, libraries, and
-compatibility evidence remain \OwnedTBD{}. No successful cross-platform execution
+permissions, USB-stack implementations, actual FTD2XX driver/library version,
+and compatibility evidence remain TBD (decision co-owners: Joel Murphy and Jason Lefler). FTD2XX
+is the proposed library; D2XX Programmer's Guide v1.3 is the approved
+documentation baseline, not an installed software version. No successful cross-platform execution
 is claimed.
 
 Programming languages, development tools, compiler/linker versions, SDKs,
@@ -144,7 +161,7 @@ demonstrate that a code base is reproducible.
 
 \subsection{Sustainment Notes}
 \label{Section:ProjectSustainmentNotes}
-Joel Murphy marked updates, rollback, calibration records, manufacturing,
+Joel Murphy (co-owner from Version 0.2: Jason Lefler) marked updates, rollback, calibration records, manufacturing,
 field service, and component availability Not Applicable because this system
 will not be field deployed. These are recorded owner dispositions; a scope
 change may require their review. This disposition does not establish a
@@ -162,7 +179,7 @@ beyond the current revision are \OwnedTBD{}. No implementation or test pass is c
 \section{Reviewed Gap List}
 \label{Section:ProjectGapReview}
 The owner reviewed G01--G16 one item at a time. Review is complete; the open
-items below remain unresolved. Joel Murphy is the decision owner for every
+items below remain unresolved. Joel Murphy and Jason Lefler are the decision co-owners for every
 \OwnedTBD{} item. Where no decision date was supplied, November 8, 2026 identifies the
 revision record date rather than an independently evidenced approval timestamp.
 \small
@@ -179,22 +196,22 @@ revision record date rather than an independently evidenced approval timestamp.
 \endhead
 \bottomrule
 \endlastfoot
-\phantomsection\label{Gap:G01}G01 & Purpose & Project purpose recorded in \hyperref[Section:ProjectPurpose]{Purpose}; owner-supplied mission need added in \hyperref[Section:ProjectMissionNeed]{Mission Need}. Reliability and plug and play acceptance criteria remain \OwnedTBD{}.\\
+\phantomsection\label{Gap:G01}G01 & Purpose & Project purpose and mission need recorded. Owner-approved \gls{fsareliable} and \gls{fsaplugandplay} definitions apply. Quantitative reliability targets remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \phantomsection\label{Gap:G02}G02 & Scope and boundary & Revision scope recorded in \hyperref[Section:ProjectScope]{Scope}. The pipeline code-base boundary and controlled external dependencies are defined in \hyperref[Section:ProjectSystemBoundary]{System Boundary and Allocation}. Detailed allocations remain \OwnedTBD{}.\\
 \phantomsection\label{Gap:G03}G03 & Stakeholders & Owner, users, and approver recorded in \hyperref[Section:ProjectStakeholders]{Audience}. Additional assignments and organization are \OwnedTBD{}. Hardware, firmware, and host-integration responsibility gaps are recorded in \hyperref[Table:HardwareFirmwareResponsibilities]{Responsibility Status}.\\
 \phantomsection\label{Gap:G04}G04 & Hardware baseline & Specific FTDI245R module and board revision are \OwnedTBD{}. Platform class, other hardware revisions, and controlled hardware evidence remain \OwnedTBD{}.\\
-\phantomsection\label{Gap:G05}G05 & Signal definition & Source clarified during G06: Sensor through ADC0804. Signal type, channel count, sample rate, data width, and triggering are \OwnedTBD{}. See \hyperref[Section:ProjectSignals]{Signal Definition}.\\
-\phantomsection\label{Gap:G06}G06 & Interfaces & Connection chain, host operating systems, and \hyperref[Table:ContextDependencies]{controlled external dependencies} recorded in \hyperref[Section:ProjectInterfaces]{Interfaces}. Driver/API, data format, electrical and protocol contracts remain \OwnedTBD{}.\\
+\phantomsection\label{Gap:G05}G05 & Signal definition & Sensor through ADC0804; one unsigned 8-bit byte per conversion, no headers/framing; constant sampling without source-rate bursts. Sample rate is TBD pending ADC0804 timing/hardware confirmation. Signal type, channels and triggering remain TBD (decision co-owners for each: Joel Murphy and Jason Lefler).\\
+\phantomsection\label{Gap:G06}G06 & Interfaces & Connection chain and Linux/Windows/macOS retained. Raw-byte delivery occurs at consumer interface acceptance. FTD2XX proposed; D2XX Guide v1.3 is the documentation baseline. Actual library/driver version, OS versions, electrical/handshake contracts and concrete consumer API remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \phantomsection\label{Gap:G07}G07 & Constraints and toolchain & Programming languages, development tools, budget, schedule, licensing rules, and applicable standards are \OwnedTBD{}. See \hyperref[Section:ToolchainHostAssumptions]{Toolchain and Host-Platform Assumptions}.\\
-\phantomsection\label{Gap:G08}G08 & Quality attributes & Throughput, latency, acquisition duration, data-loss tolerance, accuracy, reliability, and other measurable quality targets are \OwnedTBD{}.\\
+\phantomsection\label{Gap:G08}G08 & Quality attributes & Continuous acquisition until user stop; \gls{fsareliable} and \gls{fsacorruption} definitions approved. Sample rate, acceptance-test duration, quantitative reliability, latency and accuracy targets remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \phantomsection\label{Gap:G09}G09 & Resources, power, environment & Buffering, storage, bandwidth, processing, power, temperature, and operating-condition limits are \OwnedTBD{}.\\
-\phantomsection\label{Gap:G10}G10 & Lifecycle behavior & Disconnection intent recorded in \hyperref[Section:ProjectLifecycleIntent]{Lifecycle Intent}. Specific handling, recovery, and other lifecycle behavior are \OwnedTBD{}.\\
+\phantomsection\label{Gap:G10}G10 & Lifecycle behavior & Automatic detection/start after installation/configuration; positive reads; partial/empty timeout continuation; host-read byte preservation, interruption report and automatic reconnect/resume approved. Device-resident/disconnected-source bytes excluded. Timeout duration, reporting API, stop/drain and detailed recovery contracts remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \phantomsection\label{Gap:G11}G11 & Safety and security & Hazards, electrical protection, safe states, access control, sensitive-data handling, and assurance dispositions are \OwnedTBD{}.\\
 \phantomsection\label{Gap:G12}G12 & Updates and service & Git/GitHub and owner Not Applicable dispositions are recorded in \hyperref[Section:ProjectConfigurationControl]{Configuration Control and Service Dispositions}.\\
 \phantomsection\label{Gap:G13}G13 & Risks & Six open risks are recorded in \hyperref[Table:ProjectOpenRisks]{Open Risks}. Assessment, mitigation, and risk ownership remain \OwnedTBD{}.\\
-\phantomsection\label{Gap:G14}G14 & Evidence & Supporting project evidence is \OwnedTBD{}. See \hyperref[Section:ProjectEvidenceBaseline]{Evidence Baseline}. Verification evidence is deferred.\\
-\phantomsection\label{Gap:G15}G15 & Approvals & Joel Murphy approves revisions and the initial baseline and resolves all open \OwnedTBD{} items. Additional acceptance criteria remain \OwnedTBD{}; see \hyperref[Section:ProjectGovernance]{Project Governance}.\\
-\phantomsection\label{Gap:G16}G16 & Document setup & Namespace fsa; owner Joel Murphy; organization \OwnedTBD{}; revision 0.1; Draft --- Initial Architecture and Context Baseline; November 8, 2026. PDF compilation is assigned to the owner.\\
+\phantomsection\label{Gap:G14}G14 & Evidence & FTDI TN\_167 v1.0 and D2XX Guide v1.3 plus owner decisions support candidate obligations. Software and physical FT245R sequence paths are planned, not executed. Hardware evidence, controlled baselines and objective results remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+\phantomsection\label{Gap:G15}G15 & Approvals & Joel Murphy and Jason Lefler approve revisions and the initial baseline and resolve all open \OwnedTBD{} items. Additional acceptance criteria remain \OwnedTBD{}; see \hyperref[Section:ProjectGovernance]{Project Governance}.\\
+\phantomsection\label{Gap:G16}G16 & Document setup & Namespace fsa; co-owners Joel Murphy and Jason Lefler; organization \OwnedTBD{}; revision 0.2; Draft --- Initial Architecture and Context Baseline; November 8, 2026. PDF compilation is assigned to the owner.\\
 \end{tabularx}
 \normalsize
 

@@ -2,6 +2,10 @@
 \newacronym{ui}{UI}{user interface}
 \newacronym{uml}{UML}{Unified Modeling Language}
 \newacronym{vnv}{V\&V}{verification and validation}
+\newacronym{fsaoms}{OMS}{Open Mission Systems}
+\newacronym{fsauci}{UCI}{Universal Command and Control Interface}
+\newacronym{fsacal}{CAL}{Critical Abstraction Layer}
+\newacronym{fsaowp}{OWP}{OMS WebSocket Protocol}
 
 \newglossaryentry{acceptancecriterion}{
   name={acceptance criterion},
@@ -50,4 +54,23 @@
 \newglossaryentry{vmodel}{
   name={V-model},
   description={A lifecycle model that pairs each decomposition and specification activity with a corresponding integration and evidence activity}
+}
+
+
+% Owner-approved project operational definitions, November 21, 2026.
+\newglossaryentry{fsareliable}{
+ name={reliable},
+ description={Within the agreed acquisition conditions, the pipeline delivers every byte successfully read into host memory unchanged and in order, continues through partial and empty read timeouts, and handles disconnection without crashing. It reports interruptions and automatically resumes after reconnection without claiming uninterrupted acquisition. Quantitative reliability targets are TBD (decision co-owners: Joel Murphy and Jason Lefler)}
+}
+\newglossaryentry{fsaplugandplay}{
+ name={plug and play},
+ description={On a supported host with the required driver/library installed and configuration completed, the pipeline automatically detects connected FT245R hardware without a code change and starts acquisition on first connection. After disconnection it automatically resumes on reconnection and clearly reports the interruption}
+}
+\newglossaryentry{fsacorruption}{
+ name={corruption},
+ description={Changing a byte value, losing or duplicating a byte, inserting an extra byte, or changing byte order between a successful read into host memory and downstream interface acceptance. Preservation applies across USB batches, partial reads, timeouts and disconnection. Bytes still in the device or generated while disconnected are outside the guarantee; interruptions must be reported without claiming complete acquisition}
+}
+\newglossaryentry{fsadelivery}{
+ name={delivery},
+ description={Acceptance of a raw byte through the downstream consumer interface; completion of downstream processing is not required. The concrete API and acceptance signal remain TBD (decision co-owners: Joel Murphy and Jason Lefler)}
 }

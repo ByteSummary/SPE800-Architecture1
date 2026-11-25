@@ -6,10 +6,10 @@ Define repeatable procedures that produce objective evidence.
 
 \noindent\textbf{Expected result:} Executable test specifications with observable pass criteria.
 
-\section{Revision 0.1 Scope Notice}
+\section{Revision 0.2 Scope Notice}
 \label{Section:DeferredTests}
 \begin{fsaNote}[Deferred project content --- template reference only]
-This chapter is retained in the complete document as template guidance.
+This chapter retains template guidance alongside explicit project test-planning notes.
 Its sample artifacts, IDs, priorities, statuses, versions, outcomes, and
 approval examples do not describe the FTDI245R project. In particular, any
 sample Done, Pass, or release entry is not implementation, verification,
@@ -18,6 +18,194 @@ is deferred under \hyperref[Section:ProjectScope]{the revision scope}.
 See \hyperref[Table:ProjectGapReview]{the reviewed gap list} for actual
 decisions and unresolved items.
 \end{fsaNote}
+
+\section{Planned Project Use-Case Tests}
+\label{Section:ProjectUseCaseTestPlan}
+\index{test!project requirement verification}
+The following are repeatable \textbf{planned test definitions}, not execution
+results. A test-double result is not target-hardware evidence. Actual source,
+host, driver/library, toolchain, fixture revisions, selected conditions, and
+reviewer must be retained with any later result. Missing controlled baselines
+remain TBD (decision co-owners: Joel Murphy and Jason Lefler). No test is marked Pass.
+
+% Keep the TC-010 heading with the beginning of its table.
+\newpage
+\subsection{Known Source Sequence Preservation}
+\small
+\begin{tabularx}{\linewidth}{L{3.4cm}Y}
+\caption{Known Source Sequence Preservation Test\label{Table:ProjectTC010}}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endfirsthead
+\multicolumn{2}{l}{\small\itshape Known Source Sequence Preservation Test (continued)}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-010}; Planned / not executed.\\
+Requirement / use case & \RequirementRef{REQ-D-002}; \UseCaseRef{UC-001}; \UseCaseRef{UC-002}; \UserStoryRef{US-001}; \UserStoryRef{US-002}.\\
+Level / preconditions & Two required paths: software-generated known sequence through an instrumented FTD2XX test double, and known sequence supplied through physical FT245R hardware. A recording consumer captures interface acceptance. Record source, read-boundary, hardware, host/build/library and fixture configurations. Physical stimulus method, rate and test duration remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Inputs & Known transport-byte fixture \texttt{00 01 7F 80 FE FF}, delivered in two successive successful reads of three bytes each. Each fixture byte represents one unsigned 8-bit conversion value with no headers/framing. Chunk sizes are test inputs, not a project block size or timing limit. Physical source rate is constant at a value TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Procedure & 1. Clear the consumer and configure the known sequence. 2. Run each software and physical path under recorded conditions; for physical acquisition stop by user command after the selected duration. 3. Record source bytes, every successful host read and bytes accepted downstream across batches. 4. Compare source, read and accepted sequences for uninterrupted acquisition; use TC-015 for the disconnection preservation boundary.\\
+Expected result & Both paths deliver the full known sequence byte-for-byte in order under the agreed uninterrupted conditions; for the six-byte fixture the count is exactly six. No missing, extra, duplicated, altered or reordered bytes. Acceptance-test duration and physical load remain TBD (decision co-owners: Joel Murphy and Jason Lefler); no result is claimed.\\
+Evidence to retain & Fixture input/output, requested and actual read counts/status, comparison output, source/build/tool versions, host configuration, procedure revision, date, and reviewer. Actual result: pending.\\
+Verification / owner & \VerificationRef{VER-010}; Joel Murphy and Jason Lefler own open baselines and review.\\
+\end{tabularx}
+\normalsize
+\subsection{Completed Read Predicate}
+\small
+\begin{tabularx}{\linewidth}{L{3.4cm}Y}
+\caption{Completed Read Classification Test\label{Table:ProjectTC011}}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endfirsthead
+\multicolumn{2}{l}{\small\itshape Completed Read Classification Test (continued)}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-011}; Planned / not executed.\\
+Requirement / use case & \RequirementRef{REQ-F-004}; \UseCaseRef{UC-002}; \UserStoryRef{US-002}.\\
+Level / preconditions & Software unit/integration test using an instrumented read-result test double. Record selected build, host, and library-interface versions.\\
+Inputs & Requested count 4 for each case: (A) \texttt{FT\_OK}, count 4; (B) \texttt{FT\_OK}, count 2; (C) \texttt{FT\_OK}, count 0; (D) \texttt{FT\_IO\_ERROR}, count 4. These injected cases test the predicate, not a project block-size or timeout choice.\\
+Procedure & 1. Reset observed classification before each case. 2. Inject the specified status/count pair. 3. Observe whether the pipeline recognizes the read as completed. 4. Compare the four observed Boolean results with the expected predicate results.\\
+Expected result & Completed is true for A only, and false for B, C, and D. This requirement does not specify the names or recovery policies of other outcomes.\\
+Evidence to retain & Each requested count, injected status/count, observed completed flag, expected result, build/tool versions, procedure revision, date, and reviewer. Actual result: pending.\\
+Verification / owner & \VerificationRef{VER-011}; Joel Murphy and Jason Lefler own open baselines and review.\\
+\end{tabularx}
+\normalsize
+
+
+\subsection{Positive-Length Read Requests}
+\small
+\begin{tabularx}{\linewidth}{L{3.4cm}Y}
+\caption{Positive-Length Read Requests Test\label{Table:ProjectTC-012}}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endfirsthead
+\multicolumn{2}{l}{\small\itshape Positive-Length Read Requests Test (continued)}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-012}; Planned / not executed.\\
+Requirement / use case & \RequirementRef{REQ-F-005}; \UseCaseRef{UC-002}; \UserStoryRef{US-002}.\\
+Inputs / preconditions & Instrument the acquisition read boundary with a software test double. Exercise normal, partial/empty-timeout and reconnect paths, including an attempted zero-byte configuration. The zero-input response is TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Procedure & Capture the requested count on every actual acquisition read. Check the minimum observed request count and whether any zero-byte request reaches the driver.\\
+Expected result & Every issued read requests at least one byte; no zero-byte request reaches the driver. No particular positive block size or zero-configuration error UI is assumed.\\
+Evidence to retain & Actual input/read/accepted sequences, requested and returned counts/status, observations, process liveness and event reports as relevant, source/build/tool/host/library/hardware versions, fixture and procedure revision, date and reviewer. Actual result: pending.\\
+Verification / owner & \VerificationRef{VER-012}; Joel Murphy and Jason Lefler own open baselines and review.\\
+\end{tabularx}
+\normalsize
+
+\subsection{Partial and Empty Timeout Continuation}
+\small
+\begin{tabularx}{\linewidth}{L{3.4cm}Y}
+\caption{Partial and Empty Timeout Continuation Test\label{Table:ProjectTC-013}}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endfirsthead
+\multicolumn{2}{l}{\small\itshape Partial and Empty Timeout Continuation Test (continued)}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-013}; Planned / not executed.\\
+Requirement / use case & \RequirementRef{REQ-F-006}; \RequirementRef{REQ-F-007}; \RequirementRef{REQ-D-002}; \UseCaseRef{UC-002}; \UserStoryRef{US-002}.\\
+Inputs / preconditions & Request four bytes and inject, in succession: \texttt{FT\_OK}/2 bytes \texttt{00 01}, \texttt{FT\_OK}/0 bytes, then \texttt{FT\_OK}/4 bytes \texttt{7F 80 FE FF}. Timeout duration remains TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Procedure & Capture each read request, result and consumer acceptance. Observe that another read follows each timeout without a user restart. Compare all accepted bytes.\\
+Expected result & The partial read delivers exactly \texttt{00 01}; the empty read delivers none; acquisition continues after both. Final accepted sequence is \texttt{00 01 7F 80 FE FF} in order, without unreturned buffer contents.\\
+Evidence to retain & Actual input/read/accepted sequences, requested and returned counts/status, observations, process liveness and event reports as relevant, source/build/tool/host/library/hardware versions, fixture and procedure revision, date and reviewer. Actual result: pending.\\
+Verification / owner & \VerificationRef{VER-013}; Joel Murphy and Jason Lefler own open baselines and review.\\
+\end{tabularx}
+\normalsize
+
+\subsection[Automatic Detection Start and Continuous Acquisition]{Automatic Detection Start and\\Continuous Acquisition}
+\small
+\begin{tabularx}{\linewidth}{L{3.4cm}Y}
+\caption{Automatic Detection Start and Continuous Acquisition Test\label{Table:ProjectTC-014}}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endfirsthead
+\multicolumn{2}{l}{\small\itshape Automatic Detection Start and Continuous Acquisition Test (continued)}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-014}; Planned / not executed.\\
+Requirement / use case & \RequirementRef{REQ-F-008}; \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010}; \UseCaseRef{UC-001}; \UserStoryRef{US-001}.\\
+Inputs / preconditions & Installed required driver/library and completed configuration on a supported host. Record an unchanged source/build baseline. Run software simulation and physical FT245R connection scenarios separately. Host/hardware/library versions, constant rate and test duration remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Procedure & Connect the supported device for the first time in the scenario without a start command or source change. Observe detection and acquisition. Supply constant-rate input throughout the selected duration, then issue the user stop action. Record acquisition state and read activity.\\
+Expected result & Detection and first-connection acquisition are automatic without code changes. In uninterrupted operation acquisition remains active until the user stop. Detailed stop/drain behavior is TBD (decision co-owners: Joel Murphy and Jason Lefler); a finite test is not proof of indefinite operation.\\
+Evidence to retain & Actual input/read/accepted sequences, requested and returned counts/status, observations, process liveness and event reports as relevant, source/build/tool/host/library/hardware versions, fixture and procedure revision, date and reviewer. Actual result: pending.\\
+Verification / owner & \VerificationRef{VER-014}; Joel Murphy and Jason Lefler own open baselines and review.\\
+\end{tabularx}
+\normalsize
+
+\subsection{Disconnection Preservation Reporting and Automatic Resume}
+\small
+\begin{tabularx}{\linewidth}{L{3.4cm}Y}
+\caption{Disconnection Preservation Reporting and Automatic Resume Test\label{Table:ProjectTC-015}}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endfirsthead
+\multicolumn{2}{l}{\small\itshape Disconnection Preservation Reporting and Automatic Resume Test (continued)}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-015}; Planned / not executed.\\
+Requirement / use case & \RequirementRef{REQ-F-011}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013}; \RequirementRef{REQ-Q-002}; \RequirementRef{REQ-D-002}; \UseCaseRef{UC-002}; \UserStoryRef{US-002}.\\
+Inputs / preconditions & Run both injected software disconnection and physical unplug/reconnect. Arrange known bytes successfully read into host memory but pending consumer acceptance. Record the successful-read ledger. Consumer remains able to accept data. Fixture coordination, exact configurations and observation/recovery limits remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Procedure & 1. Disconnect with pending host-read bytes. 2. Observe process liveness, consumer acceptance and interruption report. 3. Compare accepted bytes against the host-read ledger. 4. Reconnect supported hardware without a restart command and observe acquisition resume with the interruption marked.\\
+Expected result & No pipeline crash. Every byte successfully read before disconnection is accepted unchanged, once and in order. Interruption is clearly reported and acquisition spanning it is not claimed complete/uninterrupted. Acquisition resumes automatically on reconnection. Device-resident bytes and disconnected-source bytes are excluded; their treatment is not inferred. Reporting mechanism, reconnect identity/stale-buffer handling and quantitative limits remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Evidence to retain & Actual input/read/accepted sequences, requested and returned counts/status, observations, process liveness and event reports as relevant, source/build/tool/host/library/hardware versions, fixture and procedure revision, date and reviewer. Actual result: pending.\\
+Verification / owner & \VerificationRef{VER-015}; Joel Murphy and Jason Lefler own open baselines and review.\\
+\end{tabularx}
+\normalsize
+
+\subsection{Unsigned Raw Byte Interface}
+\small
+\begin{tabularx}{\linewidth}{L{3.4cm}Y}
+\caption{Unsigned Raw Byte Interface Test\label{Table:ProjectTC-016}}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endfirsthead
+\multicolumn{2}{l}{\small\itshape Unsigned Raw Byte Interface Test (continued)}\\
+\toprule
+\textbf{Field} & \textbf{Planned definition}\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Identifier & \TestCaseID{TC-016}; Planned / not executed.\\
+Requirement / use case & \RequirementRef{REQ-I-002}; \RequirementRef{REQ-D-002}; \UseCaseRef{UC-001}; \UserStoryRef{US-001}.\\
+Inputs / preconditions & Use known unsigned byte values \texttt{00 01 7F 80 FE FF}, each representing one ADC0804 conversion, without headers/framing. Execute software and physical-interface paths; physical stimulus/ADC fixture details remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+Procedure & Capture input bytes, successful host reads and raw bytes accepted by the consumer. Compare byte values and counts, including values above \texttt{7F}.\\
+Expected result & The unframed one-byte-per-conversion stream is accepted; the consumer receives the same raw bytes with no inserted headers, delimiters or other framing. No signed conversion or byte transformation occurs.\\
+Evidence to retain & Actual input/read/accepted sequences, requested and returned counts/status, observations, process liveness and event reports as relevant, source/build/tool/host/library/hardware versions, fixture and procedure revision, date and reviewer. Actual result: pending.\\
+Verification / owner & \VerificationRef{VER-016}; Joel Murphy and Jason Lefler own open baselines and review.\\
+\end{tabularx}
+\normalsize
 
 \section{How to Use This Chapter}
 Define repeatable test cases, levels, environments, data, entry conditions, procedures, expected results, and result recording. Tests produce evidence; they do not replace verification or validation.
@@ -32,14 +220,14 @@ Define repeatable test cases, levels, environments, data, entry conditions, proc
 \textbf{ID} & \textbf{Mapped Requirement} & \textbf{Procedure} & \textbf{Expected Result}\\
 \midrule
 \endhead
-\TestCaseID{TC-001} & \RequirementRef{REQ-F-001} & Submit a request containing valid required data. & The system creates one request and displays a unique identifier.\\
-\TestCaseID{TC-002} & \RequirementRef{REQ-F-002} & Open the status for a known request. & The current status and most recent update are displayed.\\
-\TestCaseID{TC-003} & \RequirementRef{REQ-Q-001} & Measure 20 status requests under the reference workload. & Every measured response is displayed within two seconds.\\
-\TestCaseID{TC-004} & \RequirementRef{REQ-F-003} & Export a known request set in the approved format. & The export contains the expected history without changing source records.\\
-\TestCaseID{TC-005} & \RequirementRef{REQ-I-001} & Export representative request history and validate the result against the approved interface schema version. & The export conforms to the approved schema and declares the expected schema version.\\
-\TestCaseID{TC-006} & \RequirementRef{REQ-S-001} & Attempt the same export as an authorized actor, an authenticated actor without the export role, and an unauthenticated actor. & Only the authorized actor receives an export; both unauthorized attempts are denied and recorded.\\
-\TestCaseID{TC-007} & \RequirementRef{REQ-D-001} & Perform two status transitions and inspect the stored history and exported record. & Each transition retains the expected timestamp, actor identifier, previous status, and new status.\\
-\TestCaseID{TC-008} & \RequirementRef{REQ-C-001} & Execute the critical use-case test suite on every platform and browser version in the approved deployment baseline. & Every critical use case passes on every approved platform and browser version.\\
-\TestCaseID{TC-009} & \RequirementRef{REQ-B-001} & Time an authorized analyst preparing an approved export from the reference data set without manual reconstruction. & The analyst obtains analysis-ready request-history data within five minutes.\\
+\TestCaseID{TC-001} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Submit a request containing valid required data. & The system creates one request and displays a unique identifier.\\
+\TestCaseID{TC-002} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Open the status for a known request. & The current status and most recent update are displayed.\\
+\TestCaseID{TC-003} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Measure 20 status requests under the reference workload. & Every measured response is displayed within two seconds.\\
+\TestCaseID{TC-004} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Export a known request set in the approved format. & The export contains the expected history without changing source records.\\
+\TestCaseID{TC-005} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Export representative request history and validate the result against the approved interface schema version. & The export conforms to the approved schema and declares the expected schema version.\\
+\TestCaseID{TC-006} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Attempt the same export as an authorized actor, an authenticated actor without the export role, and an unauthenticated actor. & Only the authorized actor receives an export; both unauthorized attempts are denied and recorded.\\
+\TestCaseID{TC-007} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Perform two status transitions and inspect the stored history and exported record. & Each transition retains the expected timestamp, actor identifier, previous status, and new status.\\
+\TestCaseID{TC-008} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Execute the critical use-case test suite on every platform and browser version in the approved deployment baseline. & Every critical use case passes on every approved platform and browser version.\\
+\TestCaseID{TC-009} & \hyperref[Section:RetiredTemplateRequirements]{Removed template requirement} & Time an authorized analyst preparing an approved export from the reference data set without manual reconstruction. & The analyst obtains analysis-ready request-history data within five minutes.\\
 \bottomrule
 \end{tabularx}

@@ -6,12 +6,13 @@ Describe how actors interact with the system to achieve their goals.
 
 \noindent\textbf{Expected result:} Complete interaction scenarios tied to requirements and tests.
 
-\section{Revision 0.1 Scope Notice}
+\section{Revision 0.2 Scope Notice}
 \label{Section:DeferredUseCases}
-\begin{fsaNote}[Deferred project content --- template reference only]
-This chapter is retained in the complete document as template guidance.
-Its sample artifacts, IDs, priorities, statuses, versions, outcomes, and
-approval examples do not describe the FTDI245R project. In particular, any
+\begin{fsaNote}[Project use cases --- draft for review]
+This chapter defines two project draft use cases linked to the current
+project stories. The original service-request examples have been replaced.
+Formal requirement allocations, test IDs, and execution evidence remain
+planned or pending, with Joel Murphy and Jason Lefler as decision owner. In particular, any
 sample Done, Pass, or release entry is not implementation, verification,
 validation, or approval evidence for this project. Detailed project content
 is deferred under \hyperref[Section:ProjectScope]{the revision scope}.
@@ -27,60 +28,77 @@ postconditions. Maintain the canonical relationships among stories,
 requirements, use cases, and tests in \ChapterRef{Traceability}.
 
 \section[High-Level Use Case Diagram]{\hspace{0.5em}High-Level Use Case Diagram}
-Show the system boundary, primary actors, and major user goals before the
-detailed use-case tables. Replace the generic example with project-specific
-actors and use cases while preserving the stable use-case identifiers.
-Figure~\ref{Figure:UseCaseDiagram} provides the template example.
+\label{Section:ProjectUseCaseDiagram}
+Figure~\ref{Figure:UseCaseDiagram} shows the sensor-interface subsystem and
+its two draft actor goals. Each use-case ID in the diagram links to its
+use-case table; each table links back to the diagram. Actor associations
+show participation rather than signal flow. The subsystem boundary and
+external dependencies remain defined in
+\hyperref[Section:ProjectSystemBoundary]{System Context}.
 
 \begin{figure}[htbp]
 \centering
 \input{TikZ/fsaUseCases/fsaUseCaseDiagram.tex}
-\caption{Generic high-level use case diagram.}
+\caption{Project UML use-case diagram linked to the two draft use-case tables.}
 \label{Figure:UseCaseDiagram}
 \end{figure}
 \index{use case diagram}
 
-\section{Submit a Service Request}
+These drafts apply \hyperref[Skill:AIS-07]{AIS-07} and its
+\hyperref[Section:AIUseCaseContext]{Use-Case Context}. They elaborate
+\UserStoryRef{US-001} and \UserStoryRef{US-002} without establishing approved
+requirements or observed results. The approved decisions in \hyperref[Section:ProjectAcquisitionConditions]{Requirements}
+are reflected below. Remaining interface, timing and recovery details are TBD
+(decision co-owners: Joel Murphy and Jason Lefler).
+
+\section{Acquire Sensor Data}
+\label{Section:ProjectAcquireUseCase}
 \begin{tabularx}{\linewidth}{L{3.5cm}Y}
 \toprule
-\textbf{Identifier} & \UseCaseID{UC-001}\\
-\textbf{Mapped requirements} & \RequirementRef{REQ-F-001}, \RequirementRef{REQ-C-001}\\
-\textbf{Goal} & Submit a valid request and receive a unique identifier.\\
-\textbf{Primary actor} & Customer\\
-\textbf{Preconditions} & The customer can access the request form.\\
-\textbf{Trigger} & The customer chooses to submit a new request.\\
-\textbf{Main flow} & The customer enters required data and submits it; the system validates the data, creates the request, and displays its identifier.\\
-\textbf{Alternate flow} & If required data is invalid, the system identifies the affected fields and creates no request.\\
-\textbf{Postconditions} & A valid request exists with a unique identifier and an initial status.\\
+\textbf{Identifier} & \UseCaseID{UC-001}\phantomsection\label{Table:ProjectUC001}; revision 0.2; Draft for review.\\
+\textbf{Mapped story} & \UserStoryRef{US-001}.\\
+\textbf{Mapped requirements} & \RequirementRef{REQ-F-008}; \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010}; \RequirementRef{REQ-I-002}; \RequirementRef{REQ-D-002} (candidates; Open). Decision co-owners: Joel Murphy and Jason Lefler.\\
+\textbf{Goal} & Receive data supplied through the FTDI245R interface and make it available to downstream processing unchanged and in order.\\
+\textbf{Primary actor} & Embedded Engineer. Supporting external actor: downstream processing consumer.\\
+\textbf{Preconditions} & Supported host with required driver/library installed and configuration completed; proposed FTD2XX. Input is one unsigned 8-bit byte per ADC0804 conversion, with no headers/framing. Concrete hardware, OS and driver/library versions, rate and consumer API remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+\textbf{Trigger} & First connection of supported FT245R hardware after prerequisites are met; detection and acquisition start automatically without a code change.\\
+\textbf{Main flow} & 1. The pipeline automatically detects the hardware and starts acquisition.\par 2. The source supplies constant-rate raw sample bytes; USB delivery may be batched.\par 3. The pipeline makes positive-length reads and evaluates status/count.\par 4. It delivers successfully read raw bytes unchanged and in order across batches; delivery occurs when the consumer accepts bytes through its interface.\par 5. Acquisition continues until the user stops it.\\
+\textbf{Alternate flow} & A1. Partial/empty timeouts follow \UseCaseRef{UC-002}; acquisition continues.\par A2. Known-sequence acceptance uses both a software-generated source and physical FT245R hardware. Selected Linux, Windows and macOS configurations are planned; execution is pending.\\
+\textbf{Exception flow} & E1. A read failure or interruption follows \UseCaseRef{UC-002}.\par E2. Consumer unavailability/failure requires a policy; retry, discard, persistence, and reporting remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+\textbf{Outcome} & Normal: the known source sequence is accepted unchanged and in order under the agreed conditions. After interruption, completeness is limited by the approved preservation boundary.\\
+\textbf{Postconditions} & Only bytes successfully read into host memory are delivered. User-stop/drain details and consumer-error policy remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+\textbf{Mapped tests} & \TestCaseRef{TC-010}; \TestCaseRef{TC-014}; \TestCaseRef{TC-016} (planned; not executed). Decision co-owners: Joel Murphy and Jason Lefler.\\
+\textbf{Diagram / validation} & \hyperref[Figure:UseCaseDiagram]{UML diagram}; \ValidationRef{VAL-004} (known-sequence acquisition).\\
+\textbf{Source / decisions} & TN\_167 Sections 2.1--2.2.1, 2.4 \cite{FTDI_TN167_v1_0}; D2XX Guide v1.3 Section 3.10 \cite{FTDI_D2XX_v1_3}. Constant sample rate value, acceptance-test duration, buffering, concrete consumer API and host/library versions remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \bottomrule
 \end{tabularx}
 
-\section{View Request Status}
+\section{Handle Acquisition Read Outcomes}
+\label{Section:ProjectReadOutcomesUseCase}
 \begin{tabularx}{\linewidth}{L{3.5cm}Y}
 \toprule
-\textbf{Identifier} & \UseCaseID{UC-002}\\
-\textbf{Mapped requirements} & \RequirementRef{REQ-F-002}, \RequirementRef{REQ-Q-001}, \RequirementRef{REQ-D-001}, \RequirementRef{REQ-C-001}\\
-\textbf{Goal} & Review the current state of a submitted request.\\
-\textbf{Primary actor} & Customer\\
-\textbf{Preconditions} & A request with a known identifier exists.\\
-\textbf{Trigger} & The customer opens or refreshes the request status.\\
-\textbf{Main flow} & The system retrieves and displays the request status and most recent update.\\
-\textbf{Alternate flow} & If the identifier is unknown, the system reports that no matching request was found.\\
-\textbf{Postconditions} & The request remains unchanged; its current status has been presented.\\
+\textbf{Identifier} & \UseCaseID{UC-002}\phantomsection\label{Table:ProjectUC002}; revision 0.2; Draft for review.\\
+\textbf{Mapped story} & \UserStoryRef{US-002}.\\
+\textbf{Mapped requirements} & \RequirementRef{REQ-F-004}; \RequirementRef{REQ-F-005}; \RequirementRef{REQ-F-006}; \RequirementRef{REQ-F-007}; \RequirementRef{REQ-F-011}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013}; \RequirementRef{REQ-Q-002}; \RequirementRef{REQ-D-002} (candidates; Open). Decision co-owners: Joel Murphy and Jason Lefler.\\
+\textbf{Goal} & Distinguish completed, partial, empty-timeout, and failed reads so that interruptions do not crash or corrupt the pipeline or introduce invalid acquired data.\\
+\textbf{Primary actor} & Embedded Engineer. Read outcomes arise at the controlled device, USB-stack, and host-platform boundaries.\\
+\textbf{Preconditions} & An acquisition read is initiated through \UseCaseRef{UC-001}. Each request is at least one byte. Exact positive block size and timeout duration remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+\textbf{Trigger} & An acquisition read is attempted and its completion, timeout, or error must be handled.\\
+\textbf{Main flow} & 1. Configure the timeout through \texttt{FT\_SetTimeouts} and check status.\par 2. Attempt \texttt{FT\_Read} for at least one byte.\par 3. Recognize completion exactly when status is \texttt{FT\_OK} and actual count equals requested count.\par 4. Deliver successfully returned bytes unchanged and in order.\\
+\textbf{Alternate flow} & A1. \texttt{FT\_OK} with a positive count below the request is a partial timeout: deliver those actual bytes in order, then continue acquisition.\par A2. \texttt{FT\_OK} with zero bytes is an empty timeout: deliver no bytes and continue acquisition.\\
+\textbf{Exception flow} & E1. Timeout-configuration failure is reported; subsequent response is TBD (decision co-owners: Joel Murphy and Jason Lefler).\par E2. A failed read is distinct from an empty timeout; error status alone is not proof of disconnection.\par E3. On disconnection, the pipeline remains running and delivers all bytes successfully read into host memory beforehand without corruption. Bytes still in the device or generated while disconnected are outside the guarantee.\par E4. Clearly report the interruption without claiming complete acquisition; automatically resume when supported hardware reconnects, with the interruption marked.\\
+\textbf{Outcome} & Read outcomes are distinguished; timeouts continue acquisition. Disconnection preserves host-read bytes without crash, is reported as an interruption, and is followed by automatic resumption on reconnection.\\
+\textbf{Postconditions} & Downstream bytes preserve value, count and order across batches, timeouts and disconnection within the host-read guarantee. Reporting mechanism, reconnect timing/identity, stale device bytes and consumer-failure handling remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
+\textbf{Mapped tests} & \TestCaseRef{TC-010}; \TestCaseRef{TC-011}; \TestCaseRef{TC-012}; \TestCaseRef{TC-013}; \TestCaseRef{TC-015} (planned; not executed). Decision co-owners: Joel Murphy and Jason Lefler.\\
+\textbf{Diagram / validation} & \hyperref[Figure:UseCaseDiagram]{UML diagram}; \ValidationRef{VAL-005} (read outcomes and disconnection).\\
+\textbf{Source / decisions} & D2XX Guide v1.3 Sections 3.10 and 3.15 \cite{FTDI_D2XX_v1_3}; owner-approved \hyperref[Section:ProjectAcquisitionConditions]{acquisition conditions} and operational definitions. Timeout duration, reporting interface, quantitative reliability and platform/library versions remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \bottomrule
 \end{tabularx}
 
-\section{Export Request History}
-\begin{tabularx}{\linewidth}{L{3.5cm}Y}
-\toprule
-\textbf{Identifier} & \UseCaseID{UC-003}\\
-\textbf{Mapped requirements} & \RequirementRef{REQ-B-001}, \RequirementRef{REQ-F-003}, \RequirementRef{REQ-I-001}, \RequirementRef{REQ-S-001}, \RequirementRef{REQ-D-001}, \RequirementRef{REQ-C-001}\\
-\textbf{Goal} & Export request history for authorized analysis.\\
-\textbf{Primary actor} & Operations analyst\\
-\textbf{Preconditions} & The actor is authorized and matching requests exist.\\
-\textbf{Trigger} & The actor selects an export range and format.\\
-\textbf{Main flow} & The system validates authorization, generates the export, and makes the result available to the actor.\\
-\textbf{Alternate flow} & If no records match, the system produces an empty result with an explanatory status.\\
-\textbf{Postconditions} & An export artifact exists; source request records are unchanged.\\
-\bottomrule
-\end{tabularx}
+\paragraph{Retired template mappings.}
+\label{Section:RetiredTemplateUseCases}
+The former submit-request, view-status, and export-history use cases were
+removed at the owner's direction. Links in the retained template requirement
+and traceability examples target this notice instead of allocating those
+unrelated examples to the two project use cases. Project requirement and
+test allocations remain planned or pending with Joel Murphy and Jason Lefler.
