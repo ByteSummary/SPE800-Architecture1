@@ -8,16 +8,67 @@ Explain the major design choices and why they address the design drivers.
 
 \section{Revision 0.2 Scope Notice}
 \label{Section:DeferredArchitectureOverview}
-\begin{fsaNote}[Deferred project content --- template reference only]
-This chapter is retained in the complete document as template guidance.
-Its sample artifacts, IDs, priorities, statuses, versions, outcomes, and
-approval examples do not describe the FTDI245R project. In particular, any
-sample Done, Pass, or release entry is not implementation, verification,
-validation, or approval evidence for this project. Detailed project content
-is deferred under \hyperref[Section:ProjectScope]{the revision scope}.
-See \hyperref[Table:ProjectGapReview]{the reviewed gap list} for actual
-decisions and unresolved items.
+\begin{fsaNote}[Revision 0.2 project content]
+\ArtifactRef{Proposal}{REQ-OMS-01} records an open architecture proposal.
+The Decision Template and Example section provides template guidance.
+Detailed architecture views are deferred under
+\hyperref[Section:ProjectScope]{the revision scope}. The
+\hyperref[Table:ProjectGapReview]{reviewed gap list} records project decisions
+and unresolved items.
 \end{fsaNote}
+
+\section{OMS Transfer Proposal (REQ-OMS-01)}
+\label{Proposal:REQ-OMS-01}
+\index{REQ-OMS-01}
+\index{Open Mission Systems}
+\noindent\textbf{Decision pending.} Joel Murphy and Jason Lefler own the
+adoption decision. Consider \gls{fsaoms} if the
+\hyperref[Dependency:Consumer]{downstream processing consumer} needs standard
+product discovery. The scope is the host-to-consumer interface in
+\hyperref[Table:ProjectInterfaces]{Initial Interface Context}.
+
+\paragraph{Proposed version baseline.}
+Evaluate OMS 2.5 (OMSC-STD-001 Rev M, January 22, 2026) with \gls{fsauci}
+2.5 and its 2.5.0 schema (OAC-STD-002 Rev E), the schema baseline cited by OMS
+2.5. Treat UCI 2.6 or a later release as a separate compatibility decision.
+Pin the exact schema artifact and CAL implementation release in the interface
+contract if the proposal is adopted \cite{OMSStandard25,UCIRelease26}.
+
+\paragraph{CAL profile.}
+Evaluate the Language-Agnostic Critical Abstraction Layer (\acrshort{fsacal})
+under OMSC-SPC-013 Rev B.
+Use WebSocket with \gls{fsaowp} 1.0 and OMS JSON for UCI publish/subscribe.
+Both endpoints would agree on the CAL endpoint, supported schema and topic
+names. This profile allows the host and consumer to use different implementation
+languages \cite{OMSVDD25,OMSPDD25}.
+
+\paragraph{Proposed UCI messages.}
+The host would publish \texttt{ProductMetadata} to describe the acquisition
+product and \texttt{ProductLocation} to advertise the corresponding transfer
+URI and availability. The downstream processing consumer would subscribe to
+those messages and use the URI to open the separate byte transfer.
+\texttt{ServiceStatus} is optional for this transfer and could report health
+if acquisition is modeled as an OMS Service \cite{OMSStandard25}.
+
+\paragraph{Byte transfer and decision criteria.}
+The separate transfer would deliver the same unsigned 8-bit samples unchanged
+and in order. The \hyperref[Section:ProjectAcquisitionConditions]{agreed
+acquisition conditions} define delivery at consumer interface acceptance and
+preservation of bytes successfully read into host memory before a device
+disconnection. CAL publication and transport completion do not establish
+consumer acceptance. If the endpoints are networked, an ordered TCP stream
+is a candidate. No listed OMS data format was identified for the bare ADC0804
+stream. The Opaque Data entry is limited to exchanges involving an Opaque
+Capability. Evaluate the raw format against the Non-OMS Data Transfer
+provisions before claiming a compliance tier \cite{OMSStandard25}.
+
+Compare the OMS option with a direct project-defined consumer interface.
+OMS offers standard product discovery at the cost of operating a CAL endpoint
+and managing message-schema compatibility. The owners' decision depends on
+the consumer's interoperability need and supported CAL profile, acceptance of
+the raw format, and a defined consumer acceptance signal, buffering,
+backpressure, and reconnection behavior. Evaluate both options against
+\RequirementRef{REQ-D-002} and \UseCaseRef{UC-001}.
 
 \section{How to Use This Chapter}
 Explain the forces that shape the design, the major decisions, alternatives considered, and consequences. Use the 4+1 views only when they help readers answer different architectural questions.

@@ -68,7 +68,7 @@ are reflected below. Remaining interface, timing and recovery details are TBD
 \textbf{Outcome} & Normal: the known source sequence is accepted unchanged and in order under the agreed conditions. After interruption, completeness is limited by the approved preservation boundary.\\
 \textbf{Postconditions} & Only bytes successfully read into host memory are delivered. User-stop/drain details and consumer-error policy remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \textbf{Mapped tests} & \TestCaseRef{TC-010}; \TestCaseRef{TC-014}; \TestCaseRef{TC-016} (planned; not executed). Decision co-owners: Joel Murphy and Jason Lefler.\\
-\textbf{Diagram / validation} & \hyperref[Figure:UseCaseDiagram]{UML diagram}; \hyperref[Section:ValidationPlanUS001]{known-sequence validation plan}.\\
+\textbf{Diagram / validation} & \hyperref[Figure:UseCaseDiagram]{UML diagram}; \ValidationRef{VAL-004} (known-sequence acquisition).\\
 \textbf{Source / decisions} & TN\_167 Sections 2.1--2.2.1, 2.4 \cite{FTDI_TN167_v1_0}; D2XX Guide v1.3 Section 3.10 \cite{FTDI_D2XX_v1_3}. Constant sample rate value, acceptance-test duration, buffering, concrete consumer API and host/library versions remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \bottomrule
 \end{tabularx}
@@ -90,7 +90,7 @@ are reflected below. Remaining interface, timing and recovery details are TBD
 \textbf{Outcome} & Read outcomes are distinguished; timeouts continue acquisition. Disconnection preserves host-read bytes without crash, is reported as an interruption, and is followed by automatic resumption on reconnection.\\
 \textbf{Postconditions} & Downstream bytes preserve value, count and order across batches, timeouts and disconnection within the host-read guarantee. Reporting mechanism, reconnect timing/identity, stale device bytes and consumer-failure handling remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \textbf{Mapped tests} & \TestCaseRef{TC-010}; \TestCaseRef{TC-011}; \TestCaseRef{TC-012}; \TestCaseRef{TC-013}; \TestCaseRef{TC-015} (planned; not executed). Decision co-owners: Joel Murphy and Jason Lefler.\\
-\textbf{Diagram / validation} & \hyperref[Figure:UseCaseDiagram]{UML diagram}; \hyperref[Section:ValidationPlanUS002]{normal, partial, empty-timeout, and disconnection validation plan}.\\
+\textbf{Diagram / validation} & \hyperref[Figure:UseCaseDiagram]{UML diagram}; \ValidationRef{VAL-005} (read outcomes and disconnection).\\
 \textbf{Source / decisions} & D2XX Guide v1.3 Sections 3.10 and 3.15 \cite{FTDI_D2XX_v1_3}; owner-approved \hyperref[Section:ProjectAcquisitionConditions]{acquisition conditions} and operational definitions. Timeout duration, reporting interface, quantitative reliability and platform/library versions remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 \bottomrule
 \end{tabularx}

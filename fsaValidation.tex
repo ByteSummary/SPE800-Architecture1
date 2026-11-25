@@ -10,79 +10,74 @@ Show that the completed system meets stakeholder needs in its intended context.
 
 \section{Revision 0.2 Scope Notice}
 \label{Section:DeferredValidation}
-\begin{fsaNote}[Deferred project content --- template reference only]
-This chapter retains template guidance and examples alongside explicitly
-identified project planning notes.
-Its sample artifacts, IDs, priorities, statuses, versions, outcomes, and
-approval examples do not describe the FTDI245R project. In particular, any
-sample Done, Pass, or release entry is not implementation, verification,
-validation, or approval evidence for this project. Detailed project content
-is deferred under \hyperref[Section:ProjectScope]{the revision scope}.
-See \hyperref[Table:ProjectGapReview]{the reviewed gap list} for actual
-decisions and unresolved items.
+\begin{fsaNote}[Planned project validation]
+The \hyperref[Table:ValidationRegister]{Project Validation Register} covers
+both \hyperref[Section:ProjectDraftStories]{project user stories}. Validation
+execution, stakeholder observations, and disposition are pending.
 \end{fsaNote}
 
-\section{Planned Project Draft Validation}
-\label{Section:DraftStoryValidation}
-These planning entries support \hyperref[Section:ProjectDraftStories]{the
-project draft stories}. Formal validation IDs, procedures, success criteria
-refinement, execution, observations, and human dispositions remain pending.
-Decision co-owners for every pending item: Joel Murphy and Jason Lefler. No validation result is claimed.
-
-\subsection{Known-Sequence Acquisition Scenario}
-\label{Section:ValidationPlanUS001}
-Related story: \UserStoryRef{US-001}; candidates:
-\RequirementRef{REQ-F-008}; \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010}; \RequirementRef{REQ-I-002}; \RequirementRef{REQ-D-002}; planned tests:
-\TestCaseRef{TC-010}; \TestCaseRef{TC-014}; \TestCaseRef{TC-016}.
-An Embedded Engineer reviews automatic detection/start and continuous
-constant-rate acquisition until user stop, with raw-byte acceptance at the
-consumer interface. Both software-generated and physical FT245R sequences
-are included. Review the approved reliable/plug-and-play definitions.
-Rate, test duration, controlled versions, concrete consumer API and
-quantitative targets remain TBD (decision co-owners: Joel Murphy and Jason Lefler). Execution and
-stakeholder validation disposition remain pending. See
-\hyperref[Section:DraftStoryTraceability]{project traceability}.
-
-\subsection{Read Outcomes and Disconnection Scenarios}
-\label{Section:ValidationPlanUS002}
-Related story: \UserStoryRef{US-002}; candidates:
-\RequirementRef{REQ-F-004}; \RequirementRef{REQ-F-005}; \RequirementRef{REQ-F-006}; \RequirementRef{REQ-F-007}; \RequirementRef{REQ-F-011}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013}; \RequirementRef{REQ-Q-002}; \RequirementRef{REQ-D-002}; planned tests:
-\TestCaseRef{TC-010}; \TestCaseRef{TC-011}; \TestCaseRef{TC-012};
-\TestCaseRef{TC-013}; \TestCaseRef{TC-015}.
-Scenarios cover positive read requests, completed/partial/empty/failed
-reads, timeout continuation, disconnection without crash or host-read-byte
-corruption, clear interruption reporting without a completeness claim,
-and automatic reconnection/resumption. Device-resident bytes and bytes
-generated while disconnected are outside the preservation guarantee.
-Reporting mechanism, timeout duration, detailed recovery contracts and
-quantitative targets remain TBD (decision co-owners: Joel Murphy and Jason Lefler). Execution and
-stakeholder disposition remain pending. See
-\hyperref[Section:DraftStoryTraceability]{project traceability}.
-
 \section{How to Use This Chapter}
-Evaluate whether the completed system solves stakeholder needs in its intended context. Define realistic scenarios, participant roles, success criteria, observations, and disposition of requested changes.
-Validation answers ``Did we build the right system?''
+An Embedded Engineer exercises each scenario in its intended use and records
+whether the outcome meets the user story. Test records support that judgment.
+Joel Murphy and Jason Lefler own pending decisions and validation disposition.
+Before execution, confirm the run conditions and open interface and recovery
+details under the \hyperref[Section:ProjectAcquisitionConditions]{agreed
+acquisition conditions}. For requirement and test mappings, see the
+\hyperref[Table:ProjectRequirementTraceability]{project traceability matrix}.
 
 \section{Validation Register}
+\label{Section:DraftStoryValidation}
+\begingroup
 \small
-\begin{tabularx}{\linewidth}{L{1.6cm}L{2.4cm}YL{3.6cm}L{2.2cm}}
-\caption{Template reference only: Validation Register\label{Table:ValidationRegister}}\\
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{L{1.65cm}YYL{2.4cm}YL{2.05cm}}
+\caption{Project Validation Register\label{Table:ValidationRegister}}\\
 \toprule
-\textbf{ID} & \textbf{Related Story} & \textbf{Scenario} & \textbf{Success Criterion} & \textbf{Status}\\
+\textbf{ID / Story} & \textbf{Scenario} & \textbf{Success Criterion} & \textbf{Stakeholder} & \textbf{Planned Evidence} & \textbf{Status}\\
 \midrule
 \endfirsthead
-\multicolumn{5}{l}{\small\itshape Validation Register (continued)}\\
+\multicolumn{6}{l}{\small\itshape Project Validation Register (continued)}\\
 \toprule
-\textbf{ID} & \textbf{Related Story} & \textbf{Scenario} & \textbf{Success Criterion} & \textbf{Status}\\
+\textbf{ID / Story} & \textbf{Scenario} & \textbf{Success Criterion} & \textbf{Stakeholder} & \textbf{Planned Evidence} & \textbf{Status}\\
 \midrule
 \endhead
 \midrule
-\multicolumn{5}{r}{\small\itshape Continued on next page}\\
+\multicolumn{6}{r}{\small\itshape Continued on next page}\\
 \endfoot
 \bottomrule
 \endlastfoot
-\ValidationID{VAL-001} & \UserStoryRef{TEMPLATE-US-001} & A customer submits a realistic service request without coaching. & The customer receives a unique identifier and confirms that the workflow supports the intended task. & \StatusPending\\
-\ValidationID{VAL-002} & \UserStoryRef{TEMPLATE-US-002} & A customer checks the progress of an existing request. & The customer correctly identifies the current status and latest update and judges the response timely. & \StatusPending\\
-\ValidationID{VAL-003} & \UserStoryRef{US-003} & An authorized analyst exports a representative request history. & Within five minutes, the analyst opens the approved format, finds the expected records, and confirms source records were unchanged. & \StatusPending\\
+\ValidationID{VAL-004}\label{Section:ValidationPlanUS001}\par \UserStoryRef{US-001} &
+Run \UseCaseRef{UC-001} on a configured host with known constant-rate
+sequences from a software-generated source and physical FT245R hardware.
+Continue until the user stops acquisition. &
+On first hardware connection acquisition starts automatically without a code
+change. In both runs the downstream processing consumer accepts the known
+sequence unchanged and in order. &
+Embedded Engineer &
+Source and consumer-accepted byte captures and comparison, startup and stop
+observations, and the Embedded Engineer's assessment. Supporting test records
+from \TestCaseRef{TC-010}, \TestCaseRef{TC-014}, and \TestCaseRef{TC-016}. &
+\StatusPending\\
+\addlinespace
+\ValidationID{VAL-005}\label{Section:ValidationPlanUS002}\par \UserStoryRef{US-002} &
+Run \UseCaseRef{UC-002} with positive-length requests. Exercise completed and
+failed reads, partial and empty timeouts, and a hardware disconnect and reconnect
+while host-read bytes are pending delivery. &
+Status and returned count distinguish the four outcomes. Acquisition continues
+through timeouts, delivering only returned bytes on partial timeouts and zero
+on empty timeouts. Failed reads introduce no invalid data. Disconnection leaves
+the pipeline running and preserves host-read bytes unchanged and in order.
+The report marks the interruption without claiming complete acquisition.
+Acquisition resumes automatically on reconnection. &
+Embedded Engineer &
+Read status and count records, host-read and consumer-accepted byte comparison,
+interruption and resumption records, and the Embedded Engineer's assessment.
+Supporting test records from \TestCaseRef{TC-010}, \TestCaseRef{TC-011},
+\TestCaseRef{TC-012}, \TestCaseRef{TC-013}, and \TestCaseRef{TC-015}. &
+\StatusPending\\
 \end{tabularx}
-\normalsize
+\endgroup
+
+\paragraph{Legacy template cross-link targets.}
+\ValidationID{VAL-001}, \ValidationID{VAL-002}, and \ValidationID{VAL-003}
+identify superseded template examples retained as cross-link targets.
