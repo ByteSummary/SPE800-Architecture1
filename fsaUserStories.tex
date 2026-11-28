@@ -11,11 +11,10 @@ Capture who needs a result and why that result has value.
 \section{Revision 0.2 Scope Notice}
 \label{Section:DeferredUserStories}
 \begin{fsaNote}[Project drafts and retained template reference]
-The two project stories below are Draft for review. Joel Murphy (co-owner from Version 0.2: Jason Lefler) approved
-their insertion on November 21, 2026; that approval does not baseline
-requirements, establish implementation, or approve validation results.
-Section 4.5 uses the template register format with the two project story
-rows replacing the original examples. Legacy template IDs remain only as
+All project stories below are Draft for review. Joel Murphy (co-owner from
+Version 0.2: Jason Lefler) approved insertion of \UserStoryRef{US-001}
+and \UserStoryRef{US-002} on November 21, 2026. The other project
+stories are proposals for owner review. Legacy template IDs remain as
 reference targets for unchanged example chapters; they do not describe
 project behavior. Later requirements, architecture,
 tests, verification, validation, and release content remain planned or pending
@@ -29,10 +28,11 @@ a stable ID, a priority, and links to one or more requirements that implement it
 
 \section{Project User Stories --- Drafts for Review}
 \label{Section:ProjectDraftStories}
-The two project drafts are defined in
-\hyperref[Table:UserStories]{the User Story Register} below, using the same
-ID, Story and Acceptance Criteria, Priority, and Requirement(s) columns as
-the original template. Both retain revision 0.2 and Draft for review status.
+The \hyperref[Table:UserStories]{User Story Register} includes proposed
+priorities for the new stories. The proposals draw on
+the \hyperref[Section:ProjectLifecycleIntent]{documented acquisition lifecycle},
+the \hyperref[Table:ProjectInterfaces]{initial interface context}, and the
+\hyperref[Section:ToolchainHostAssumptions]{host-platform assumptions}.
 FTD2XX is the proposed library for FTDI's D2XX Classic API. No library
 version, platform compatibility, or implementation result is implied. The
 D2XX Programmer's Guide v1.3 is the approved documentation baseline; actual
@@ -42,19 +42,20 @@ These stories follow \hyperref[Skill:AIS-05]{AIS-05} and its
 
 \paragraph{Related draft use cases.}
 \UserStoryRef{US-001} maps to \UseCaseRef{UC-001};
-\UserStoryRef{US-002} maps to \UseCaseRef{UC-002}.
-See \hyperref[Figure:UseCaseDiagram]{the linked UML diagram and use-case tables}.
-Requirement proposals and planned tests are linked in \hyperref[Section:ProjectRequirements]{Project Requirements}; review decisions remain with Joel Murphy and Jason Lefler.
+\UserStoryRef{US-002} maps to \UseCaseRef{UC-002};
+\UserStoryRef{US-004} maps to \UseCaseRef{UC-003};
+\UserStoryRef{US-005} maps to \UseCaseRef{UC-004}.
+See \hyperref[Figure:UseCaseDiagram]{the linked UML diagram and use-case tables}
+and \hyperref[Section:DraftStoryTraceability]{project traceability} for
+additional allocations and open decisions.
 
 \section{User Story Register}
 \label{Section:ProjectUserStoryRegister}
-The template example rows have been replaced by
-\UserStoryRef{US-001} and \UserStoryRef{US-002}. All unresolved decisions in
-each row, including priority and later lifecycle allocation, are assigned to
+All unresolved decisions in each row, including priority and later lifecycle allocation, are assigned to
 Joel Murphy and Jason Lefler. Candidate requirement allocations are linked below; validation
 execution and the remaining lifecycle work remain planned or pending.
-The validation plans are \ValidationRef{VAL-004} for \UserStoryRef{US-001}
-and \ValidationRef{VAL-005} for \UserStoryRef{US-002}.
+The \hyperref[Table:ValidationRegister]{validation register} has one pending
+scenario per project story.
 
 \begingroup
 \small
@@ -94,6 +95,105 @@ Acceptance: Completed reads are recognized using status and
 returned count.
 & Should
 & \RequirementRef{REQ-F-004}; \RequirementRef{REQ-F-005}; \RequirementRef{REQ-F-006}; \RequirementRef{REQ-F-007}; \RequirementRef{REQ-F-011}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013}; \RequirementRef{REQ-Q-002}; \RequirementRef{REQ-D-002} \cite{FTDI_D2XX_v1_3}.
+\\
+\UserStoryID{US-004}
+& As an Embedded Engineer, I need acquisition to start when I first
+connect supported FT245R hardware to a configured host, so I can begin
+capturing samples without changing code or issuing a start command.
+\par Acceptance: With the required driver/library installed and
+configuration complete, first connection is detected and starts acquisition
+automatically.
+& Must
+& \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010}.\\
+\UserStoryID{US-005}
+& As an Embedded Engineer, I need acquisition to recover when supported
+FT245R hardware reconnects and to mark the interruption, so I can use the
+captured bytes and identify where acquisition was interrupted.
+\par Acceptance: The pipeline remains running, reports the interruption,
+delivers pending bytes already read into host memory unchanged and in
+order, and resumes automatically on reconnection.
+& Must
+& \RequirementRef{REQ-F-011}; \RequirementRef{REQ-F-012};
+\RequirementRef{REQ-F-013}; \RequirementRef{REQ-Q-002};
+\RequirementRef{REQ-D-002}.\\
+\addlinespace
+\UserStoryID{US-006}
+& \textbf{Interpret raw samples.}\par
+As an Embedded Engineer integrating the downstream processing consumer,
+I need a known sample layout so I can interpret the ADC0804 values correctly.
+\par Acceptance: For a known input that includes values on both sides
+of the signed-byte boundary, each conversion reaches the consumer as one
+unchanged unsigned 8-bit byte, without headers or framing.
+& Must
+& \RequirementRef{REQ-I-002}; \RequirementRef{REQ-D-002}.\\
+\addlinespace
+\UserStoryID{US-007}
+& \textbf{Continue through read timeouts.}\par
+As an Embedded Engineer capturing a signal, I need acquisition to continue
+after partial and empty timeouts so transient read delays do not end my run.
+\par Acceptance: A partial timeout delivers only the returned bytes in order,
+an empty timeout delivers no bytes, and a subsequent successful read still
+reaches the consumer.
+& Must
+& \RequirementRef{REQ-F-006}; \RequirementRef{REQ-F-007};
+\RequirementRef{REQ-D-002}.\\
+\addlinespace
+\UserStoryID{US-008}
+& \textbf{Stop acquisition deliberately.}\par
+As an Embedded Engineer, I need to stop a running capture and know what
+happened to pending samples so I can choose which capture to analyze.
+\par Proposed acceptance: After a user stop, observe that acquisition ends
+and reconcile pending host-read bytes against the agreed stop and drain policy.
+& Should
+& \RequirementRef{REQ-F-008} covers operation until stop.
+\hyperref[Section:AdditionalStoryAllocations]{Stop and drain allocation pending}.\\
+\addlinespace
+\UserStoryID{US-009}
+& \textbf{Recognize a stalled consumer.}\par
+As an Embedded Engineer, I need to know when the downstream processing
+consumer cannot accept bytes so I can judge whether to use the capture.
+\par Proposed acceptance: With the consumer temporarily unable to accept
+bytes, observe the condition and confirm that the result accounts for
+accepted, pending, and any undelivered bytes under the agreed policy.
+& Should
+& \hyperref[Section:AdditionalStoryAllocations]{Requirement allocation pending}.\\
+\addlinespace
+\UserStoryID{US-010}
+& \textbf{Reproduce a build on a supported host.}\par
+As an Embedded Engineer, I need to build the pipeline from a controlled
+source revision and documented dependencies so I can repeat an acquisition
+check on another approved host setup.
+\par Proposed acceptance: From a fresh environment on each selected host
+configuration, follow the recorded build instructions and run the same
+known-sequence check without editing the source.
+& Should
+& \hyperref[Section:AdditionalStoryAllocations]{Requirement allocation pending}.\\
+\addlinespace
+\UserStoryID{US-011}
+& \textbf{Qualify a sustained capture.}\par
+As an Embedded Engineer planning a longer capture, I need to know whether
+my selected host can keep up at the agreed constant source rate so I can
+choose a supported setup for the run.
+\par Proposed acceptance: Run physical FT245R hardware at the agreed
+source rate and duration. Compare the source and accepted byte sequences
+and check observed resource use against agreed limits.
+& Should
+& \RequirementRef{REQ-F-008} and \RequirementRef{REQ-D-002}
+cover continuous operation and byte delivery.
+\hyperref[Section:AdditionalStoryAllocations]{Rate and resource allocation pending}.\\
+\addlinespace
+\UserStoryID{US-012}
+& \textbf{Distinguish a failed read from a timeout.}\par
+As an Embedded Engineer investigating an acquisition problem, I need
+to distinguish a failed read from an ordinary timeout so I can investigate
+the failure without confusing it with a transient read delay.
+\par Acceptance: With the same positive request size and zero bytes returned
+in both cases, a read error and an \texttt{FT\_OK} empty timeout are
+distinguishable by status. Neither read is classified as completed.
+& Should
+& \RequirementRef{REQ-F-004} covers completion classification.
+\UseCaseRef{UC-002} defines the failed-read and empty-timeout flows.
+\hyperref[Section:AdditionalStoryAllocations]{Reporting and retry policy pending}.\\
 \end{tabularx}
 \endgroup
 
@@ -108,7 +208,7 @@ their example requirements and validation records are not allocated to
 
 \paragraph{Draft traceability status.}
 \hyperref[Section:DraftStoryTraceability]{The planned project traceability register}
-provides reciprocal links to both project stories. Requirements, use cases,
+provides reciprocal links to the project stories. Requirements, use cases,
 architecture, tests, verification, validation execution, and release remain
 planned or pending, with unresolved decisions assigned to Joel Murphy and Jason Lefler.
 

@@ -12,7 +12,7 @@ Show that the completed system meets stakeholder needs in its intended context.
 \label{Section:DeferredValidation}
 \begin{fsaNote}[Planned project validation]
 The \hyperref[Table:ValidationRegister]{Project Validation Register} covers
-both \hyperref[Section:ProjectDraftStories]{project user stories}. Validation
+the \hyperref[Section:ProjectDraftStories]{project user stories}. Validation
 execution, stakeholder observations, and disposition are pending.
 \end{fsaNote}
 
@@ -74,6 +74,91 @@ Read status and count records, host-read and consumer-accepted byte comparison,
 interruption and resumption records, and the Embedded Engineer's assessment.
 Supporting test records from \TestCaseRef{TC-010}, \TestCaseRef{TC-011},
 \TestCaseRef{TC-012}, \TestCaseRef{TC-013}, and \TestCaseRef{TC-015}. &
+\StatusPending\\
+\addlinespace
+\ValidationID{VAL-006}\par \UserStoryRef{US-004} &
+Exercise \UseCaseRef{UC-003} by connecting supported FT245R hardware
+to a configured host with the required driver/library installed. &
+The pipeline detects the first connection and starts acquisition without
+a start command or code change. &
+Embedded Engineer &
+Host configuration, connection and first-read observations, and the
+engineer's assessment. Supporting record: \TestCaseRef{TC-014}. &
+\StatusPending\\
+\addlinespace
+\ValidationID{VAL-007}\par \UserStoryRef{US-005} &
+Exercise \UseCaseRef{UC-004} by disconnecting and reconnecting supported
+FT245R hardware while host-read bytes await delivery. &
+The pipeline stays running, preserves pending host-read bytes in order,
+marks the interruption, and resumes automatically. &
+Embedded Engineer &
+Host-read and accepted byte comparison, interruption and restart
+observations, and the engineer's assessment. Supporting record:
+\TestCaseRef{TC-015}. &
+\StatusPending\\
+\addlinespace
+\ValidationID{VAL-008}\par \UserStoryRef{US-006} &
+Exercise the raw-byte path in \UseCaseRef{UC-001} with known values on both
+sides of the signed-byte boundary. &
+The consumer sees one unframed byte per conversion, with each value preserved. &
+Embedded Engineer &
+Input and accepted byte captures. Supporting record: \TestCaseRef{TC-016}. &
+\StatusPending\\
+\addlinespace
+\ValidationID{VAL-009}\par \UserStoryRef{US-007} &
+Follow the partial and empty timeout flows in \UseCaseRef{UC-002} with a
+successful read afterward. &
+Only actual returned bytes reach the consumer in order. A later read is delivered. &
+Embedded Engineer &
+Read status, counts, and accepted byte capture. Supporting record:
+\TestCaseRef{TC-013}. &
+\StatusPending\\
+\addlinespace
+\ValidationID{VAL-010}\par \UserStoryRef{US-008} &
+Stop an active \UseCaseRef{UC-001} capture while host-read bytes await delivery. &
+Acquisition ends and the pending bytes are accounted for under the agreed
+stop and drain policy. &
+Embedded Engineer &
+Stop observation and byte accounting. \TestCaseRef{TC-014} covers operation
+until stop. Detailed policy and checks are \OwnedTBD{}. &
+\StatusPending\\
+\addlinespace
+\ValidationID{VAL-011}\par \UserStoryRef{US-009} &
+Temporarily prevent the downstream processing consumer from accepting bytes. &
+The engineer recognizes the stall and can reconcile the capture under the
+agreed policy. &
+Embedded Engineer &
+Consumer state and byte accounting. Response and test allocation are \OwnedTBD{}. &
+\StatusPending\\
+\addlinespace
+\ValidationID{VAL-012}\par \UserStoryRef{US-010} &
+From fresh environments, build the controlled revision on the selected
+host configurations and run the same known input. &
+The engineer can build and repeat the known-sequence check without source changes. &
+Embedded Engineer &
+Build instructions, dependencies, host configurations, build logs, and
+sequence comparisons. Host baseline and test allocation are \OwnedTBD{}. &
+\StatusPending\\
+\addlinespace
+\ValidationID{VAL-013}\par \UserStoryRef{US-011} &
+Run \UseCaseRef{UC-001} with physical FT245R hardware at the agreed constant
+source rate and run duration. &
+The accepted sequence matches the source sequence and observed resources
+stay within agreed limits. &
+Embedded Engineer &
+Sequence comparison and resource observations. Rate, duration, resource
+limits, and qualification test allocation are \OwnedTBD{}. &
+\StatusPending\\
+\addlinespace
+\ValidationID{VAL-014}\par \UserStoryRef{US-012} &
+Exercise the failure and empty-timeout flows in \UseCaseRef{UC-002}
+with a test double. Hold request size and zero returned bytes constant
+while varying the status. &
+The two outcomes are distinguishable, and neither is classified as completed. &
+Embedded Engineer &
+Injected status, byte count, and observed classification.
+\TestCaseRef{TC-011} supports the completion check. The separate
+outcome check is pending. &
 \StatusPending\\
 \end{tabularx}
 \endgroup

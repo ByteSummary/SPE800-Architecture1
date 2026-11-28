@@ -148,7 +148,7 @@ Verification / owner & \VerificationRef{VER-013}; Joel Murphy and Jason Lefler o
 \bottomrule
 \endlastfoot
 Identifier & \TestCaseID{TC-014}; Planned / not executed.\\
-Requirement / use case & \RequirementRef{REQ-F-008}; \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010}; \UseCaseRef{UC-001}; \UserStoryRef{US-001}.\\
+Requirement / use case & \RequirementRef{REQ-F-008}; \RequirementRef{REQ-F-009}; \RequirementRef{REQ-F-010}; \UseCaseRef{UC-001}; \UserStoryRef{US-001}; \UseCaseRef{UC-003}; \UserStoryRef{US-004}.\\
 Inputs / preconditions & Installed required driver/library and completed configuration on a supported host. Record an unchanged source/build baseline. Run software simulation and physical FT245R connection scenarios separately. Host/hardware/library versions, constant rate and test duration remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 Procedure & Connect the supported device for the first time in the scenario without a start command or source change. Observe detection and acquisition. Supply constant-rate input throughout the selected duration, then issue the user stop action. Record acquisition state and read activity.\\
 Expected result & Detection and first-connection acquisition are automatic without code changes. In uninterrupted operation acquisition remains active until the user stop. Detailed stop/drain behavior is TBD (decision co-owners: Joel Murphy and Jason Lefler); a finite test is not proof of indefinite operation.\\
@@ -173,7 +173,7 @@ Verification / owner & \VerificationRef{VER-014}; Joel Murphy and Jason Lefler o
 \bottomrule
 \endlastfoot
 Identifier & \TestCaseID{TC-015}; Planned / not executed.\\
-Requirement / use case & \RequirementRef{REQ-F-011}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013}; \RequirementRef{REQ-Q-002}; \RequirementRef{REQ-D-002}; \UseCaseRef{UC-002}; \UserStoryRef{US-002}.\\
+Requirement / use case & \RequirementRef{REQ-F-011}; \RequirementRef{REQ-F-012}; \RequirementRef{REQ-F-013}; \RequirementRef{REQ-Q-002}; \RequirementRef{REQ-D-002}; \UseCaseRef{UC-002}; \UserStoryRef{US-002}; \UseCaseRef{UC-004}; \UserStoryRef{US-005}.\\
 Inputs / preconditions & Run both injected software disconnection and physical unplug/reconnect. Arrange known bytes successfully read into host memory but pending consumer acceptance. Record the successful-read ledger. Consumer remains able to accept data. Fixture coordination, exact configurations and observation/recovery limits remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
 Procedure & 1. Disconnect with pending host-read bytes. 2. Observe process liveness, consumer acceptance and interruption report. 3. Compare accepted bytes against the host-read ledger. 4. Reconnect supported hardware without a restart command and observe acquisition resume with the interruption marked.\\
 Expected result & No pipeline crash. Every byte successfully read before disconnection is accepted unchanged, once and in order. Interruption is clearly reported and acquisition spanning it is not claimed complete/uninterrupted. Acquisition resumes automatically on reconnection. Device-resident bytes and disconnected-source bytes are excluded; their treatment is not inferred. Reporting mechanism, reconnect identity/stale-buffer handling and quantitative limits remain TBD (decision co-owners: Joel Murphy and Jason Lefler).\\
