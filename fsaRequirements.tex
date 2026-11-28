@@ -495,11 +495,11 @@ decision co-owners: Joel Murphy and Jason Lefler. Each requirement is defined in
 \RequirementID{REQ-F-006} & The pipeline shall continue acquisition after a partial read timeout returning \texttt{FT\_OK}. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-013}\\
 \RequirementID{REQ-F-007} & The pipeline shall continue acquisition after an empty read timeout returning \texttt{FT\_OK}. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-013}\\
 \RequirementID{REQ-F-008} & During uninterrupted operation under the agreed acquisition conditions, the pipeline shall continue acquisition until the user stops it. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001} & \TestCaseRef{TC-014}\\
-\RequirementID{REQ-F-009} & On a supported host with the required driver/library installed and configuration completed, the pipeline shall automatically detect connected FT245R hardware without a code change. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001} & \TestCaseRef{TC-014}\\
-\RequirementID{REQ-F-010} & The pipeline shall automatically start acquisition on first connection of the supported FT245R hardware after the \hyperref[Section:ProjectStartupPrerequisites]{installation and configuration prerequisites} are met. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001} & \TestCaseRef{TC-014}\\
-\RequirementID{REQ-F-011} & Following disconnection, the pipeline shall automatically resume acquisition when the supported FT245R hardware reconnects. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-015}\\
-\RequirementID{REQ-F-012} & The pipeline shall clearly report an acquisition interruption caused by FT245R disconnection. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-015}\\
-\RequirementID{REQ-F-013} & The pipeline shall not represent acquisition spanning a disconnection as complete and uninterrupted. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-015}\\
+\RequirementID{REQ-F-009} & On a supported host with the required driver/library installed and configuration completed, the pipeline shall automatically detect connected FT245R hardware without a code change. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001}; \UseCaseRef{UC-003} & \TestCaseRef{TC-014}\\
+\RequirementID{REQ-F-010} & The pipeline shall automatically start acquisition on first connection of the supported FT245R hardware after the \hyperref[Section:ProjectStartupPrerequisites]{installation and configuration prerequisites} are met. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001}; \UseCaseRef{UC-003} & \TestCaseRef{TC-014}\\
+\RequirementID{REQ-F-011} & Following disconnection, the pipeline shall automatically resume acquisition when the supported FT245R hardware reconnects. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002}; \UseCaseRef{UC-004} & \TestCaseRef{TC-015}\\
+\RequirementID{REQ-F-012} & The pipeline shall clearly report an acquisition interruption caused by FT245R disconnection. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002}; \UseCaseRef{UC-004} & \TestCaseRef{TC-015}\\
+\RequirementID{REQ-F-013} & The pipeline shall not represent acquisition spanning a disconnection as complete and uninterrupted. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002}; \UseCaseRef{UC-004} & \TestCaseRef{TC-015}\\
 \end{tabularx}
 
 \subsection{Quality Requirements}
@@ -519,7 +519,7 @@ decision co-owners: Joel Murphy and Jason Lefler. Each requirement is defined in
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-Q-002} & The pipeline shall remain running when the FT245R disconnects. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002} & \TestCaseRef{TC-015}\\
+\RequirementID{REQ-Q-002} & The pipeline shall remain running when the FT245R disconnects. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-002}; \UseCaseRef{UC-004} & \TestCaseRef{TC-015}\\
 \end{tabularx}
 
 \clearpage
@@ -584,7 +584,7 @@ decision co-owners: Joel Murphy and Jason Lefler. Each requirement is defined in
 \endfoot
 \bottomrule
 \endlastfoot
-\RequirementID{REQ-D-002} & Under the \hyperref[Section:ProjectAcquisitionConditions]{agreed acquisition conditions}, the pipeline shall deliver every byte successfully read into host memory to the downstream processing consumer unchanged and in its original read order, including bytes pending delivery at disconnection. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001}; \UseCaseRef{UC-002} & \TestCaseRef{TC-010}; \TestCaseRef{TC-013}; \TestCaseRef{TC-015}; \TestCaseRef{TC-016}\\
+\RequirementID{REQ-D-002} & Under the \hyperref[Section:ProjectAcquisitionConditions]{agreed acquisition conditions}, the pipeline shall deliver every byte successfully read into host memory to the downstream processing consumer unchanged and in its original read order, including bytes pending delivery at disconnection. & \gls{must} & \ReqStatusOpen & \NoVersion & \UseCaseRef{UC-001}; \UseCaseRef{UC-002}; \UseCaseRef{UC-004} & \TestCaseRef{TC-010}; \TestCaseRef{TC-013}; \TestCaseRef{TC-015}; \TestCaseRef{TC-016}\\
 \end{tabularx}
 
 \subsection{Constraint Requirements}

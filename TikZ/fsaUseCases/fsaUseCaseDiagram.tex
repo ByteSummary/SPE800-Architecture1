@@ -2,23 +2,32 @@
 \begin{tikzpicture}[
   external actor/.style={draw=fsaGray,rounded corners=2pt,fill=fsaGray!8,
     align=center,text width=2.5cm,minimum height=1.15cm,font=\small},
-  project use case/.style={ellipse,draw=fsaBlue,fill=fsaLightBlue,
-    align=center,text width=3.8cm,minimum height=1.25cm,font=\small},
+  project use case/.style={align=center,font=\small},
   association/.style={draw=fsaGray,line width=0.7pt}
 ]
   % Reserve a separate header band above the use-case ovals.
-  \draw[fsaBlue,rounded corners=3pt] (-2.95,-2.0) rectangle (2.95,3.2);
-  \node[align=center,font=\small\bfseries,text width=4.8cm] at (0,2.45)
-    {Sensor-interface subsystem\\FTDI245R acquisition\\pipeline code base};
-  \node[project use case] (acquire) at (0,0.65)
+  \draw[fsaBlue,rounded corners=3pt] (-2.95,-3.65) rectangle (2.95,4.55);
+  \node[align=center,font=\small\bfseries] at (0,3.85)
+    {Sensor-interface subsystem\\FTDI245R pipeline};
+  \foreach \height in {2.55,0.85,-0.85,-2.55}
+    \draw[draw=fsaBlue,fill=fsaLightBlue] (0,\height)
+      ellipse [x radius=2.65cm,y radius=0.64cm];
+  \node[project use case] at (0,2.55)
     {\UseCaseRef{UC-001}\\Acquire sensor data};
-  \node[project use case] (outcomes) at (0,-1.0)
-    {\UseCaseRef{UC-002}\\Handle acquisition\\read outcomes};
-  \node[external actor] (engineer) at (-4.5,-0.15)
+  \node[project use case] at (0,0.85)
+    {\UseCaseRef{UC-002}\\Handle read outcomes};
+  \node[project use case] at (0,-0.85)
+    {\UseCaseRef{UC-003}\\Start on first connection};
+  \node[project use case] at (0,-2.55)
+    {\UseCaseRef{UC-004}\\Recover after disconnect};
+  \node[external actor] (engineer) at (-4.7,0)
     {\textless\textless actor\textgreater\textgreater\\Embedded Engineer};
-  \node[external actor] (consumer) at (4.6,0.65)
+  \node[external actor] (consumer) at (4.7,0)
     {\textless\textless actor\textgreater\textgreater\\Downstream processing\\consumer};
-  \draw[association] (engineer.east) -- (-3.05,-0.15) |- (acquire.west);
-  \draw[association] (engineer.east) -- (-3.05,-0.15) |- (outcomes.west);
-  \draw[association] (acquire.east) -- (consumer.west);
+  \draw[association] (engineer.east) -- (-3.15,0);
+  \draw[association] (-2.65,2.55) -| (-3.15,-2.55) -- (-2.65,-2.55);
+  \draw[association] (-3.15,0.85) -- (-2.65,0.85);
+  \draw[association] (-3.15,-0.85) -- (-2.65,-0.85);
+  \draw[association] (consumer.west) -- (3.15,0);
+  \draw[association] (2.65,2.55) -| (3.15,-2.55) -- (2.65,-2.55);
 \end{tikzpicture}
